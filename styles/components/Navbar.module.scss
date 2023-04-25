@@ -1,0 +1,120 @@
+.navbarContainer {
+	position: absolute;
+	width: 100%;
+	z-index: 12345;
+}
+
+.navbarLinks {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 50px;
+	gap: 50px;
+	width: auto;
+	height: 100%;
+}
+
+.logo {
+	width: 60px;
+	height: 60px;
+	background: url('/icons/logo.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center center;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+	.navbarContainer {
+		height: 70px;
+	}
+
+	.navbarLinks {
+		padding-left: 15px;
+		padding-right: 7%;
+		gap: 15px;
+		height: 100%;
+	}
+
+	.logo {
+		width: 30px;
+		height: 30px;
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	.navbarContainer {
+		height: 70px;
+	}
+
+	.navbarLinks {
+		gap: 40px;
+		padding-left: 15px;
+		padding-right: 6%;
+	}
+
+	.logo {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.navbarContainer {
+		height: 70px;
+	}
+
+	.navbarLinks {
+		gap: 40px;
+		padding-left: 25px;
+		padding-right: 4%;
+		height: 100%;
+	}
+
+	.logo {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	.navbarContainer {
+		height: 100px;
+	}
+
+	.navbarLinks {
+		height: 100px;
+		gap: 50px;
+		padding-left: 25px;
+		padding-right: 3%;
+	}
+
+	.logo {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.navbarContainer {
+		height: 100px;
+	}
+
+	.navbarLinks {
+		gap: 40px;
+		padding-left: 25px;
+		padding-right: 5%;
+		height: 100%;
+	}
+
+	.logo {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+@media print {
+	.navbarContainer {
+		height: 0px;
+	}
+}

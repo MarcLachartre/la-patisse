@@ -159,6 +159,16 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+
+# mongo dump
+dump/**
+
+# tests
+__tests__/**
+
+#db-back-up
+db-back-up.txt
 
 # vercel
 .vercel

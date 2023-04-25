@@ -1,0 +1,124 @@
+.recettesSection {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	width: 100%;
+	height: auto;
+}
+
+.recettesList {
+	margin-bottom: 240px;
+}
+
+.recettesGrid {
+	display: grid;
+	grid-template-rows: auto auto auto;
+	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 40px;
+	row-gap: 40px;
+	height: auto;
+	width: 100%;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+	.recettesSection {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		height: auto;
+	}
+
+	.recettesList {
+		margin-bottom: 240px;
+	}
+
+	.recettesGrid {
+		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 20px;
+		row-gap: 30px;
+	}
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	.recettesSection {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		height: auto;
+	}
+
+	.recettesList {
+		margin-bottom: 240px;
+	}
+
+	.recettesGrid {
+		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 20px;
+		row-gap: 30px;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.recettesSection {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		height: auto;
+	}
+
+	.recettesList {
+		margin-bottom: 280px;
+	}
+
+	.recettesGrid {
+		column-gap: 20px;
+		row-gap: 30px;
+		height: auto;
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	.recettesSection {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		height: auto;
+	}
+
+	.recettesList {
+		margin-bottom: 280px;
+	}
+
+	.recettesGrid {
+		column-gap: 20px;
+		row-gap: 30px;
+		height: auto;
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.recettesSection {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		height: auto;
+	}
+
+	.recettesList {
+		margin-bottom: 280px;
+	}
+
+	.recettesGrid {
+		column-gap: 20px;
+		row-gap: 30px;
+		height: auto;
+		width: 100%;
+	}
+}
