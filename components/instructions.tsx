@@ -18,7 +18,7 @@ const Instructions = (props: Instructions) => {
 					<div className={instructions.instructionNumber}>
 						<h5>{index + 1}</h5>
 					</div>
-					<p>{instruction}</p>
+					<h6>{instruction}</h6>
 				</div>
 			))}
 		</div>
