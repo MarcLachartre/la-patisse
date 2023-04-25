@@ -56,7 +56,7 @@ const Recettes = (props: any) => {
 };
 
 //retrieve all recipes to populate the recettes page
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	const recipes: Recipe[] = await new RecipeController().index();
 	const data: string = JSON.stringify(recipes);
 
