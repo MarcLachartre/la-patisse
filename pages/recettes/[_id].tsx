@@ -80,12 +80,12 @@ const Recette = (props: any) => {
 							recette.recetteShareIconsContainer + ' print-hide'
 						}
 					>
-						<img
+						{/* <img
 							src="/icons/share-icon.png"
 							alt="share"
 							className={`icons ${recette.shareIcon}`}
 							onClick={sharePage}
-						/>
+						/> */}
 						<img
 							src="/icons/printer-icon.png"
 							alt="print"
