@@ -9,7 +9,7 @@ interface Recipe {
 }
 
 const SmallCard = (props: Recipe) => {
-	const [imageURL, setImageURL] = useState<string>('/placeholderpic.png');
+	const [imageURL, setImageURL] = useState<string>('');
 
 	useEffect(() => {
 		backgroundImage();
