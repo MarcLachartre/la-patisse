@@ -41,6 +41,7 @@ const SmallCard = (props: Recipe) => {
 				className={sc.smallCardImage}
 				src={imageURL}
 				onError={setDefaultImage}
+				loading="lazy"
 			></img>
 			<div className={sc.smallCardDescription}>
 				<h4>{props.name}</h4>
