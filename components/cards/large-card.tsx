@@ -1,9 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import lc from '../../styles/components/LargeCard.module.scss';
-import arrow from '../../styles/components/ArrowIcon.module.scss';
+// import arrow from '../../styles/components/ArrowIcon.module.scss';
 
 interface Id {
 	id: string;
