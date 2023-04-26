@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import lc from '../../styles/components/LargeCard.module.scss';
-import arrow from '../../styles/components/ArrowIcon.module.scss';
+// import arrow from '../../styles/components/ArrowIcon.module.scss';
 
 interface Id {
 	id: string;
@@ -11,11 +12,15 @@ interface Id {
 const LargeCard = (props: Id) => {
 	return (
 		<Link href={`/recettes/${props.id}`} className={lc.largeCardContainer}>
-			<img
-				className={lc.largeCardImage}
+			<Image
 				src="/gateau-au-fromage-blanc.png"
 				alt="favorite cake"
-			></img>
+				className={lc.largeCardImage}
+				priority
+				width={500}
+				height={500}
+				placeholder="blur" // Optional blur-up while loading
+			/>
 			<div className={lc.largeCardDescriptionContainer}>
 				<h3> Käsekuchen</h3>
 				<p>
