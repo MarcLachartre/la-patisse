@@ -170,6 +170,9 @@ __tests__/**
 #db-back-up
 db-back-up.txt
 
+#brouillon
+brouillon.txt
+
 # vercel
 .vercel
 
