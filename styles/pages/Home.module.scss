@@ -25,8 +25,18 @@
 	height: 100%;
 	z-index: 0;
 	h1 {
+		opacity: 0;
+		animation: slidein 2s 0s cubic-bezier(0.41, 0.31, 0.04, 1.01) forwards;
 		margin: 0px;
 		padding-bottom: 0px;
+	}
+	h5 {
+		opacity: 0;
+		animation: slidein 2s 0.1s cubic-bezier(0.41, 0.31, 0.04, 1.01) forwards;
+	}
+	.buttonContainer {
+		opacity: 0;
+		animation: slidein 2s 0.2s cubic-bezier(0.41, 0.31, 0.04, 1.01) forwards;
 	}
 }
 
@@ -36,8 +46,11 @@
 	width: 42vw;
 	height: auto;
 	align-self: center;
-	transform: translateX(52vw);
+	opacity: 0;
+	animation: homepageimageslidein 2s 0.3s cubic-bezier(0.41, 0.31, 0.04, 1.01)
+		forwards;
 }
+
 .homepageBackground {
 	position: absolute;
 	background-color: var(--pink);
@@ -46,6 +59,7 @@
 	shape-outside: polygon(100% 100%, 100% 0, 90% 0, 55% 100%);
 	clip-path: polygon(100% 100%, 100% 0, 90% 0, 55% 100%);
 }
+
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
 
@@ -403,6 +417,38 @@
 			text-align: left;
 			position: relative;
 			line-height: calc(7.5vh);
+		}
+	}
+
+	@keyframes slidein {
+		from {
+			opacity: 0;
+			transform: translateY(-50px);
+		}
+
+		15% {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(-0px);
+		}
+	}
+
+	@keyframes homepageimageslidein {
+		from {
+			opacity: 0;
+			transform: translateX(54vw) translateY(-50px);
+		}
+
+		15% {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+			transform: translateX(54vw) translateY(-0px);
 		}
 	}
 }
