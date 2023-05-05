@@ -6,7 +6,9 @@ const MinimalFooter = () => {
 		<div className={styles.minimalFooterContainer}>
 			<p className={styles.contactContainer}>Contact me</p>
 			<div className={styles.contactLine}></div>
-			<ContactIcons color="white" />
+			<div className={styles.iconsContainerAnimation}>
+				<ContactIcons color="white" />
+			</div>
 		</div>
 	);
 };

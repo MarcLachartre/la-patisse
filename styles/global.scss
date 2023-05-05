@@ -27,6 +27,23 @@ html {
 	--pink: #ffd7ca;
 	--dark-orange: #c64a36;
 	--orange: #f85c44;
+	--cubicbezier: cubic-bezier(0.41, 0.31, 0.04, 1);
+}
+
+@keyframes topslidein {
+	from {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+
+	15% {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(-0px);
+	}
 }
 
 h1 {
