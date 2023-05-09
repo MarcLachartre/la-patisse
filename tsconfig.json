@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,6 +21,6 @@
       "@/styles/*": ["styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "pages/_app.tsx", "__tests__/models.test.tsx", "__tests__/controllers.test.tsx", "__tests__/api.test.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "pages/_app.tsx", "__tests__/__models__/models.test.tsx", "__tests__/controllers.test.tsx", "__tests__/api.test.tsx"],
   "exclude": ["node_modules"]
 }

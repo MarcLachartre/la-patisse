@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import recettes from '../styles/pages/Recettes.module.scss';
 import LargeCard from '../components/cards/large-card';
@@ -16,16 +16,26 @@ interface Recipe {
 const Recettes = (props: any) => {
 	const [recipes, setRecipes] = useState<Recipe[]>(JSON.parse(props.data));
 
+	useEffect(() => {
+		async function animate() {
+			const scrollreveal = (await require('scrollreveal')).default;
+			scrollreveal().reveal('.recipe-card');
+		}
+		animate();
+	});
+
 	const displayRecipes = () => {
 		return (
 			<div className={recettes.recettesGrid}>
 				{recipes.map((recipe: any) => (
-					<SmallCard
-						_id={recipe._id}
-						name={recipe.name}
-						description={recipe.description}
-						key={recipe._id}
-					/>
+					<div className="recipe-card" key={recipe._id}>
+						<SmallCard
+							_id={recipe._id}
+							name={recipe.name}
+							description={recipe.description}
+							// key={recipe._id}
+						/>
+					</div>
 				))}
 			</div>
 		);
