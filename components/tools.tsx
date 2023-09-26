@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import tools from '../styles/components/Tools.module.scss';
 

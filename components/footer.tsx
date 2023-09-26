@@ -1,3 +1,5 @@
+'use client';
+
 import footer from '../styles/components/Footer.module.scss';
 import ContactIcons from '../components/contact-icons';
 import Link from 'next/link';

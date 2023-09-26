@@ -1,4 +1,7 @@
+import './global.scss';
+
 import { Metadata } from 'next';
+import Navbar from '../components/layout/navbar';
 
 export const metadata: Metadata = {
 	title: 'La Pâtisse',
@@ -13,15 +16,31 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-	// Layouts must accept a children prop.
-	// This will be populated with nested layouts or pages
 	children,
 }: {
 	children: React.ReactNode;
 }) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
+			<body>
+				<Navbar />
+				{children}
+			</body>
 		</html>
 	);
 }
+
+// import '@/styles/global.scss';
+// import type { AppProps } from 'next/app';
+// import Layout from '../components/layout/layout';
+// import Head from 'next/head';
+
+// export default function MyApp({ Component, pageProps }: AppProps) {
+// 	return (
+// 		<>
+// 			<Layout>
+// 				<Component {...pageProps} />
+// 			</Layout>
+// 		</>
+// 	);
+// }

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import IL from '../styles/components/IngredientsList.module.scss';
 

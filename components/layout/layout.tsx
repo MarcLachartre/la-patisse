@@ -1,17 +1,19 @@
-import React, { ReactElement } from 'react';
-import Navbar from './navbar';
+// 'use client';
 
-type Props = {
-	children?: React.ReactElement;
-};
+// import React, { ReactElement } from 'react';
+// import Navbar from './navbar';
 
-const Layout = ({ children }: Props): ReactElement => {
-	return (
-		<div>
-			<Navbar />
-			<main>{children}</main>
-		</div>
-	);
-};
+// type Props = {
+// 	children?: React.ReactElement;
+// };
 
-export default Layout;
+// const Layout = ({ children }: Props): ReactElement => {
+// 	return (
+// 		<div>
+// 			<Navbar />
+// 			<main>{children}</main>
+// 		</div>
+// 	);
+// };
+
+// export default Layout;

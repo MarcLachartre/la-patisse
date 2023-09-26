@@ -1,3 +1,5 @@
+'use client';
+
 import menu from '../../styles/components/Menu.module.scss';
 
 import Link from 'next/link';

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import recipeFeedback from '../styles/components/RecipeFeedback.module.scss';
 import ContactIcons from './contact-icons';
