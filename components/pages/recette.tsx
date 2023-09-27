@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { GetStaticPropsContext, GetServerSideProps } from 'next';
 import { RecipeController } from '../../controllers/recipe-controller';
@@ -120,38 +122,7 @@ const Recette = (props: any) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async (
-	context: GetStaticPropsContext
-) => {
-	const params = context.params!;
-	const recipe: Recipe = await new RecipeController().show(
-		String(params._id)
-	);
-
-	const data: string = JSON.stringify(recipe);
-
-	return {
-		props: { data }, // will be passed to the page component as props
-	};
-};
-
-export default Recette;
-
-// export const getStaticPaths = async () => {
-// 	// Call recipe API endpoint to get recipes
-// 	const recipes: Recipe[] = await new RecipeController().index();
-
-// 	// Get the paths we want to pre-render based on recipes
-// 	const paths = recipes.map((r) => ({
-// 		params: { _id: String(r._id) },
-// 	}));
-
-// 	// We'll pre-render only these paths at build time.
-// 	// { fallback: false } means other routes should 404.
-// 	return { paths, fallback: false };
-// };
-
-// export const getStaticProps: GetStaticProps = async (
+// export const getServerSideProps: GetServerSideProps = async (
 // 	context: GetStaticPropsContext
 // ) => {
 // 	const params = context.params!;
@@ -165,3 +136,5 @@ export default Recette;
 // 		props: { data }, // will be passed to the page component as props
 // 	};
 // };
+
+export default Recette;
