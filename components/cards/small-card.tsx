@@ -14,6 +14,7 @@ const SmallCard = (props: Recipe) => {
 	const [imageURL, setImageURL] = useState<string>('');
 
 	useEffect(() => {
+		console.log(props._id.slice(1, -1));
 		backgroundImage();
 	}, []);
 
@@ -36,7 +37,7 @@ const SmallCard = (props: Recipe) => {
 	return (
 		<div id={props._id} className={sc.smallCardContainer}>
 			<Link
-				href={'recettes/' + props._id}
+				href={`recettes/${props._id.slice(1, -1)}`}
 				className={sc.smallCardLink}
 			></Link>
 			<img

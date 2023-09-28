@@ -15,7 +15,7 @@ interface Recipe {
 
 const Recettes = (props: any) => {
 	const [recipes, setRecipes] = useState<Recipe[]>(props.recipes);
-	// console.log(recipes);
+
 	useEffect(() => {
 		async function animate() {
 			const scrollreveal = (await require('scrollreveal')).default;
