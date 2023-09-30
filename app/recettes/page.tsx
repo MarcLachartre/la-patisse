@@ -10,6 +10,12 @@ interface Recipe {
 const getRecipes = async () => {
 	// Retrieve all recipes to populate the recettes page
 	const recipes: Recipe[] = await new RecipeController().index();
+	const a = await fetch('http://localhost:3000/api/recettes/index', {
+		cache: 'no-store',
+	});
+
+	const b = await a.json();
+	console.log(b);
 	// Converting id from mongoId object to string
 	const r = recipes.map((recipe) => {
 		recipe._id = JSON.stringify(recipe._id);

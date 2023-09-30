@@ -14,7 +14,6 @@ const SmallCard = (props: Recipe) => {
 	const [imageURL, setImageURL] = useState<string>('');
 
 	useEffect(() => {
-		console.log(props._id.slice(1, -1));
 		backgroundImage();
 	}, []);
 
