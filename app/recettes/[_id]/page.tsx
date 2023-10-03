@@ -1,12 +1,21 @@
-import { RecipeController } from '../../../controllers/recipe-controller';
 import type { Recipe } from 'custom-types/recipes';
 import Recette from '../../../components/pages/recette';
 
+import { NextRequest } from 'next/server';
+
 const getRecipe = async (id: string) => {
 	// Call recipe controller show method to retrieve a specific recipe with all its details
-	const recipe: Recipe = await new RecipeController().show(id);
-	// Converting id from mongoId object to string
-	recipe._id = JSON.stringify(recipe._id);
+
+	const domain: string = 'http://localhost:3000/';
+	const path: string = 'api/recettes/' + id;
+	const url = domain + path;
+	const req = new NextRequest(url);
+
+	const response = await fetch(req.url, {
+		cache: 'no-store',
+	});
+	const r = await response.json();
+	const recipe: Recipe = r.recipe;
 
 	return recipe;
 };

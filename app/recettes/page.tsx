@@ -1,4 +1,3 @@
-import { RecipeController } from '../../controllers/recipe-controller';
 import Recettes from '../../components/pages/recettes';
 
 interface Recipe {
@@ -9,15 +8,14 @@ interface Recipe {
 
 const getRecipes = async () => {
 	// Retrieve all recipes to populate the recettes page
-	const recipes: Recipe[] = await new RecipeController().index();
-	const a = await fetch('http://localhost:3000/api/recettes/index', {
+	const response = await fetch('http://localhost:3000/api/recettes/index', {
 		cache: 'no-store',
 	});
 
-	const b = await a.json();
-	console.log(b);
+	const recipes = await response.json();
+
 	// Converting id from mongoId object to string
-	const r = recipes.map((recipe) => {
+	const r = recipes.map((recipe: Recipe) => {
 		recipe._id = JSON.stringify(recipe._id);
 		return recipe;
 	});
