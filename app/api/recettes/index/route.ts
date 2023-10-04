@@ -1,5 +1,5 @@
 import { RecipeController } from '../../../../controllers/recipe-controller';
-import {  NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 // api route: /api/recettes/index
 export const GET = async () => {
