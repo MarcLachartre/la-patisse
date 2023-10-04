@@ -6,8 +6,8 @@ import { NextRequest } from 'next/server';
 const getRecipe = async (id: string) => {
 	// Call recipe controller show method to retrieve a specific recipe with all its details
 
-	const domain: string = 'http://localhost:3000/';
-	const path: string = 'api/recettes/' + id;
+	const domain: string = `${process.env.DOMAIN}`;
+	const path: string = '/api/recettes/' + id;
 	const url = domain + path;
 	const req = new NextRequest(url);
 

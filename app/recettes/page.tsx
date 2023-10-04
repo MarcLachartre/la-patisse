@@ -8,7 +8,7 @@ interface Recipe {
 
 const getRecipes = async () => {
 	// Retrieve all recipes to populate the recettes page
-	const response = await fetch('http://localhost:3000/api/recettes/index', {
+	const response = await fetch(`${process.env.DOMAIN}/api/recettes/index`, {
 		cache: 'no-store',
 	});
 
