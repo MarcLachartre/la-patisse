@@ -1,7 +1,7 @@
 import menu from '../../styles/components/Menu.module.scss';
 
 import Link from 'next/link';
-import React, { ReactElement, useState, useEffect, use } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 
 const Menu: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);

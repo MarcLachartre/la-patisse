@@ -1,5 +1,5 @@
 class UserModel {
-	find = (id) => {
+	find = (id: any) => {
 		return;
 	};
 }
