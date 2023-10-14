@@ -1,8 +1,9 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 
 import lc from '../../styles/components/LargeCard.module.scss';
-// import arrow from '../../styles/components/ArrowIcon.module.scss';
 
 interface Id {
 	id: string;
@@ -10,7 +11,10 @@ interface Id {
 
 const LargeCard = (props: Id) => {
 	return (
-		<Link href={`/recettes/${props.id}`} className={lc.largeCardContainer}>
+		<Link
+			href={`/recettes/${props.id.slice(1, -1)}`}
+			className={lc.largeCardContainer}
+		>
 			<img
 				className={lc.largeCardImage}
 				src="/gateau-au-fromage-blanc.png"

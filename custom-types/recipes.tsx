@@ -3,13 +3,15 @@ interface Recipe {
 	name: string;
 	description: string;
 	recipe: string[];
-	ingredients: {
-		quantity: number;
-		unit: string;
-		preposition: string;
-		type: string;
-	}[];
+	ingredients: Ingredient[];
 	tools: string[];
+}
+
+interface Ingredient {
+	quantity: number;
+	unit?: string;
+	preposition?: string;
+	type: string;
 }
 
 type Recipes = Recipe[];
@@ -20,4 +22,4 @@ type ShortRecipes = {
 	description: string;
 }[];
 
-export type { Recipes, Recipe, ShortRecipes };
+export type { Recipes, Recipe, ShortRecipes, Ingredient };

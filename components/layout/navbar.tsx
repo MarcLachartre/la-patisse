@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import navbar from '../../styles/components/Navbar.module.scss';
 import Menu from './menu';

@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+
 # la-patisse
+
 =======
+
 # Next.js + Jest
 
 This example shows how to configure Jest to work with Next.js.
@@ -30,4 +33,5 @@ pnpm create next-app --example with-jest with-jest-app
 ```bash
 npm test
 ```
->>>>>>> e99e6bc (Initial commit from Create Next App)
+
+> > > > > > > e99e6bc (Initial commit from Create Next App)

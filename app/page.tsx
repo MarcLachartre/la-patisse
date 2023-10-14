@@ -3,7 +3,7 @@ import button from '../styles/components/Button.module.scss';
 import MinimalFooter from '../components/minimal-footer';
 import Link from 'next/link';
 
-const Home = () => {
+const Page = () => {
 	return (
 		<div className={styles.homepageContainer}>
 			<div className={styles.homepageBackground}></div>
@@ -31,4 +31,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default Page;

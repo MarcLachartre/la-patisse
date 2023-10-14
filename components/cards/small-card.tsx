@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import sc from '../../styles/components/SmallCard.module.scss';
@@ -34,7 +36,7 @@ const SmallCard = (props: Recipe) => {
 	return (
 		<div id={props._id} className={sc.smallCardContainer}>
 			<Link
-				href={'recettes/' + props._id}
+				href={`recettes/${props._id.slice(1, -1)}`}
 				className={sc.smallCardLink}
 			></Link>
 			<img

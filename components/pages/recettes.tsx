@@ -1,11 +1,11 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 
-import recettes from '../styles/pages/Recettes.module.scss';
-import LargeCard from '../components/cards/large-card';
-import SmallCard from '../components/cards/small-card';
-import Footer from '../components/footer';
-
-import { RecipeController } from '../controllers/recipe-controller';
+import recettes from '../../styles/pages/Recettes.module.scss';
+import LargeCard from '../../components/cards/large-card';
+import SmallCard from '../../components/cards/small-card';
+import Footer from '../../components/footer';
 
 interface Recipe {
 	_id: string;
@@ -14,7 +14,7 @@ interface Recipe {
 }
 
 const Recettes = (props: any) => {
-	const [recipes, setRecipes] = useState<Recipe[]>(JSON.parse(props.data));
+	const [recipes, setRecipes] = useState<Recipe[]>(props.recipes);
 
 	useEffect(() => {
 		async function animate() {
@@ -63,16 +63,6 @@ const Recettes = (props: any) => {
 			<Footer />
 		</div>
 	);
-};
-
-//retrieve all recipes to populate the recettes page
-export const getServerSideProps = async () => {
-	const recipes: Recipe[] = await new RecipeController().index();
-	const data: string = JSON.stringify(recipes);
-
-	return {
-		props: { data }, // will be passed to the page component as props
-	};
 };
 
 export default Recettes;

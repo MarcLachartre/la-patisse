@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '../styles/components/MinimalFooter.module.scss';
 import ContactIcons from './contact-icons';
 
