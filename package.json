@@ -7,6 +7,9 @@
     "test": "jest --watch",
     "test:ci": "jest --ci"
   },
+  "engines": {
+    "node": "19.7.0"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "eslint-config-next": "^13.5.2",
