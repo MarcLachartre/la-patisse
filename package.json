@@ -8,15 +8,14 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
-    "eslint-config-next": "^13.5.2",
     "@emotion/react": "^11.11.0",
+    "eslint-config-next": "^13.5.2",
     "mongodb": "^5.0.1",
     "next": "^13.5.2",
     "node-mocks-http": "^1.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "scrollreveal": "^4.0.9"
-
   },
   "prettier": {
     "trailingComma": "es5",
