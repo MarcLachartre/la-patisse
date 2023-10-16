@@ -15,7 +15,7 @@ const getRecipes = async () => {
 	const recipes = await response.json();
 
 	// Converting id from mongoId object to string
-	const r = recipes.map((recipe: Recipe) => {
+	const r = await recipes.map((recipe: Recipe) => {
 		recipe._id = JSON.stringify(recipe._id);
 		return recipe;
 	});

@@ -5,7 +5,6 @@ import { NextRequest } from 'next/server';
 
 const getRecipe = async (id: string) => {
 	// Call recipe controller show method to retrieve a specific recipe with all its details
-
 	const domain: string = `${process.env.DOMAIN}`;
 	const path: string = '/api/recettes/' + id;
 	const url = domain + path;
@@ -15,7 +14,7 @@ const getRecipe = async (id: string) => {
 		cache: 'no-store',
 	});
 	const r = await response.json();
-	const recipe: Recipe = r.recipe;
+	const recipe: Recipe = await r.recipe;
 
 	return recipe;
 };
