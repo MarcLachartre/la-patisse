@@ -9,13 +9,7 @@ interface Recipe {
 }
 
 const getRecipes = async () => {
-	// Retrieve all recipes to populate the recettes page
-	console.log(await new RecipeController().index());
-
-	const a = await fetch('http://api.open-notify.org/iss-now.json');
-	console.log(await a.json());
-
-	// Call recipe controller index method to retrieve all recipes with a short descrition
+	// Call recipe controller index method to retrieve all recipes with a short descrition to populate the recettes page
 	const recipes = await new RecipeController().index();
 
 	// Converting id from mongoId object to string
