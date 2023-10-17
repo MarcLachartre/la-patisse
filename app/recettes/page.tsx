@@ -1,5 +1,7 @@
 import Recettes from '../../components/pages/recettes';
 
+import { RecipeController } from 'controllers/recipe-controller';
+
 interface Recipe {
 	_id: string;
 	name: string;
@@ -8,11 +10,13 @@ interface Recipe {
 
 const getRecipes = async () => {
 	// Retrieve all recipes to populate the recettes page
-	const response = await fetch(`${process.env.DOMAIN}/api/recettes/index`, {
-		cache: 'no-store',
-	});
+	console.log(await new RecipeController().index());
 
-	const recipes = await response.json();
+	const a = await fetch('http://api.open-notify.org/iss-now.json');
+	console.log(await a.json());
+
+	// Call recipe controller index method to retrieve all recipes with a short descrition
+	const recipes = await new RecipeController().index();
 
 	// Converting id from mongoId object to string
 	const r = await recipes.map((recipe: Recipe) => {
