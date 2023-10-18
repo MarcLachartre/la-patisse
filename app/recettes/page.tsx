@@ -1,12 +1,8 @@
 import Recettes from '../../components/pages/recettes';
 
-import { RecipeController } from 'controllers/recipe-controller';
+import { Recipe } from 'custom-types/recipe-types';
 
-interface Recipe {
-	_id: string;
-	name: string;
-	description: string;
-}
+import { RecipeController } from 'controllers/recipe-controller';
 
 const getRecipes = async () => {
 	// Call recipe controller index method to retrieve all recipes with a short descrition to populate the recettes page

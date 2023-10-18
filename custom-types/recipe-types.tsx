@@ -5,6 +5,7 @@ interface Recipe {
 	recipe: string[];
 	ingredients: Ingredient[];
 	tools: string[];
+	pictureURL: string;
 }
 
 interface Ingredient {
@@ -20,6 +21,7 @@ type ShortRecipes = {
 	_id: string;
 	name: string;
 	description: string;
+	pictureURL: string;
 }[];
 
 export type { Recipes, Recipe, ShortRecipes, Ingredient };
