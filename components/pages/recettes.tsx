@@ -2,16 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { Recipe } from 'custom-types/recipe-types';
+
 import recettes from '../../styles/pages/Recettes.module.scss';
 import LargeCard from '../../components/cards/large-card';
 import SmallCard from '../../components/cards/small-card';
 import Footer from '../../components/footer';
-
-interface Recipe {
-	_id: string;
-	name: string;
-	description: string;
-}
 
 const Recettes = (props: any) => {
 	const [recipes, setRecipes] = useState<Recipe[]>(props.recipes);
