@@ -1,4 +1,4 @@
-const { GridFSBucket, MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 declare global {
 	var _mongoClientPromise: any;
@@ -50,10 +50,6 @@ const getData = async () => {
 	const db = await clientPromise.db('myCakes');
 	const recipes: any = db.collection('cakes');
 
-	const bucket = new GridFSBucket(db, {
-		bucketName: 'cakes pictures',
-	});
-	console.log(await bucket);
 	// Set mongodb data obj recipes to cakes retrieved from db
 	data.recipes = recipes;
 
