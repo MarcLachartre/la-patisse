@@ -9,7 +9,7 @@ import Tools from '../../components/tools';
 import Instructions from '../../components/instructions';
 import RecipeFeedback from '../../components/recipe-feedback';
 
-import type { Recipe } from 'custom-types/recipes';
+import type { Recipe } from 'custom-types/recipe-types';
 
 const Recette = (props: { recipe: Recipe }) => {
 	const [imageURL, setImageURL] = useState<string>('/cake-au-citron.png');

@@ -1,6 +1,6 @@
 import { getData } from '../database/database';
 import { ObjectId } from 'mongodb';
-import { Recipes, Recipe, ShortRecipes } from '../custom-types/recipes';
+import { Recipes, Recipe, ShortRecipes } from '../custom-types/recipe-types';
 
 class RecipeModel {
 	static async all() {
