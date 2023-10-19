@@ -23,13 +23,7 @@ const Recettes = ({ recipes }: { recipes: Recipe[] }) => {
 			<div className={recettes.recettesGrid}>
 				{recipes.map((recipe: Recipe) => (
 					<div className="recipe-card" key={recipe._id}>
-						<SmallCard
-							// _id={recipe._id}
-							// name={recipe.name}
-							// description={recipe.description}
-							// pictureURL={recipe.pictureURL}
-							recipe={recipe}
-						/>
+						<SmallCard recipe={recipe} />
 					</div>
 				))}
 			</div>

@@ -11,7 +11,7 @@ import RecipeFeedback from '../../components/recipe-feedback';
 
 import type { Recipe } from 'custom-types/recipe-types';
 
-const Recette = (props: { recipe: Recipe }) => {
+const Recette = ({ recipe }: { recipe: Recipe }) => {
 	const [imageURL, setImageURL] = useState<string>('/cake-au-citron.png');
 
 	useEffect(() => {
@@ -19,15 +19,7 @@ const Recette = (props: { recipe: Recipe }) => {
 	}, []);
 
 	const backgroundImage = () => {
-		setImageURL(
-			'/' +
-				props.recipe.name
-					.replace(/ /g, '-')
-					.normalize('NFD')
-					.replace(/[\u0300-\u036f]/g, '')
-					.toLowerCase() +
-				'.png'
-		);
+		setImageURL(`${recipe.pictureURL}`);
 	};
 
 	const printRecipe = () => {
@@ -60,7 +52,7 @@ const Recette = (props: { recipe: Recipe }) => {
 		<div className="pageContainer print-hide">
 			<div className={recette.recetteTitleDescriptionImgContainer}>
 				<div className={recette.recetteTitleContainer + ' printable'}>
-					<h2 className="printable">{props.recipe.name}</h2>
+					<h2 className="printable">{recipe.name}</h2>
 					<div
 						className={
 							recette.recetteShareIconsContainer + ' print-hide'
@@ -80,11 +72,11 @@ const Recette = (props: { recipe: Recipe }) => {
 						/>
 					</div>
 				</div>
-				<h6 className="printable">{props.recipe.description}</h6>
+				<h6 className="printable">{recipe.description}</h6>
 				<img
 					className={recette.recetteImage + ' printable'}
 					src={imageURL}
-					alt={props.recipe.name}
+					alt={recipe.name}
 					onError={setDefaultImage}
 				/>
 			</div>
@@ -95,10 +87,10 @@ const Recette = (props: { recipe: Recipe }) => {
 				}
 			>
 				<div className={recette.ingredientsToolsContainer}>
-					<IngredientsList ingredients={props.recipe.ingredients} />
-					<Tools tools={props.recipe.tools} />
+					<IngredientsList ingredients={recipe.ingredients} />
+					<Tools tools={recipe.tools} />
 				</div>
-				<Instructions instructions={props.recipe.recipe} />
+				<Instructions instructions={recipe.recipe} />
 			</div>
 			<RecipeFeedback />
 			<Footer />
