@@ -16,6 +16,7 @@ const Recettes = ({ recipes }: { recipes: Recipe[] }) => {
 			scrollreveal().reveal('.recipe-card');
 		}
 		animate();
+		console.log(recipes);
 	});
 
 	const displayRecipes = () => {
