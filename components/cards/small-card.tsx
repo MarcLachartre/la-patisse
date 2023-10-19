@@ -14,15 +14,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
 	}, []);
 
 	const backgroundImage = () => {
-		setImageURL(
-			'/' +
-				recipe.name
-					.replace(/ /g, '-')
-					.normalize('NFD')
-					.replace(/[\u0300-\u036f]/g, '')
-					.toLowerCase() +
-				'.png'
-		);
+		setImageURL(`${recipe.pictureURL}`);
 	};
 
 	const setDefaultImage = () => {
