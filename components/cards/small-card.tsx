@@ -4,13 +4,9 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import sc from '../../styles/components/SmallCard.module.scss';
 
-interface Recipe {
-	_id: string;
-	name: string;
-	description: string;
-}
+import { Recipe } from 'custom-types/recipe-types';
 
-const SmallCard = (props: Recipe) => {
+const SmallCard = ({ recipe }: { recipe: Recipe }) => {
 	const [imageURL, setImageURL] = useState<string>('');
 
 	useEffect(() => {
@@ -20,7 +16,7 @@ const SmallCard = (props: Recipe) => {
 	const backgroundImage = () => {
 		setImageURL(
 			'/' +
-				props.name
+				recipe.name
 					.replace(/ /g, '-')
 					.normalize('NFD')
 					.replace(/[\u0300-\u036f]/g, '')
@@ -34,9 +30,9 @@ const SmallCard = (props: Recipe) => {
 	};
 
 	return (
-		<div id={props._id} className={sc.smallCardContainer}>
+		<div id={recipe._id} className={sc.smallCardContainer}>
 			<Link
-				href={`recettes/${props._id.slice(1, -1)}`}
+				href={`recettes/${recipe._id.slice(1, -1)}`}
 				className={sc.smallCardLink}
 			></Link>
 			<img
@@ -46,8 +42,8 @@ const SmallCard = (props: Recipe) => {
 				loading="lazy"
 			></img>
 			<div className={sc.smallCardDescription}>
-				<h4>{props.name}</h4>
-				<p>{props.description}</p>
+				<h4>{recipe.name}</h4>
+				<p>{recipe.description}</p>
 			</div>
 		</div>
 	);
