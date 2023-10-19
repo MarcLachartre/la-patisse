@@ -1,4 +1,4 @@
-import type { Recipe } from 'custom-types/recipes';
+import type { Recipe } from 'custom-types/recipe-types';
 import Recette from '../../../components/pages/recette';
 
 import { RecipeController } from 'controllers/recipe-controller';

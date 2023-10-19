@@ -1,6 +1,6 @@
 import { getData } from '../database/database';
 import { ObjectId } from 'mongodb';
-import { Recipes, Recipe, ShortRecipes } from '../custom-types/recipes';
+import { Recipes, Recipe, ShortRecipes } from '../custom-types/recipe-types';
 
 class RecipeModel {
 	static async all() {
@@ -22,8 +22,9 @@ class RecipeModel {
 
 		// Iterate in the recipe array
 		recipes.forEach((recipe) => {
-			const { _id, name, description, ...recipeRest } = recipe; // Destructure the recipe objects
-			const shortRecipe = { _id, name, description }; // Keep the id, name and description properties in an object
+			const { _id, name, description, pictureURL, ...recipeRest } =
+				recipe; // Destructure the recipe objects
+			const shortRecipe = { _id, name, description, pictureURL }; // Keep the id, name and description properties in an object
 			shortRecipes.push(shortRecipe); // Push it in the shortRecipes array.
 		});
 

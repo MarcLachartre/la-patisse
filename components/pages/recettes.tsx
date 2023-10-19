@@ -2,20 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { Recipe } from 'custom-types/recipe-types';
+
 import recettes from '../../styles/pages/Recettes.module.scss';
 import LargeCard from '../../components/cards/large-card';
 import SmallCard from '../../components/cards/small-card';
 import Footer from '../../components/footer';
 
-interface Recipe {
-	_id: string;
-	name: string;
-	description: string;
-}
-
-const Recettes = (props: any) => {
-	const [recipes, setRecipes] = useState<Recipe[]>(props.recipes);
-
+const Recettes = ({ recipes }: { recipes: Recipe[] }) => {
 	useEffect(() => {
 		async function animate() {
 			const scrollreveal = (await require('scrollreveal')).default;
@@ -27,14 +21,9 @@ const Recettes = (props: any) => {
 	const displayRecipes = () => {
 		return (
 			<div className={recettes.recettesGrid}>
-				{recipes.map((recipe: any) => (
+				{recipes.map((recipe: Recipe) => (
 					<div className="recipe-card" key={recipe._id}>
-						<SmallCard
-							_id={recipe._id}
-							name={recipe.name}
-							description={recipe.description}
-							// key={recipe._id}
-						/>
+						<SmallCard recipe={recipe} />
 					</div>
 				))}
 			</div>

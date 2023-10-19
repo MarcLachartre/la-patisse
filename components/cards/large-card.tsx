@@ -17,7 +17,7 @@ const LargeCard = (props: Id) => {
 		>
 			<img
 				className={lc.largeCardImage}
-				src="/gateau-au-fromage-blanc.png"
+				src="https://res.cloudinary.com/dgi1q0deg/image/upload/v1697644670/La%20Patisse/gateau-au-fromage-blanc_o85uh6.png"
 				alt="favorite cake"
 			></img>
 			<div className={lc.largeCardDescriptionContainer}>
