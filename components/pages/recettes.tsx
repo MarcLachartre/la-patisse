@@ -13,7 +13,10 @@ const Recettes = ({ recipes }: { recipes: Recipe[] }) => {
 	useEffect(() => {
 		async function animate() {
 			const scrollreveal = (await require('scrollreveal')).default;
-			scrollreveal().reveal('.recipe-card');
+			scrollreveal({ distance: '60px' }).reveal('.recipe-card', {
+				origin: 'bottom',
+				duration: 1000,
+			});
 		}
 		animate();
 	});
