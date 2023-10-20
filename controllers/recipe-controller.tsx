@@ -1,5 +1,7 @@
 import { RecipeModel } from '../models/recipe-model';
 
+import type { Recipe } from 'custom-types/recipe-types';
+
 class RecipeController {
 	recipeModel?: any;
 
@@ -17,6 +19,10 @@ class RecipeController {
 		// Retrieve recipe to display on the show page
 		const recipe = await this.recipeModel.findById(id);
 		return recipe;
+	}
+
+	async create(recipe: Recipe) {
+		return;
 	}
 }
 

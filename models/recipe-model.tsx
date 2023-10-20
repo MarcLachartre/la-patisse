@@ -42,6 +42,10 @@ class RecipeModel {
 
 		return recipe;
 	}
+
+	static async saveRecipe(data: Recipe) {
+		return data;
+	}
 }
 
 export { RecipeModel };

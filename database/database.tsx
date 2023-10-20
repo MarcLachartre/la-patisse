@@ -56,4 +56,8 @@ const getData = async () => {
 	return data;
 };
 
-export { getData };
+const insertData = (data: any) => {
+	return data;
+};
+
+export { getData, insertData };
