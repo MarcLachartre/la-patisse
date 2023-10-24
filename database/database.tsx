@@ -3,60 +3,68 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 declare global {
 	var _mongoClientPromise: any;
 }
+// console.log(new MongoClient());
 
-const getData = async () => {
-	const options = {
-		serverApi: {
-			version: ServerApiVersion.v1,
-			strict: true,
-			deprecationErrors: true,
-		},
-	};
+class Database {
+	constructor() {}
 
-	interface Data {
-		recipes: [];
+	private static async connectToDB() {
+		const options = {
+			serverApi: {
+				version: ServerApiVersion.v1,
+				strict: true,
+				deprecationErrors: true,
+			},
+		};
+
+		let clientPromise;
+
+		// console.log(global._mongoClientPromise);
+		if (!global._mongoClientPromise) {
+			console.log('open connection');
+
+			const client = new MongoClient(
+				// Local mongo client
+				`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`,
+
+				// Atlas mongo client
+				// `mongodb+srv://${process.env.DB_ATLAS_USER}:${process.env.DB_ATLAS_PASS}@${process.env.DB_ATLAS_HOST}/myCakes?authSource=${process.env.DB_ATLAS_AUTH}`,
+				options
+			);
+			global._mongoClientPromise = await client.connect();
+		}
+		// delete global._mongoClientPromise;
+		// clientPromise.close();
+		clientPromise = global._mongoClientPromise;
+
+		// Retrieve cakes collection for test purposes:
+
+		// const recipes: any = await clientPromise
+		// 	.db('myCakesTestDb')
+		// 	.collection('cakes');
+
+		// Retrieve cakes collection for developpement and production purposes:
+		const db = await clientPromise.db('myCakes');
+		return db;
 	}
 
-	const data = {} as Data;
+	static async getData() {
+		const data = {} as any;
 
-	let clientPromise;
+		const db = await this.connectToDB();
+		const recipes: any = db.collection('cakes');
 
-	// console.log(global._mongoClientPromise);
-	if (!global._mongoClientPromise) {
-		console.log('open connection');
+		// Set mongodb data obj recipes to cakes retrieved from db
+		data.recipes = recipes;
 
-		const client = new MongoClient();
-		// Local mongo client
-		`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`;
-
-		// Atlas mongo client
-		// `mongodb+srv://${process.env.DB_ATLAS_USER}:${process.env.DB_ATLAS_PASS}@${process.env.DB_ATLAS_HOST}/myCakes?authSource=${process.env.DB_ATLAS_AUTH}`
-		// options
-
-		global._mongoClientPromise = await client.connect();
+		return data;
 	}
-	// delete global._mongoClientPromise;
-	// clientPromise.close();
-	clientPromise = global._mongoClientPromise;
 
-	// Retrieve cakes collection for test purposes:
-
-	// const recipes: any = await clientPromise
-	// 	.db('myCakesTestDb')
-	// 	.collection('cakes');
-
-	// Retrieve cakes collection for developpement and production purposes:
-	const db = await clientPromise.db('myCakes');
-	const recipes: any = db.collection('cakes');
-
-	// Set mongodb data obj recipes to cakes retrieved from db
-	data.recipes = recipes;
-
-	return data;
-};
+	static async insertData(data: any) {}
+}
 
 const insertData = (data: any) => {
 	return data;
 };
 
-export { getData, insertData };
+export { Database };

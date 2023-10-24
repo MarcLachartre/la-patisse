@@ -1,4 +1,4 @@
-import { insertData } from 'database/database';
+import { Database } from 'database/database';
 
 // what to test?
 
@@ -43,7 +43,9 @@ describe('insert cake in mongodb', () => {
 	});
 });
 
-describe('insertData function should save and return the inserted data', () => {});
+describe('insertData function should save and return the inserted data', () => {
+	// const cake = {name}
+});
 // - A save recipe function in the model that returns success or error
 
 // - A create recipe function in the controller
