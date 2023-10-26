@@ -13,7 +13,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "eslint-config-next": "^13.5.2",
-    "mongodb": "^5.0.1",
+    "mongodb": "6.2",
     "next": "^13.5.2",
     "next-cloudinary": "^4.27.0",
     "node-mocks-http": "^1.12.1",

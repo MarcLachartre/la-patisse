@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 import { Database } from '../database/database';
-
+import { RecipeModel } from '../models/recipe-model';
 // what to test?
 
 // - A post data function in the database:
@@ -73,6 +73,13 @@ describe('insertData function should save and return the inserted data', () => {
 });
 
 // - A save recipe function in the model that returns success or error
+describe('saveRecipe method should save a recipe', () => {
+	// it('should insert a cake into collection', async () => {
+	// 	const recipe = { name: 'Gateau au chocolat' };
+	// 	const insertedData = await RecipeModel.saveRecipe(data);
+	// 	expect(insertedData.success).toEqual(true);
+	// });
+});
 
 // - A create recipe function in the controller
 
