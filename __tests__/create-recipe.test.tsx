@@ -1,7 +1,9 @@
 const { MongoClient } = require('mongodb');
+import { createMocks } from 'node-mocks-http';
 import { Database } from '../database/database';
 import { RecipeModel } from '../models/recipe-model';
 import { RecipeController } from '../controllers/recipe-controller';
+import { POST } from '../app/api/recettes/create/route';
 // what to test?
 
 // - A post data function in the database:
@@ -156,3 +158,40 @@ describe('create method in the controller should save a recipe', () => {
 });
 
 // - a route that accepts a post function saving a pic and that takes in request
+describe('/api/users', () => {
+	test('returns a list of users', async () => {
+		const { req, res } = createMocks({
+			method: 'POST',
+			body: {
+				name: 'Cake pas bon',
+				ingredients: [
+					{
+						quantity: 400,
+						unit: 'g',
+						preposition: 'de',
+						type: 'miel',
+					},
+				],
+				tools: [
+					'Four',
+					'Deux moules à cake de 20 ou 22cm (en silicone de préférence)',
+				],
+				recipe: [
+					'Commencer par zester les citrons puis melanger avec le sucre. En parallèle, faire fondre le beurre dans un bol.',
+					'Enjoy ya cake!',
+				],
+				description: 'Aaaaah',
+				pictureURL:
+					'https://res.cloudinary.com/cul/image/upload/v1697644668/La%20Patisse/cake-au-citron_pgwhlb.png',
+			},
+		});
+
+		const r = await POST(req, res);
+		console.log(r);
+		// expect(response.status).toBe(200);
+		// expect(await response.json()).toEqual([
+		// 	{ id: 1, name: 'Alice' },
+		// 	{ id: 2, name: 'Bob' },
+		// ]);
+	});
+});

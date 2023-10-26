@@ -22,8 +22,8 @@ class RecipeController {
 	}
 
 	async create(recipe: RecipeToInsert) {
-		// const response =  await this.recipeModel.findById(id);
-		return { success: false };
+		const response = await this.recipeModel.saveRecipe(recipe);
+		return response;
 	}
 }
 
