@@ -1,6 +1,6 @@
 import { RecipeModel } from '../models/recipe-model';
 
-import type { Recipe } from 'custom-types/recipe-types';
+import type { Recipe, RecipeToInsert } from 'custom-types/recipe-types';
 
 class RecipeController {
 	recipeModel?: any;
@@ -21,8 +21,9 @@ class RecipeController {
 		return recipe;
 	}
 
-	async create(recipe: Recipe) {
-		return;
+	async create(recipe: RecipeToInsert) {
+		// const response =  await this.recipeModel.findById(id);
+		return { success: false };
 	}
 }
 
