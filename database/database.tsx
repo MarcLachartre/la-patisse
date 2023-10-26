@@ -60,11 +60,22 @@ class Database {
 		return data;
 	}
 
-	static async insertData(data: any) {}
-}
+	static async insertData(data: any) {
+		try {
+			const db = await this.connectToDB();
+			const recipes: any = db.collection('cakes');
+			const dataInserted = await recipes.insertOne(data);
+			const isInserted = {
+				id: await dataInserted._id,
+				success: true,
+			};
 
-const insertData = (data: any) => {
-	return data;
-};
+			return isInserted;
+		} catch (error) {
+			console.log(error);
+			return { success: false };
+		}
+	}
+}
 
 export { Database };
