@@ -1,6 +1,11 @@
 import { Database } from '../database/database';
 import { ObjectId } from 'mongodb';
-import { Recipes, Recipe, ShortRecipes } from '../custom-types/recipe-types';
+import {
+	Recipes,
+	Recipe,
+	ShortRecipes,
+	RecipeToInsert,
+} from '../custom-types/recipe-types';
 
 class RecipeModel {
 	static async all() {
@@ -43,8 +48,9 @@ class RecipeModel {
 		return recipe;
 	}
 
-	static async saveRecipe(data: Recipe) {
-		return data;
+	static async saveRecipe(recipe: RecipeToInsert) {
+		const response = await Database.insertData(recipe);
+		return response;
 	}
 }
 

@@ -13,11 +13,7 @@ describe('insert cake in mongodb', () => {
 
 	beforeAll(async () => {
 		connection = await MongoClient.connect(
-			`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`,
-			{
-				useNewUrlParser: true,
-				useUnifiedTopology: true,
-			}
+			`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
 		);
 		db = await connection.db('myCakes');
 	});
@@ -47,13 +43,9 @@ describe('insertData function should save and return the inserted data', () => {
 	let db: any;
 
 	afterAll(async () => {
-		// deleted inserted cake for test
+		// delete inserted cake for test
 		connection = await MongoClient.connect(
-			`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`,
-			{
-				useNewUrlParser: true,
-				useUnifiedTopology: true,
-			}
+			`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
 		);
 
 		db = await connection.db('myCakes');
@@ -74,11 +66,47 @@ describe('insertData function should save and return the inserted data', () => {
 
 // - A save recipe function in the model that returns success or error
 describe('saveRecipe method should save a recipe', () => {
-	// it('should insert a cake into collection', async () => {
-	// 	const recipe = { name: 'Gateau au chocolat' };
-	// 	const insertedData = await RecipeModel.saveRecipe(data);
-	// 	expect(insertedData.success).toEqual(true);
-	// });
+	afterAll(async () => {
+		// delete inserted cake for test
+		const connection = await MongoClient.connect(
+			`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
+		);
+
+		const db = await connection.db('myCakes');
+		const cakes = db.collection('cakes');
+
+		await cakes.deleteOne({
+			name: "Cake à l'amour",
+		});
+		await connection.close();
+	});
+
+	it('should insert a cake into the cakes collection', async () => {
+		const recipe = {
+			name: "Cake à l'amour",
+			ingredients: [
+				{
+					quantity: 400,
+					unit: 'g',
+					preposition: "d'",
+					type: 'amour',
+				},
+			],
+			tools: [
+				'Four',
+				'Deux moules à cake de 20 ou 22cm (en silicone de préférence)',
+			],
+			recipe: [
+				'Commencer par zester les citrons puis melanger avec le sucre. En parallèle, faire fondre le beurre dans un bol.',
+				'Enjoy ya cake!',
+			],
+			description: 'Aaaaah',
+			pictureURL:
+				'https://res.cloudinary.com/cul/image/upload/v1697644668/La%20Patisse/cake-au-citron_pgwhlb.png',
+		};
+		const insertedData = await RecipeModel.saveRecipe(recipe);
+		expect(insertedData.success).toEqual(true);
+	});
 });
 
 // - A create recipe function in the controller

@@ -8,6 +8,15 @@ interface Recipe {
 	pictureURL: string;
 }
 
+interface RecipeToInsert {
+	name: string;
+	description: string;
+	recipe: string[];
+	ingredients: Ingredient[];
+	tools: string[];
+	pictureURL: string;
+}
+
 interface Ingredient {
 	quantity: number;
 	unit?: string;
@@ -24,4 +33,4 @@ type ShortRecipes = {
 	pictureURL: string;
 }[];
 
-export type { Recipes, Recipe, ShortRecipes, Ingredient };
+export type { Recipes, Recipe, ShortRecipes, Ingredient, RecipeToInsert };
