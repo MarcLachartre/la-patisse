@@ -24,10 +24,14 @@ html {
 	--white: #fcfaf8;
 	--grey: #757575;
 	--light-grey: #d6d6d6;
+	--very-light-grey: #f3f3f3;
 	--pink: #ffd7ca;
 	--dark-orange: #c64a36;
 	--orange: #f85c44;
 	--cubicbezier: cubic-bezier(0.41, 0.31, 0.04, 1);
+	--default-gap: 40px;
+	--default-border-radius: 15px;
+	--default-transition: all 0.3s cubic-bezier(0.41, 0.31, 0.04, 1);
 }
 
 @keyframes topslidein {
@@ -49,7 +53,6 @@ html {
 h1 {
 	margin: 0px;
 	color: var(--black);
-	font-size: 9rem;
 	letter-spacing: 2px;
 	font-family: 'Sail', cursive;
 }
@@ -102,6 +105,12 @@ a {
 	cursor: pointer;
 }
 
+textarea {
+	font-family: 'Nunito', sans-serif;
+	font-weight: 200;
+	vertical-align: middle;
+}
+
 .pageContainer {
 	position: relative;
 	display: flex;
@@ -111,7 +120,10 @@ a {
 	width: 100%;
 	min-width: 320px;
 	min-height: 100vh;
-	gap: 35px;
+	gap: var(--default-gap);
+	.page-title {
+		align-self: center;
+	}
 }
 
 .icons {
@@ -135,6 +147,10 @@ a {
 }
 
 @media only screen and (min-width: 0px) and (max-width: 479px) {
+	:root {
+		--default-gap: 30px;
+	}
+
 	h1 {
 		font-size: 5rem;
 		letter-spacing: 0px;
@@ -162,7 +178,8 @@ a {
 	}
 
 	p,
-	li {
+	li,
+	textarea {
 		font-size: 1.6rem;
 		line-height: 2.4rem;
 	}
@@ -188,11 +205,15 @@ a {
 		padding-left: 15px;
 		padding-right: 15px;
 		padding-bottom: 20px;
-		gap: 30px;
+		gap: var(--default-gap);
 	}
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
+	:root {
+		--default-gap: 40px;
+	}
+
 	h1 {
 		font-size: calc(3rem + 2.9vh);
 		letter-spacing: 2px;
@@ -220,7 +241,8 @@ a {
 	}
 
 	p,
-	li {
+	li,
+	textarea {
 		font-size: 1.65rem;
 		line-height: 2.5rem;
 	}
@@ -246,11 +268,15 @@ a {
 		padding-left: 15px;
 		padding-right: 15px;
 		padding-bottom: 40px;
-		gap: 40px;
+		gap: var(--default-gap);
 	}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+	:root {
+		--default-gap: 45px;
+	}
+
 	h1 {
 		font-size: calc(3rem + 2.7vh);
 		letter-spacing: 2px;
@@ -278,7 +304,8 @@ a {
 	}
 
 	p,
-	li {
+	li,
+	textarea {
 		font-size: 1.8rem;
 		line-height: 2.8rem;
 	}
@@ -304,11 +331,15 @@ a {
 		padding-left: 25px;
 		padding-right: 25px;
 		padding-bottom: 40px;
-		gap: 45px;
+		gap: var(--default-gap);
 	}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
+	:root {
+		--default-gap: 45px;
+	}
+
 	h1 {
 		font-size: calc(4rem + 3.7vh);
 		letter-spacing: 2px;
@@ -336,7 +367,8 @@ a {
 	}
 
 	p,
-	li {
+	li,
+	textarea {
 		font-size: 1.8rem;
 		line-height: 2.9rem;
 	}
@@ -362,11 +394,15 @@ a {
 		padding-left: 25px;
 		padding-right: 25px;
 		padding-bottom: 40px;
-		gap: 45px;
+		gap: var(--default-gap);
 	}
 }
 
 @media only screen and (min-width: 1200px) {
+	:root {
+		--default-gap: 45px;
+	}
+
 	h1 {
 		font-size: calc(5rem + 3.7vh);
 		letter-spacing: 2px;
@@ -394,7 +430,8 @@ a {
 	}
 
 	p,
-	li {
+	li,
+	textarea {
 		font-size: 1.8rem;
 		line-height: 2.9rem;
 	}
@@ -420,11 +457,15 @@ a {
 		padding-left: 110px;
 		padding-right: 110px;
 		padding-bottom: 40px;
-		gap: 45px;
+		gap: var(--default-gap);
 	}
 }
 
 @media print {
+	:root {
+		--default-gap: 45px;
+	}
+
 	.printable {
 		visibility: visible;
 	}
@@ -460,7 +501,8 @@ a {
 	}
 
 	p,
-	li {
+	li,
+	textarea {
 		font-size: 1.8rem;
 		line-height: 2.8rem;
 	}
@@ -486,7 +528,7 @@ a {
 		padding-left: 25px;
 		padding-right: 25px;
 		padding-bottom: 0px;
-		gap: 45px;
+		gap: var(--default-gap);
 	}
 }
 

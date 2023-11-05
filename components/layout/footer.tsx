@@ -1,12 +1,25 @@
 'use client';
 
-import footer from '../styles/components/Footer.module.scss';
-import ContactIcons from '../components/contact-icons';
+import footer from '@/styles/components/Footer.module.scss';
+import ContactIcons from '../contact-icons';
 import Link from 'next/link';
 
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+
 const Footer = () => {
+	const pathname = usePathname();
+	const [display, setDisplay] = useState('none');
+
+	useEffect(() => {
+		pathname === '/' ? setDisplay('none') : setDisplay('flex'); // Do not display footer if page is homepage
+	}, [pathname]);
+
 	return (
-		<div className={footer.footerContainer}>
+		<div
+			className={footer.footerContainer}
+			style={{ display: `${display}` }}
+		>
 			<div className={footer.footerDescriptionContainer}>
 				<img
 					className={footer.footerLogoContainer}

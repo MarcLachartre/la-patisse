@@ -1,5 +1,7 @@
+import Create from '@/components/pages/recipes/create';
+
 const Page = () => {
-	return <div></div>;
+	return <Create />;
 };
 
 export default Page;

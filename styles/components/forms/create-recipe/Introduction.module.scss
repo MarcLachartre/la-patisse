@@ -1,0 +1,50 @@
+.introductionContainer {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 180px;
+	grid-template-areas:
+		'title pic'
+		'description pic';
+	column-gap: 80px;
+	row-gap: var(--default-gap);
+}
+
+.addTitleContainer {
+	grid-area: title;
+}
+
+.addTitleContainer {
+	align-self: stretch;
+	textarea {
+		font-size: 3rem;
+		white-space: nowrap;
+	}
+}
+
+.addDescriptionContainer {
+	height: 100%;
+	grid-area: description;
+	align-self: stretch;
+}
+
+.addRecipePicContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-area: pic;
+	border: solid 1px var(--light-grey);
+	border-radius: var(--default-border-radius);
+	background-color: var(--very-light-grey);
+	transition: var(--default-transition);
+	cursor: pointer;
+	img {
+		height: 30px;
+		position: relative;
+	}
+}
+
+.addRecipePicContainer:hover {
+	border: solid 1px var(--grey);
+}

@@ -1,4 +1,4 @@
-import Recettes from '../../components/pages/recettes';
+import Index from '../../components/pages/recipes/index';
 
 import { RecipeController } from 'controllers/recipe-controller';
 
@@ -18,7 +18,7 @@ const getRecipes = async () => {
 };
 
 const Page = async () => {
-	return <Recettes recipes={await getRecipes()} />;
+	return <Index recipes={await getRecipes()} />;
 };
 
 export default Page;
