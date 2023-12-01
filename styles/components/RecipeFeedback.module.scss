@@ -11,33 +11,3 @@
 	display: flex;
 	align-items: center;
 }
-
-@media only screen and (min-width: 0px) and (max-width: 479px) {
-	.recipeFeedbackContainer {
-		margin-bottom: 220px;
-	}
-}
-
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-	.recipeFeedbackContainer {
-		margin-bottom: 200px;
-	}
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-	.recipeFeedbackContainer {
-		margin-bottom: 260px;
-	}
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.recipeFeedbackContainer {
-		margin-bottom: 260px;
-	}
-}
-
-@media only screen and (min-width: 1200px) {
-	.recipeFeedbackContainer {
-		margin-bottom: 260px;
-	}
-}

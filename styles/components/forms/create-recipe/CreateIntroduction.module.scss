@@ -1,31 +1,14 @@
 .introductionContainer {
 	width: 100%;
+	height: 300px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 180px;
+	grid-template-rows: 1fr 3fr;
 	grid-template-areas:
 		'title pic'
 		'description pic';
 	column-gap: 80px;
-	row-gap: var(--default-gap);
-}
-
-.addTitleContainer {
-	grid-area: title;
-}
-
-.addTitleContainer {
-	align-self: stretch;
-	textarea {
-		font-size: 3rem;
-		white-space: nowrap;
-	}
-}
-
-.addDescriptionContainer {
-	height: 100%;
-	grid-area: description;
-	align-self: stretch;
+	row-gap: var(--default-small-gap);
 }
 
 .addRecipePicContainer {

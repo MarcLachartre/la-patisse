@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import show from '../../../styles/pages/Show.module.scss';
-import Footer from '../../layout/footer';
+
 import IngredientsList from '../../ingredients-list';
 import Tools from '../../tools';
 import Instructions from '../../instructions';
@@ -93,7 +93,6 @@ const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
 				<Instructions instructions={recipe.recipe} />
 			</div>
 			<RecipeFeedback />
-			<Footer />
 		</div>
 	);
 };

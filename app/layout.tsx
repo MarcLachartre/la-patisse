@@ -3,6 +3,7 @@ import './global.scss';
 import { Metadata } from 'next';
 import Navbar from '../components/layout/navbar';
 import Footer from '@/components/layout/footer';
+import ThemeRegistry from './ThemeRegistry';
 
 export const metadata: Metadata = {
 	title: 'La Pâtisse',
@@ -25,7 +26,9 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<Navbar />
-				{children}
+				<ThemeRegistry options={{ key: 'mui' }}>
+					{children}
+				</ThemeRegistry>
 				<Footer />
 			</body>
 		</html>

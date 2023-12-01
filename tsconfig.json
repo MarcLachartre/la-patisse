@@ -28,6 +28,12 @@
       ],
       "@/styles/*": [
         "styles/*"
+      ],
+      "@validator/*": [
+        "utils/data-validators/*"
+      ],
+      "@context/*": [
+        "context/*"
       ]
     },
     "plugins": [
@@ -46,7 +52,7 @@
     "__tests__/controllers.test.tsx",
     "__tests__/api.test.tsx",
     ".next/types/**/*.ts"
-  ],
+, "app/theme-registry/theme.ts"  ],
   "exclude": [
     "node_modules"
   ]

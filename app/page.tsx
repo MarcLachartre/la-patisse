@@ -1,5 +1,6 @@
 import styles from '../styles/pages/Home.module.scss';
 import button from '../styles/components/Button.module.scss';
+import { Button } from '@mui/material';
 import MinimalFooter from '../components/minimal-footer';
 import Link from 'next/link';
 
@@ -21,8 +22,16 @@ const Page = () => {
 					différentes découvertes pâtissières. 😊 🍰. Curieux?
 				</h5>
 				<div className={styles.buttonContainer}>
-					<Link href="/recettes" className={button.button}>
-						Patisser
+					<Link href="/recettes">
+						<Button
+							variant="contained"
+							color="secondary"
+							fullWidth={true}
+							size="large"
+							// href="/recettes"
+						>
+							Patisser
+						</Button>
 					</Link>
 				</div>
 			</div>
