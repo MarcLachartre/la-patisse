@@ -1,38 +1,72 @@
 import style from '@/styles/components/forms/create-recipe/CreateIntroduction.module.scss';
 
-import { TextField, Popover, dividerClasses } from '@mui/material';
+import { TextField } from '@mui/material';
 
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import {
 	RecipeObjContext,
 	RecipeObjDispatchContext,
 } from '@context/create/recipe-obj';
-import { RecipeFormErrorContext } from '@context/create/recipe-form-error';
+import {
+	ErrorsObjContext,
+	ErrorsObjDispatchContext,
+} from '@context/create/errors-obj';
 
-import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
+import type {
+	CreateRecipeFormErrors,
+	Validity,
+} from 'custom-types/form-error-types';
+
+import { CreateRecipeValidator } from 'utils/create-recipe/create-recipe-validation';
+import { RecipeToInsert } from 'custom-types/recipe-types';
 
 const CreateIntroduction = () => {
-	const recipeObj = useContext(RecipeObjContext);
-	const dispatch = useContext(RecipeObjDispatchContext);
+	// Recipe obj state
+	const recipeObj = useContext<RecipeToInsert>(RecipeObjContext);
+	const dispatchRecipeObj = useContext(RecipeObjDispatchContext);
 
-	const errors = useContext<CreateRecipeFormErrors>(RecipeFormErrorContext);
+	// Errors obj state
+	const errorsObj = useContext<CreateRecipeFormErrors>(ErrorsObjContext);
+	const dispatchErrorsObj = useContext(ErrorsObjDispatchContext);
 
 	const handleChange = (e: any, key: string) => {
-		dispatch({
+		dispatchRecipeObj({
 			type: 'changed',
 			key: key,
 			value: e.target.value,
 		});
 
-		// if (errors.name.isValid === false) {
-		// 	//revalidate input
-		// }
+		if (errorsObj.name.isValid !== undefined && key === 'name') {
+			// This conditional statement means user tried to save recipe once. If he didn't errorsObj.name.isValid is undefined.
+			const validator = CreateRecipeValidator;
+			const errorTempState = validator.checkName(e.target.value);
+
+			updateErrorsObj(key, errorsObj, errorTempState);
+		} else if (
+			// This conditional statement means user tried to save recipe once. If he didn't errorsObj.description.isValid is undefined.
+			errorsObj.description.isValid !== undefined &&
+			key === 'description'
+		) {
+			const validator = CreateRecipeValidator;
+			const errorTempState = validator.checkDescription(e.target.value);
+
+			updateErrorsObj(key, errorsObj, errorTempState);
+		}
 	};
 
-	useEffect(() => {
-		console.log(errors);
-	});
+	const updateErrorsObj = (
+		key: string,
+		errorsObj: CreateRecipeFormErrors,
+		errorTempState: Validity
+	) => {
+		dispatchErrorsObj({
+			type: 'update one error',
+			key: key,
+			singleError: errorTempState,
+			value: errorsObj,
+		});
+	};
 
 	return (
 		<div className={style.introductionContainer}>
@@ -42,17 +76,18 @@ const CreateIntroduction = () => {
 				variant="filled"
 				color="primary"
 				value={recipeObj.name}
+				autoComplete="off"
 				onChange={(e) => {
 					handleChange(e, 'name');
 				}}
 				error={
-					errors.name.isValid !== undefined
-						? !errors.name.isValid
+					errorsObj.name.isValid !== undefined
+						? !errorsObj.name.isValid
 						: undefined
 				}
 				helperText={
-					errors.name.errorMessage !== undefined
-						? errors.name.errorMessage[0]
+					errorsObj.name.errorMessage !== undefined
+						? errorsObj.name.errorMessage[0]
 						: undefined
 				}
 				inputProps={{
@@ -85,13 +120,13 @@ const CreateIntroduction = () => {
 				}}
 				multiline
 				error={
-					errors.description.isValid !== undefined
-						? !errors.description.isValid
+					errorsObj.description.isValid !== undefined
+						? !errorsObj.description.isValid
 						: undefined
 				}
 				helperText={
-					errors.description.errorMessage !== undefined
-						? errors.description.errorMessage[0]
+					errorsObj.description.errorMessage !== undefined
+						? errorsObj.description.errorMessage[0]
 						: undefined
 				}
 				inputProps={{

@@ -12,4 +12,11 @@ interface CreateRecipeFormErrors {
 	pictureURL: Validity;
 }
 
-export type { CreateRecipeFormErrors, Validity };
+interface CreateIngredientErrors {
+	quantity: Validity;
+	unit: Validity;
+	prep: Validity;
+	type: Validity;
+}
+
+export type { CreateRecipeFormErrors, Validity, CreateIngredientErrors };

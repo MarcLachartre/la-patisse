@@ -1,15 +1,33 @@
 'use client';
-import type { Ingredient } from 'custom-types/recipe-types';
+import type { Ingredient, RecipeToInsert } from 'custom-types/recipe-types';
+import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
+import { CreateRecipeValidator } from 'utils/create-recipe/create-recipe-validation';
+
+import {
+	RecipeObjContext,
+	RecipeObjDispatchContext,
+} from '@context/create/recipe-obj';
+import {
+	ErrorsObjContext,
+	ErrorsObjDispatchContext,
+} from '@context/create/errors-obj';
+
+import { useContext } from 'react';
 
 import style from '@/styles/components/forms/create-recipe/CreateIngredients.module.scss';
 import createStyle from '@/styles/pages/Create.module.scss';
 
-import { Tooltip } from '@mui/material';
+import { Tooltip, FormHelperText } from '@mui/material';
 import IngredientInputs from './ingredientInputs';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const CreateIngredients = () => {
+	const recipeObj = useContext<RecipeToInsert>(RecipeObjContext);
+	const dispatchRecipeObj = useContext(RecipeObjDispatchContext);
+	const errorsObj = useContext<CreateRecipeFormErrors>(ErrorsObjContext);
+	const dispatchErrorsObj = useContext(ErrorsObjDispatchContext);
+
 	const [editingMode, setEditingMode] = useState(false);
 	const [ingredientsArray, setIngredientsArray] = useState<Ingredient[]>([]);
 	const [ingredientIndex, setIngredientIndex] = useState<number>(9999);
@@ -27,9 +45,48 @@ const CreateIngredients = () => {
 		setIngredientIndex(index);
 	};
 
+	useEffect(() => {
+		// On ingredients array update, check validity and if
+		const validator = CreateRecipeValidator;
+		const ingredientsListCheck =
+			validator.checkIngredients(ingredientsArray);
+
+		dispatchRecipeObj({
+			type: 'changed',
+			key: 'ingredients',
+			value: ingredientsArray,
+		});
+
+		if (errorsObj.ingredients.isValid !== undefined) {
+			// This conditional statement means user tried to save recipe once. If he didn't errorsObj.ingredients.isValid is undefined.
+			dispatchErrorsObj({
+				type: 'update one error',
+				key: 'ingredients',
+				singleError: ingredientsListCheck,
+				value: errorsObj,
+			});
+		}
+	}, [ingredientsArray]);
+
+	useEffect(() => {
+		console.log(errorsObj.ingredients.isValid);
+	});
+
 	return (
 		<div className={style.createIngredientsContainer}>
-			<h3>Ingrédients</h3>
+			<h3
+				className={
+					errorsObj.ingredients.isValid === false ? 'error' : ''
+				}
+			>
+				Ingrédients
+				<FormHelperText error={!errorsObj.ingredients.isValid}>
+					{errorsObj.ingredients.errorMessage
+						? `${errorsObj.ingredients.errorMessage}`
+						: ''}
+				</FormHelperText>
+			</h3>
+
 			<ul>
 				{ingredientsArray.map((ingr, index) => (
 					<li
@@ -82,6 +139,7 @@ const CreateIngredients = () => {
 								buttonTitle={'Valider'}
 								defaultValues={ingr}
 								ingredientIndex={ingredientIndex}
+								editing={editingMode}
 								setEditing={setEditingMode}
 								setIngredientsArray={setIngredientsArray}
 							/>

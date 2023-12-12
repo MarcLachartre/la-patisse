@@ -27,6 +27,7 @@ html {
 	--very-light-grey: #f3f3f3;
 	--blue: #e3f1ff;
 	--pink: #ffd7ca;
+	--red: #d32f2f;
 	--dark-orange: #c64a36;
 	--orange: #ff642b;
 	--cubicbezier: cubic-bezier(0.41, 0.31, 0.04, 1);
@@ -186,6 +187,9 @@ section {
 	}
 }
 
+.error {
+	color: var(--red);
+}
 @media only screen and (min-width: 0px) and (max-width: 479px) {
 	:root {
 		--default-gap: 30px;

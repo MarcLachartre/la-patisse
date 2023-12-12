@@ -17,8 +17,9 @@
 	white-space: nowrap;
 }
 
-.addIngredient {
+.addIngredientBtn {
 	display: flex;
+	flex-direction: column;
 	grid-column-start: 1;
 	grid-column-end: 5;
 	grid-row-start: 2;

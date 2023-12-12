@@ -1,10 +1,9 @@
 import type { RecipeToInsert, Ingredient } from 'custom-types/recipe-types';
-import { ReducerStateWithoutAction, ReducerState } from 'react';
 
 interface Action {
 	type: string;
 	key: string;
-	value: RecipeToInsert;
+	value: string | Ingredient[];
 }
 
 export const recipeObjReducer = (state: RecipeToInsert, action: Action) => {

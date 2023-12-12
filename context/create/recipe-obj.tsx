@@ -1,5 +1,5 @@
 import { createContext, type Dispatch } from 'react';
-import type { RecipeToInsert } from 'custom-types/recipe-types';
+import type { RecipeToInsert, Ingredient } from 'custom-types/recipe-types';
 
 export const RecipeObjContext = createContext<RecipeToInsert>({
 	name: '',
@@ -9,10 +9,11 @@ export const RecipeObjContext = createContext<RecipeToInsert>({
 	tools: [],
 	pictureURL: '',
 });
+
 export const RecipeObjDispatchContext = createContext(
 	(() => undefined) as Dispatch<{
 		type: string;
 		key: string;
-		value: RecipeToInsert;
+		value: string | Ingredient[];
 	}>
 );
