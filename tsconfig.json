@@ -29,6 +29,9 @@
       "@/styles/*": [
         "styles/*"
       ],
+      "@/utils/*": [
+        "utils/*"
+      ],
       "@validator/*": [
         "utils/data-validators/*"
       ],

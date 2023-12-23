@@ -5,581 +5,576 @@
 
 html,
 body {
-	-webkit-text-size-adjust: 100%;
-	padding: 0;
-	margin: 0px;
-	background-color: var(--white);
+    -webkit-text-size-adjust: 100%;
+    padding: 0;
+    margin: 0px;
+    background-color: var(--white);
 }
 
 html {
-	font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 :root {
-	--black: #0c2733;
-	--white: #fcfaf8;
-	--grey: #9e9e9e;
-	--light-grey: #d6d6d6;
-	--very-light-grey: #f3f3f3;
-	--blue: #e3f1ff;
-	--pink: #ffd7ca;
-	--red: #d32f2f;
-	--dark-orange: #c64a36;
-	--orange: #ff642b;
-	--cubicbezier: cubic-bezier(0.41, 0.31, 0.04, 1);
-	--default-gap: 40px;
-	--default-small-gap: 25px;
-	--default-border-radius: 4px;
-	--default-transition: all 0.3s cubic-bezier(0.41, 0.31, 0.04, 1);
+    --black: #0c2733;
+    --white: #fcfaf8;
+    --grey: #9e9e9e;
+    --light-grey: #d6d6d6;
+    --very-light-grey: #f3f3f3;
+    --blue: #e3f1ff;
+    --pink: #ffd7ca;
+    --red: #d32f2f;
+    --dark-orange: #c64a36;
+    --orange: #ff642b;
+    --cubicbezier: cubic-bezier(0.41, 0.31, 0.04, 1);
+    --default-gap: 40px;
+    --default-small-gap: 25px;
+    --default-border-radius: 4px;
+    --default-transition: all 0.3s cubic-bezier(0.41, 0.31, 0.04, 1);
 }
 
 @keyframes topslidein {
-	from {
-		opacity: 0;
-		transform: translateY(-50px);
-	}
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
 
-	15% {
-		opacity: 0;
-	}
+    15% {
+        opacity: 0;
+    }
 
-	to {
-		opacity: 1;
-		transform: translateY(-0px);
-	}
+    to {
+        opacity: 1;
+        transform: translateY(-0px);
+    }
 }
 
 h1 {
-	margin: 0px;
-	color: var(--black);
-	letter-spacing: 2px;
-	font-family: 'Sail', cursive;
+    margin: 0px;
+    color: var(--black);
+    letter-spacing: 2px;
+    font-family: 'Sail', cursive;
 }
 
 h2 {
-	margin: 0px;
-	color: var(--black);
-	font-family: 'Sail', cursive;
+    margin: 0px;
+    color: var(--black);
+    font-family: 'Sail', cursive;
 }
 
 h3 {
-	margin: 0px;
-	color: var(--black);
-	font-weight: 700;
-	font-family: 'Proza Libre', serif;
+    margin: 0px;
+    color: var(--black);
+    font-weight: 700;
+    font-family: 'Proza Libre', serif;
 }
 
 h4 {
-	margin: 0px;
-	color: var(--black);
-	font-weight: 600;
-	font-family: 'Proza Libre', serif;
+    margin: 0px;
+    color: var(--black);
+    font-weight: 600;
+    font-family: 'Proza Libre', serif;
 }
 
 h5,
 h6 {
-	margin: 0px;
-	color: var(--grey);
-	font-family: 'Nunito', sans-serif;
-	font-weight: 300;
-	word-spacing: 2px;
+    margin: 0px;
+    color: var(--grey);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    word-spacing: 2px;
 }
 
 p,
 li {
-	margin: 0px;
-	color: var(--black);
-	font-family: 'Nunito', sans-serif;
-	font-weight: 300;
+    margin: 0px;
+    color: var(--black);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
 }
 
 li {
-	list-style: outside;
-	list-style-type: disc;
-	padding-left: 10px;
-	margin-top: 0px;
+    list-style: outside;
+    list-style-type: disc;
+    padding-left: 10px;
+    margin-top: 0px;
 }
 
 li {
-	::marker {
-		margin-right: 30px;
-	}
+    ::marker {
+        margin-right: 30px;
+    }
 }
 
 ul {
-	display: flex;
-	flex-direction: column;
-	margin: 0;
-	gap: 25px;
-	padding-left: 1.6rem;
-	list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: 25px;
+    padding-left: 1.6rem;
+    list-style-position: inside;
 }
 
 a {
-	font-family: 'Nunito', sans-serif;
-	font-weight: 300;
-	color: var(--grey);
-	text-decoration: none;
-	cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: var(--grey);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 textarea {
-	font-family: 'Nunito', sans-serif;
-	font-weight: 200;
-	vertical-align: middle;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    vertical-align: middle;
 }
 
 .pageContainer {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	width: 100%;
-	min-width: 320px;
-	min-height: 100vh;
-	gap: var(--default-gap);
-	.page-title {
-		align-self: center;
-	}
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 320px;
+    min-height: 100vh;
+    gap: var(--default-gap);
+    .page-title {
+        align-self: center;
+    }
 }
 
 section {
-	padding-top: calc(var(--default-gap) / 2);
-	padding-bottom: calc(var(--default-gap) / 2);
-	margin-top: calc(var(--default-gap) / 2);
-	margin-bottom: calc(var(--default-gap) / 2);
-	width: 100%;
-	border-top: solid 1px var(--light-grey);
-	border-bottom: solid 1px var(--light-grey);
+    padding-top: calc(var(--default-gap) / 2);
+    padding-bottom: calc(var(--default-gap) / 2);
+    margin-top: calc(var(--default-gap) / 2);
+    margin-bottom: calc(var(--default-gap) / 2);
+    width: 100%;
+    border-top: solid 1px var(--light-grey);
+    border-bottom: solid 1px var(--light-grey);
 }
 
 .icons {
-	height: 35px;
-	width: 35px;
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	background-position: center center;
+    height: 35px;
+    width: 35px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
 }
 
 .cross {
-	display: flex;
-	cursor: pointer;
-	height: 10px;
-	width: 10px;
-	margin-left: 15px;
-	margin-right: 15px;
+    display: flex;
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .icons-container {
-	display: flex;
-	justify-content: center;
-	gap: 10px;
-	padding-right: 5px;
-	padding-left: 5px;
-	a {
-		height: 100%;
-		font-size: 0rem;
-	}
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    a {
+        height: 100%;
+        font-size: 0rem;
+    }
 }
 
 .error {
-	color: var(--red);
+    color: var(--red);
 }
+
 @media only screen and (min-width: 0px) and (max-width: 479px) {
-	:root {
-		--default-gap: 30px;
-		--default-small-gap: 15px;
-	}
+    :root {
+        --default-gap: 30px;
+        --default-small-gap: 15px;
+    }
 
-	h1 {
-		font-size: 5rem;
-		letter-spacing: 0px;
-	}
+    h1 {
+        font-size: 5rem;
+        letter-spacing: 0px;
+    }
 
-	h2 {
-		font-size: 4.2rem;
-	}
+    h2 {
+        font-size: 4.2rem;
+    }
 
-	h3 {
-		font-size: 2.7rem;
-	}
+    h3 {
+        font-size: 2.7rem;
+    }
 
-	h4 {
-		font-size: 1.9rem;
-	}
+    h4 {
+        font-size: 1.9rem;
+    }
 
-	h5 {
-		font-size: calc(1rem + 1.2vh);
-	}
+    h5 {
+        font-size: calc(1rem + 1.2vh);
+    }
 
-	h6 {
-		font-size: 1.7rem;
-		line-height: 2.8rem;
-	}
+    h6 {
+        font-size: 1.7rem;
+        line-height: 2.8rem;
+    }
 
-	p,
-	li,
-	textarea {
-		font-size: 1.6rem;
-		line-height: 2.4rem;
-	}
+    p,
+    li {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+    }
 
-	a {
-		font-size: 1.7rem;
-	}
+    a {
+        font-size: 1.7rem;
+    }
 
-	.icons {
-		height: 30px;
-		width: 30px;
-	}
+    .icons {
+        height: 30px;
+        width: 30px;
+    }
 
-	.icons-container {
-		gap: 10px;
-		a {
-			height: 100%;
-		}
-	}
+    .icons-container {
+        gap: 10px;
+        a {
+            height: 100%;
+        }
+    }
 
-	.pageContainer {
-		padding-top: 70px;
-		padding-left: 15px;
-		padding-right: 15px;
-		padding-bottom: 20px;
-		gap: var(--default-gap);
-	}
+    .pageContainer {
+        padding-top: 70px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 20px;
+        gap: var(--default-gap);
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-	:root {
-		--default-gap: 40px;
-		--default-small-gap: 15px;
-	}
+    :root {
+        --default-gap: 40px;
+        --default-small-gap: 15px;
+    }
 
-	h1 {
-		font-size: calc(3rem + 2.9vh);
-		letter-spacing: 2px;
-	}
+    h1 {
+        font-size: calc(3rem + 2.9vh);
+        letter-spacing: 2px;
+    }
 
-	h2 {
-		font-size: 5rem;
-	}
+    h2 {
+        font-size: 5rem;
+    }
 
-	h3 {
-		font-size: 2.9rem;
-	}
+    h3 {
+        font-size: 2.9rem;
+    }
 
-	h4 {
-		font-size: 2.2rem;
-	}
+    h4 {
+        font-size: 2.2rem;
+    }
 
-	h5 {
-		font-size: calc(1rem + 1.3vh);
-	}
+    h5 {
+        font-size: calc(1rem + 1.3vh);
+    }
 
-	h6 {
-		font-size: 1.75rem;
-		line-height: 2.8rem;
-	}
+    h6 {
+        font-size: 1.75rem;
+        line-height: 2.8rem;
+    }
 
-	p,
-	li,
-	textarea {
-		font-size: 1.65rem;
-		line-height: 2.5rem;
-	}
+    p,
+    li {
+        font-size: 1.65rem;
+        line-height: 2.5rem;
+    }
 
-	a {
-		font-size: 1.75rem;
-	}
+    a {
+        font-size: 1.75rem;
+    }
 
-	.icons {
-		height: 30px;
-		width: 30px;
-	}
+    .icons {
+        height: 30px;
+        width: 30px;
+    }
 
-	.icons-container {
-		gap: 10px;
-		a {
-			height: 100%;
-		}
-	}
+    .icons-container {
+        gap: 10px;
+        a {
+            height: 100%;
+        }
+    }
 
-	.pageContainer {
-		padding-top: 100px;
-		padding-left: 15px;
-		padding-right: 15px;
-		padding-bottom: 40px;
-		gap: var(--default-gap);
-	}
+    .pageContainer {
+        padding-top: 100px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 40px;
+        gap: var(--default-gap);
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-	:root {
-		--default-gap: 45px;
-		--default-small-gap: 20px;
-	}
+    :root {
+        --default-gap: 45px;
+        --default-small-gap: 20px;
+    }
 
-	h1 {
-		font-size: calc(3rem + 2.7vh);
-		letter-spacing: 2px;
-	}
+    h1 {
+        font-size: calc(3rem + 2.7vh);
+        letter-spacing: 2px;
+    }
 
-	h2 {
-		font-size: 5.7rem;
-	}
+    h2 {
+        font-size: 5.7rem;
+    }
 
-	h3 {
-		font-size: 3.5rem;
-	}
+    h3 {
+        font-size: 3.5rem;
+    }
 
-	h4 {
-		font-size: 2.3rem;
-	}
+    h4 {
+        font-size: 2.3rem;
+    }
 
-	h5 {
-		font-size: calc(1.3rem + 1vh);
-	}
+    h5 {
+        font-size: calc(1.3rem + 1vh);
+    }
 
-	h6 {
-		font-size: 1.9rem;
-		line-height: 3.4rem;
-	}
+    h6 {
+        font-size: 1.9rem;
+        line-height: 3.4rem;
+    }
 
-	p,
-	li,
-	textarea {
-		font-size: 1.8rem;
-		line-height: 2.8rem;
-	}
+    p,
+    li {
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
 
-	a {
-		font-size: 1.8rem;
-	}
+    a {
+        font-size: 1.8rem;
+    }
 
-	.icons {
-		height: 40px;
-		width: 40px;
-	}
+    .icons {
+        height: 40px;
+        width: 40px;
+    }
 
-	.icons-container {
-		gap: 10px;
-		a {
-			height: 100%;
-		}
-	}
+    .icons-container {
+        gap: 10px;
+        a {
+            height: 100%;
+        }
+    }
 
-	.pageContainer {
-		padding-top: 100px;
-		padding-left: 25px;
-		padding-right: 25px;
-		padding-bottom: 40px;
-		gap: var(--default-gap);
-	}
+    .pageContainer {
+        padding-top: 100px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 40px;
+        gap: var(--default-gap);
+    }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	:root {
-		--default-gap: 45px;
-		--default-small-gap: 25px;
-	}
+    :root {
+        --default-gap: 45px;
+        --default-small-gap: 25px;
+    }
 
-	h1 {
-		font-size: calc(4rem + 3.7vh);
-		letter-spacing: 2px;
-	}
+    h1 {
+        font-size: calc(4rem + 3.7vh);
+        letter-spacing: 2px;
+    }
 
-	h2 {
-		font-size: 5.7rem;
-	}
+    h2 {
+        font-size: 5.7rem;
+    }
 
-	h3 {
-		font-size: 3.6rem;
-	}
+    h3 {
+        font-size: 3.6rem;
+    }
 
-	h4 {
-		font-size: 2.6rem;
-	}
+    h4 {
+        font-size: 2.6rem;
+    }
 
-	h5 {
-		font-size: calc(1.4rem + 1vh);
-	}
+    h5 {
+        font-size: calc(1.4rem + 1vh);
+    }
 
-	h6 {
-		font-size: 2rem;
-		line-height: 4rem;
-	}
+    h6 {
+        font-size: 2rem;
+        line-height: 4rem;
+    }
 
-	p,
-	li,
-	textarea {
-		font-size: 1.8rem;
-		line-height: 2.9rem;
-	}
+    p,
+    li {
+        font-size: 1.8rem;
+        line-height: 2.9rem;
+    }
 
-	a {
-		font-size: 1.8rem;
-	}
+    a {
+        font-size: 1.8rem;
+    }
 
-	.icons {
-		height: 40px;
-		width: 40px;
-	}
+    .icons {
+        height: 40px;
+        width: 40px;
+    }
 
-	.icons-container {
-		gap: 15px;
-		a {
-			height: 100%;
-		}
-	}
+    .icons-container {
+        gap: 15px;
+        a {
+            height: 100%;
+        }
+    }
 
-	.pageContainer {
-		padding-top: 110px;
-		padding-left: 25px;
-		padding-right: 25px;
-		padding-bottom: 40px;
-		gap: var(--default-gap);
-	}
+    .pageContainer {
+        padding-top: 110px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 40px;
+        gap: var(--default-gap);
+    }
 }
 
 @media only screen and (min-width: 1200px) {
-	:root {
-		--default-gap: 45px;
-		--default-small-gap: 20px;
-	}
+    :root {
+        --default-gap: 45px;
+        --default-small-gap: 20px;
+    }
 
-	h1 {
-		font-size: calc(5rem + 3.7vh);
-		letter-spacing: 2px;
-	}
+    h1 {
+        font-size: calc(5rem + 3.7vh);
+        letter-spacing: 2px;
+    }
 
-	h2 {
-		font-size: 5.7rem;
-	}
+    h2 {
+        font-size: 5.7rem;
+    }
 
-	h3 {
-		font-size: 3.6rem;
-	}
+    h3 {
+        font-size: 3.6rem;
+    }
 
-	h4 {
-		font-size: 2.7rem;
-	}
+    h4 {
+        font-size: 2.7rem;
+    }
 
-	h5 {
-		font-size: calc(1.5rem + 0.6vh);
-	}
+    h5 {
+        font-size: calc(1.5rem + 0.6vh);
+    }
 
-	h6 {
-		font-size: 2.1rem;
-		line-height: 4rem;
-	}
+    h6 {
+        font-size: 2.1rem;
+        line-height: 4rem;
+    }
 
-	p,
-	li,
-	textarea {
-		font-size: 1.8rem;
-		line-height: 2.9rem;
-	}
+    p,
+    li {
+        font-size: 1.8rem;
+        line-height: 2.9rem;
+    }
 
-	a {
-		font-size: 1.9rem;
-	}
+    a {
+        font-size: 1.9rem;
+    }
 
-	.icons {
-		height: 40px;
-		width: 40px;
-	}
+    .icons {
+        height: 40px;
+        width: 40px;
+    }
 
-	.icons-container {
-		gap: 10px;
-		a {
-			height: 100%;
-		}
-	}
+    .icons-container {
+        gap: 10px;
+        a {
+            height: 100%;
+        }
+    }
 
-	.pageContainer {
-		padding-top: 110px;
-		padding-left: 110px;
-		padding-right: 110px;
-		padding-bottom: 40px;
-		gap: var(--default-gap);
-	}
+    .pageContainer {
+        padding-top: 110px;
+        padding-left: 110px;
+        padding-right: 110px;
+        padding-bottom: 40px;
+        gap: var(--default-gap);
+    }
 }
 
 @media print {
-	:root {
-		--default-gap: 45px;
-		--default-small-gap: 20px;
-	}
+    :root {
+        --default-gap: 45px;
+        --default-small-gap: 20px;
+    }
 
-	.printable {
-		visibility: visible;
-	}
+    .printable {
+        visibility: visible;
+    }
 
-	.print-hide {
-		visibility: hidden;
-	}
+    .print-hide {
+        visibility: hidden;
+    }
 
-	h1 {
-		font-size: calc(3rem + 2.7vh);
-		letter-spacing: 2px;
-	}
+    h1 {
+        font-size: calc(3rem + 2.7vh);
+        letter-spacing: 2px;
+    }
 
-	h2 {
-		font-size: 5.7rem;
-	}
+    h2 {
+        font-size: 5.7rem;
+    }
 
-	h3 {
-		font-size: 3.5rem;
-	}
+    h3 {
+        font-size: 3.5rem;
+    }
 
-	h4 {
-		font-size: 2.3rem;
-	}
+    h4 {
+        font-size: 2.3rem;
+    }
 
-	h5 {
-		font-size: calc(1.3rem + 1vh);
-	}
+    h5 {
+        font-size: calc(1.3rem + 1vh);
+    }
 
-	h6 {
-		font-size: 1.9rem;
-		line-height: 3.4rem;
-	}
+    h6 {
+        font-size: 1.9rem;
+        line-height: 3.4rem;
+    }
 
-	p,
-	li,
-	textarea {
-		font-size: 1.8rem;
-		line-height: 2.8rem;
-	}
+    p,
+    li {
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
 
-	a {
-		font-size: 1.8rem;
-	}
+    a {
+        font-size: 1.8rem;
+    }
 
-	.icons {
-		height: 40px;
-		width: 40px;
-	}
+    .icons {
+        height: 40px;
+        width: 40px;
+    }
 
-	.icons-container {
-		gap: 10px;
-		a {
-			height: 100%;
-		}
-	}
+    .icons-container {
+        gap: 10px;
+        a {
+            height: 100%;
+        }
+    }
 
-	.pageContainer {
-		padding-top: 10px;
-		padding-left: 25px;
-		padding-right: 25px;
-		padding-bottom: 0px;
-		gap: var(--default-gap);
-	}
+    .pageContainer {
+        padding-top: 10px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 0px;
+        gap: var(--default-gap);
+    }
 }
 
 // Min-width: 320px (smaller phone viewpoints)
