@@ -20,6 +20,16 @@ export class CreateRecipeValidator {
         return isValidDescription.validity;
     }
 
+    static checkPicture(file: any) {
+        const isValidImage = new ValidatorCheck(file, 'une image');
+
+        isValidImage.isEmpty();
+        isValidImage.isImage();
+        isValidImage.maxImageSize(10); //10Mb;
+        isValidImage.maxLength(1);
+        return isValidImage.validity;
+    }
+
     static checkQuantity(quantity: string) {
         const isValidQuantity = new ValidatorCheck(quantity);
 

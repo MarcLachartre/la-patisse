@@ -9,6 +9,7 @@ import { TextField } from '@mui/material';
 import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
 import { RecipeToInsert } from 'custom-types/recipe-types';
 import { useContext, useEffect } from 'react';
+import CreateImageUpload from './createImageUpload';
 
 const CreateIntroduction = () => {
     // Recipe obj state
@@ -111,10 +112,7 @@ const CreateIntroduction = () => {
                 }}
                 color="primary"
             />
-            <div className={style.addRecipePicContainer}>
-                <img src="/icons/plus.png" alt="add" />
-                <p> Ajoute une image </p>
-            </div>
+            <CreateImageUpload />
         </div>
     );
 };

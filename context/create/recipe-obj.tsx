@@ -7,13 +7,13 @@ export const RecipeObjContext = createContext<RecipeToInsert>({
     recipe: [],
     ingredients: [],
     tools: [],
-    pictureURL: '',
+    picture: {} as File,
 });
 
 export const RecipeObjDispatchContext = createContext(
     (() => undefined) as Dispatch<{
         type: string;
         key: string;
-        value: string | Ingredient[] | string[];
+        value: string | Ingredient[] | string[] | File;
     }>
 );

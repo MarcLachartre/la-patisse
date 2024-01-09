@@ -29,7 +29,7 @@ class ValidatorCheck {
             this.validity.isValid = false;
         }
 
-        return regex.test(this.input as string);
+        // return regex.test(this.input as string);
     }
 
     isText() {
@@ -41,7 +41,7 @@ class ValidatorCheck {
             this.validity.isValid = false;
         }
 
-        return regex.test(this.input as string);
+        // return regex.test(this.input as string);
     }
 
     minmaxLength(min: number, max: number) {
@@ -84,7 +84,7 @@ class ValidatorCheck {
         }
     }
 
-    isEmpty() {
+    async isEmpty() {
         // console.log('------------');
         // console.log('isEmpty');
 
@@ -96,16 +96,47 @@ class ValidatorCheck {
                 this.validity.isValid = false;
             }
         } else if (typeof this.input === 'object') {
-            if (this.input.length === 0) {
+            let empty;
+            if (!Array.isArray(this.input)) {
+                for (let key in this.input) {
+                    empty = false;
+                    break;
+                }
+            }
+
+            if (this.input.length === 0 || empty) {
                 this.inputName !== undefined
                     ? this.validity.errorMessage.push(
-                          `Veuillez ajouter au moins ${this.inputName} à la liste.`
+                          `Veuillez ajouter ${this.inputName}`
                       )
                     : this.validity.errorMessage.push(
                           'Veuillez ajouter au moins une valeur à la liste.'
                       );
                 this.validity.isValid = false;
             }
+        }
+    }
+
+    maxImageSize(max: number) {
+        // error for max file size
+        if (this.input.size / 1024 / 1024 > max) {
+            this.validity.errorMessage.push(
+                `L'image doit faire moins de ${max} Mb.`
+            );
+            this.validity.isValid = false;
+        }
+    }
+
+    isImage() {
+        if (
+            this.input.type !== 'image/png' &&
+            this.input.type !== 'image/jpg' &&
+            this.input.type !== 'image/jpeg'
+        ) {
+            this.validity.errorMessage.push(
+                `Veuillez ajouter une image au format .jpeg, .jpg, .png.`
+            );
+            this.validity.isValid = false;
         }
     }
 }

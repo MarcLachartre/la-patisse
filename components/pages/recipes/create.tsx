@@ -29,7 +29,7 @@ const Create = () => {
         recipe: {},
         ingredients: {},
         tools: {},
-        pictureURL: {},
+        picture: {},
     };
 
     const [errorsObj, dispatchErrorsObj] = useReducer(
@@ -43,7 +43,7 @@ const Create = () => {
         recipe: [],
         ingredients: [],
         tools: [],
-        pictureURL: '',
+        picture: {} as File,
     };
     const [recipeObj, dispatchRecipeObj] = useReducer(
         recipeObjReducer,
@@ -65,8 +65,8 @@ const Create = () => {
             description: validator.checkDescription(recipeObj.description),
             ingredients: validator.checkIngredients(recipeObj.ingredients),
             recipe: validator.checkInstructionList(recipeObj.recipe),
-            tools: validator.checkInstructionList(recipeObj.tools),
-            pictureURL: {},
+            tools: validator.checkToolList(recipeObj.tools),
+            picture: validator.checkPicture(recipeObj.picture),
         };
 
         dispatchErrorsObj({
@@ -78,6 +78,9 @@ const Create = () => {
     useEffect(() => {
         submit ? validateInputs() : false;
     }, [recipeObj]);
+    useEffect(() => {
+        // console.log(errorsObj);
+    });
 
     return (
         <RecipeObjContext.Provider value={recipeObj}>

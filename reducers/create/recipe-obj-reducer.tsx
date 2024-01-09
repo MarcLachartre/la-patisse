@@ -3,7 +3,7 @@ import type { Ingredient, RecipeToInsert } from 'custom-types/recipe-types';
 interface Action {
     type: string;
     key: string;
-    value: string | Ingredient[] | string[];
+    value: File | string | Ingredient[] | string[];
 }
 
 export const recipeObjReducer = (state: RecipeToInsert, action: Action) => {

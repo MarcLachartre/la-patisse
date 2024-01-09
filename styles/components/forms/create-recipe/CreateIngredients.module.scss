@@ -1,27 +1,28 @@
 .createIngredientsContainer {
-	display: flex;
-	gap: var(--default-small-gap);
-	flex-direction: column;
-	height: auto;
+    display: flex;
+    gap: var(--default-small-gap);
+    flex-direction: column;
+    height: auto;
 }
 
 .ingredientsInputsContainer {
-	display: grid;
-	row-gap: 20px;
-	column-gap: 10px;
-	grid-template-columns: 1fr 1fr 1fr 2.5fr;
-	grid-template-rows: auto auto;
+    display: grid;
+
+    row-gap: 20px;
+    column-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 2.5fr;
+    grid-template-rows: auto auto;
 }
 
 .ingredientsInputsContainer {
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .addIngredientBtn {
-	display: flex;
-	flex-direction: column;
-	grid-column-start: 1;
-	grid-column-end: 5;
-	grid-row-start: 2;
-	grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
