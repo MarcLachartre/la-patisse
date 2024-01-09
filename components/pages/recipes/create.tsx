@@ -50,12 +50,17 @@ const Create = () => {
         initialRecipeObj
     );
 
-    const [submit, setSubmit] = useState<boolean>(false);
+    const [submitTry, setSubmitTry] = useState<boolean>(false);
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        setSubmit(true);
-        validateInputs();
+        setSubmitTry(true);
+        const validInputs = validateInputs();
+        validInputs ? submitRecipe() : console.log(false);
+    };
+
+    const submitRecipe = () => {
+        console.log('initiateSubmit');
     };
 
     const validateInputs = () => {
@@ -73,14 +78,20 @@ const Create = () => {
             type: 'update errors',
             value: newErrors,
         });
+
+        const recipeIsValid = Object.values(newErrors).every((error) => {
+            if (error.isValid === false || error.isValid === undefined) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+        return recipeIsValid;
     };
 
     useEffect(() => {
-        submit ? validateInputs() : false;
+        submitTry ? validateInputs() : false;
     }, [recipeObj]);
-    useEffect(() => {
-        // console.log(errorsObj);
-    });
 
     return (
         <RecipeObjContext.Provider value={recipeObj}>

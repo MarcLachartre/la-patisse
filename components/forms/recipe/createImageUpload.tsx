@@ -31,13 +31,6 @@ const CreateImageUpload = () => {
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [isValidImage, setIsValidImage] = useState<boolean>(true);
 
-    useEffect(() => {
-        console.log(errors.picture.isValid);
-        // if (errors.picture.isValid !== undefined) {
-        //     setIsValidImage(errors.picture.isValid);
-        // }
-    }, [errors.picture]);
-
     const handleImageUpload = (e: FormEvent<HTMLInputElement>) => {
         const files = e.currentTarget.files as FileList;
         const imageValidity = validateImage(files);
