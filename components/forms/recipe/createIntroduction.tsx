@@ -1,10 +1,10 @@
 'use client';
 import style from '@/styles/components/forms/create-recipe/CreateIntroduction.module.scss';
-import { ErrorsObjContext } from '@context/create/errors-obj';
+import { ErrorsObjContext } from '@context/create/errors-obj-context';
 import {
     RecipeObjContext,
     RecipeObjDispatchContext,
-} from '@context/create/recipe-obj';
+} from '@context/create/recipe-obj-context';
 import { TextField } from '@mui/material';
 import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
 import { RecipeToInsert } from 'custom-types/recipe-types';

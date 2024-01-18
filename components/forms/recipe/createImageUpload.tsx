@@ -1,15 +1,15 @@
 import style from '@/styles/components/forms/create-recipe/createUploadImage.module.scss';
 import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-validator';
-import { ErrorsObjContext } from '@context/create/errors-obj';
+import { ErrorsObjContext } from '@context/create/errors-obj-context';
 import {
     RecipeObjContext,
     RecipeObjDispatchContext,
-} from '@context/create/recipe-obj';
+} from '@context/create/recipe-obj-context';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Box, Button, FormHelperText, Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import type { FormEvent } from 'react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',

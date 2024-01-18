@@ -2,8 +2,8 @@
 
 import style from '@/styles/components/forms/create-recipe/CreateIngredients.module.scss';
 import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-validator';
-import { ErrorsObjContext } from '@context/create/errors-obj';
-import { RecipeObjContext } from '@context/create/recipe-obj';
+import { ErrorsObjContext } from '@context/create/errors-obj-context';
+import { RecipeObjContext } from '@context/create/recipe-obj-context';
 import { Button, FormHelperText, TextField } from '@mui/material';
 import { type CreateIngredientErrors } from 'custom-types/form-error-types';
 import { type Ingredient } from 'custom-types/recipe-types';

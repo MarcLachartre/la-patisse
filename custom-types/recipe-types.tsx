@@ -15,7 +15,17 @@ interface RecipeToInsert {
     recipe: string[];
     ingredients: Ingredient[];
     tools: string[];
-    picture: File;
+    picture?: Blob;
+    pictureURL?: string;
+}
+
+interface RecipeToSave {
+    name: string;
+    description: string;
+    recipe: string[];
+    ingredients: Ingredient[];
+    tools: string[];
+    pictureURL?: string;
 }
 
 interface Ingredient {
@@ -34,4 +44,11 @@ type ShortRecipes = {
     pictureURL: string;
 }[];
 
-export type { Recipes, Recipe, ShortRecipes, Ingredient, RecipeToInsert };
+export type {
+    Recipes,
+    Recipe,
+    ShortRecipes,
+    Ingredient,
+    RecipeToSave,
+    RecipeToInsert,
+};

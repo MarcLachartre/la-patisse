@@ -4,11 +4,11 @@ import createInstructionsStyle from '@/styles/components/forms/create-recipe/Cre
 import instructionStyle from '@/styles/components/Instructions.module.scss';
 import style from '@/styles/pages/Create.module.scss';
 import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-validator';
-import { ErrorsObjContext } from '@context/create/errors-obj';
+import { ErrorsObjContext } from '@context/create/errors-obj-context';
 import {
     RecipeObjContext,
     RecipeObjDispatchContext,
-} from '@context/create/recipe-obj';
+} from '@context/create/recipe-obj-context';
 import { Button, FormHelperText, TextField, Tooltip } from '@mui/material';
 import { Validity } from 'custom-types/form-error-types';
 import { useContext, useEffect, useState } from 'react';

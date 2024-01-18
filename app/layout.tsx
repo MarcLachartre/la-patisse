@@ -1,38 +1,44 @@
-import './global.scss';
-
-import { Metadata } from 'next';
-import Navbar from '../components/layout/navbar';
+'use client';
+import AlertMessage from '@/components/layout/alert-message';
 import Footer from '@/components/layout/footer';
+import { AlertDispatchContext } from '@context/layout/alert-context';
+import type { AlertState } from 'custom-types/layout-types';
+import { useEffect, useReducer } from 'react';
+import { alertReducer } from 'reducers/layout/alert-reducer';
+import Navbar from '../components/layout/navbar';
+import './global.scss';
 import ThemeRegistry from './ThemeRegistry';
-
-export const metadata: Metadata = {
-	title: 'La Pâtisse',
-	description:
-		"La Pâtisse n'est rien d'autre qu'un simple recueil de mes recettes favorites. Elle est née de ma volonté d'en faire l'inventaire et de la partager avec mon entourage 😊🍰.",
-	creator: 'Marc Lachartre',
-	keywords: 'La Pâtisse, pâtisserie, delicatessen',
-	viewport: {
-		width: 'device-width',
-		initialScale: 1.0,
-	},
-};
-
 export default function RootLayout({
-	children,
+    children,
 }: {
-	children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-	return (
-		<html lang="en">
-			<body>
-				<Navbar />
-				<ThemeRegistry options={{ key: 'mui' }}>
-					{children}
-				</ThemeRegistry>
-				<Footer />
-			</body>
-		</html>
-	);
+    const initialAlert: AlertState = {
+        display: false,
+    };
+
+    const [alert, alertDispatch] = useReducer(alertReducer, initialAlert);
+
+    return (
+        <html lang="en">
+            <body>
+                <Navbar />
+                <ThemeRegistry options={{ key: 'mui' }}>
+                    <AlertDispatchContext.Provider
+                        value={{ alert, alertDispatch }}
+                    >
+                        <AlertMessage
+                            display={alert.display}
+                            type={alert.type}
+                            text={alert.text}
+                        />
+                        {children}
+                    </AlertDispatchContext.Provider>
+                </ThemeRegistry>
+                <Footer />
+            </body>
+        </html>
+    );
 }
 
 // import '@/styles/global.scss';

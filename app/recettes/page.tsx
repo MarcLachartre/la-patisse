@@ -4,7 +4,7 @@ import Index from '../../components/pages/recipes/index';
 
 const getRecipes = async () => {
     // Call recipe controller index method to retrieve all recipes with a short descrition to populate the recettes page
-    // 'use server';
+    'use server';
     const recipes = await new RecipeController().index();
 
     // Converting id from mongoId object to string

@@ -1,5 +1,4 @@
 'use client';
-
 import CreateIngredients from '@/components/forms/recipe/createIngredients';
 import CreateInstructions from '@/components/forms/recipe/createInstructions';
 import CreateIntroduction from '@/components/forms/recipe/createIntroduction';
@@ -10,19 +9,33 @@ import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-val
 import {
     ErrorsObjContext,
     ErrorsObjDispatchContext,
-} from '@context/create/errors-obj';
+} from '@context/create/errors-obj-context';
 import {
     RecipeObjContext,
     RecipeObjDispatchContext,
-} from '@context/create/recipe-obj';
-import { Button } from '@mui/material';
+} from '@context/create/recipe-obj-context';
+import { AlertDispatchContext } from '@context/layout/alert-context';
+import Backdrop from '@mui/material/Backdrop';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
 import type { RecipeToInsert } from 'custom-types/recipe-types';
-import { useEffect, useReducer, useState, type SyntheticEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import {
+    useContext,
+    useEffect,
+    useReducer,
+    useState,
+    type SyntheticEvent,
+} from 'react';
 import { errorsObjReducer } from 'reducers/create/errors-obj-reducer';
 import { recipeObjReducer } from 'reducers/create/recipe-obj-reducer';
 
 const Create = () => {
+    const router = useRouter();
+
+    const { alertDispatch } = useContext(AlertDispatchContext);
+
     const initialErrorsObj: CreateRecipeFormErrors = {
         name: {},
         description: {},
@@ -51,16 +64,50 @@ const Create = () => {
     );
 
     const [submitTry, setSubmitTry] = useState<boolean>(false);
+    const [loadingState, setLoadingState] = useState<boolean>(false);
 
-    const handleSubmit = (e: SyntheticEvent) => {
+    const handleSubmit = async (e: SyntheticEvent) => {
+        console.log('start submit');
         e.preventDefault();
         setSubmitTry(true);
         const validInputs = validateInputs();
-        validInputs ? submitRecipe() : console.log(false);
+        validInputs ? await submitRecipe() : console.log(false);
     };
 
-    const submitRecipe = () => {
-        console.log('initiateSubmit');
+    const submitRecipe = async () => {
+        setLoadingState(true); // user clicked the submit button, while recipe is being saved, a loading screen should be displayed until sucess or error.
+        const data = new FormData();
+
+        data.append('recipe', JSON.stringify(recipeObj));
+        data.append('picture', recipeObj.picture as Blob);
+
+        await fetch('../../api/recettes/create', {
+            method: 'POST',
+            body: data,
+        }).then((x) => {
+            if (x.status !== 200) {
+                setLoadingState(false);
+                alertDispatch({
+                    type: 'set alert',
+                    value: {
+                        type: 'error',
+                        text: "Oups! Il semblerait qu'une erreur se soit produite. Veuillez réessayer plus tard",
+                        display: true,
+                    },
+                });
+            } else {
+                setLoadingState(false);
+                alertDispatch({
+                    type: 'set alert',
+                    value: {
+                        type: 'success',
+                        text: 'Recette sauvegardée avec succès!',
+                        display: true,
+                    },
+                });
+                router.push(window.location.origin + '/recettes');
+            }
+        });
     };
 
     const validateInputs = () => {
@@ -100,6 +147,15 @@ const Create = () => {
                     <ErrorsObjDispatchContext.Provider
                         value={dispatchErrorsObj}
                     >
+                        <Backdrop
+                            sx={{
+                                color: '#fff',
+                                zIndex: '99999',
+                            }}
+                            open={loadingState}
+                        >
+                            <CircularProgress color="secondary" />
+                        </Backdrop>
                         <div className="pageContainer">
                             <h2 className="page-title">Create recipe</h2>
                             <form
@@ -136,6 +192,7 @@ const Create = () => {
                                 <Button
                                     variant="contained"
                                     onClick={handleSubmit}
+                                    disabled={loadingState}
                                     type="submit"
                                     size="large"
                                     color="secondary"

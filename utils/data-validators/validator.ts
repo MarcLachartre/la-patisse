@@ -61,7 +61,7 @@ class ValidatorCheck {
         // console.log('minLength');
         if (this.input.length < min) {
             this.validity.errorMessage.push(
-                `Ce champ doit contenir plus de ${min} charactères.`
+                `Ce champ doit contenir plus de ${min} caractères.`
             );
             this.validity.isValid = false;
         }
@@ -73,7 +73,7 @@ class ValidatorCheck {
         if (this.input.length > max) {
             if (typeof this.input === 'string') {
                 this.validity.errorMessage.push(
-                    `Ce champ doit contenir moins de ${max} charactères.`
+                    `Ce champ doit contenir moins de ${max} caractères.`
                 );
             } else if (typeof this.input === 'object') {
                 this.validity.errorMessage.push(
