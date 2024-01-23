@@ -1,47 +1,58 @@
-import { getData } from '../database/database';
+'use server';
 import { ObjectId } from 'mongodb';
-import { Recipes, Recipe, ShortRecipes } from '../custom-types/recipe-types';
+import {
+    Recipe,
+    Recipes,
+    RecipeToSave,
+    ShortRecipes,
+} from '../custom-types/recipe-types';
+import { Database } from '../database/database';
 
 class RecipeModel {
-	static async all() {
-		// Connect to myCakes db and point to the cakes collection
-		const data: any = await getData();
+    static async all() {
+        // Connect to myCakes db and point to the cakes collection
+        const data: any = await Database.getData();
 
-		const recipes: Recipes = await data.recipes.find().toArray();
-		// await data.client.close();
-		return recipes;
-	}
+        const recipes: Recipes = await data.recipes.find().toArray();
+        // await data.client.close();
+        return recipes;
+    }
 
-	static async shortRecipes() {
-		// Sends back all the recipes objects in an array with only _id, name, description properties...
-		// Retrieve all recipes
-		const recipes = await this.all();
+    static async shortRecipes() {
+        // Sends back all the recipes objects in an array with only _id, name, description properties...
+        // Retrieve all recipes
+        const recipes = await this.all();
 
-		// Create a shortRecipes array
-		const shortRecipes: ShortRecipes = [];
+        // Create a shortRecipes array
+        const shortRecipes: ShortRecipes = [];
 
-		// Iterate in the recipe array
-		recipes.forEach((recipe) => {
-			const { _id, name, description, pictureURL, ...recipeRest } =
-				recipe; // Destructure the recipe objects
-			const shortRecipe = { _id, name, description, pictureURL }; // Keep the id, name and description properties in an object
-			shortRecipes.push(shortRecipe); // Push it in the shortRecipes array.
-		});
+        // Iterate in the recipe array
+        recipes.forEach((recipe) => {
+            const { _id, name, description, pictureURL, ...recipeRest } =
+                recipe; // Destructure the recipe objects
+            const shortRecipe = { _id, name, description, pictureURL }; // Keep the id, name and description properties in an object
+            shortRecipes.push(shortRecipe); // Push it in the shortRecipes array.
+        });
 
-		return shortRecipes;
-	}
+        return shortRecipes;
+    }
 
-	static async findById(id: string) {
-		// Connect to myCakes db and point to the cakes collection
-		const data: any = await getData();
+    static async findById(id: string) {
+        // Connect to myCakes db and point to the cakes collection
+        const data: any = await Database.getData();
 
-		// Find the one requested recipe
-		const recipe: Recipe = await data.recipes.findOne({
-			_id: new ObjectId(id),
-		});
+        // Find the one requested recipe
+        const recipe: Recipe = await data.recipes.findOne({
+            _id: new ObjectId(id),
+        });
 
-		return recipe;
-	}
+        return recipe;
+    }
+
+    static async saveRecipe(recipe: RecipeToSave) {
+        const response = await Database.insertData(recipe);
+        return response;
+    }
 }
 
 export { RecipeModel };

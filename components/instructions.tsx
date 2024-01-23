@@ -1,8 +1,6 @@
 'use client';
 
-import React from 'react';
-
-import instructions from '../styles/components/Instructions.module.scss';
+import style from '@/styles/components/Instructions.module.scss';
 
 interface Instructions {
 	instructions: string[];
@@ -10,14 +8,14 @@ interface Instructions {
 
 const Instructions = (props: Instructions) => {
 	return (
-		<div className={instructions.instructionsContainer}>
+		<div className={style.instructionsContainer}>
 			<h3>Préparation</h3>
 			{props.instructions.map((instruction, index) => (
 				<div
-					className={instructions.instructionLine}
+					className={style.instructionLine}
 					key={`instruction${index}`}
 				>
-					<div className={instructions.instructionNumber}>
+					<div className={style.instructionNumber}>
 						<h5>{index + 1}</h5>
 					</div>
 					<p>{instruction}</p>

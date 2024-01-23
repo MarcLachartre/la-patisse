@@ -1,78 +1,78 @@
 .instructionsContainer {
-	width: 50%;
-	display: flex;
-	flex-direction: column;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .instructionLine {
-	display: flex;
-	justify-content: flex-start;
-	gap: 15px;
-	p {
-		width: auto;
-		align-self: center;
-	}
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    p {
+        width: auto;
+        align-self: center;
+    }
 }
 
 .instructionNumber {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 50%;
-	max-height: 30px;
-	max-width: 30px;
-	min-height: 30px;
-	min-width: 30px;
-	background-color: var(--orange);
-	h5 {
-		color: var(--white);
-		font-size: 1.6rem;
-	}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    max-height: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    background-color: var(--orange);
+    h5 {
+        color: var(--white);
+        font-size: 1.6rem;
+    }
 }
 
 @media only screen and (min-width: 0px) and (max-width: 479px) {
-	.instructionsContainer {
-		width: 100%;
-		gap: 15px;
-	}
+    .instructionsContainer {
+        width: 100%;
+        gap: var(--default-small-gap);
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-	.instructionsContainer {
-		width: 100%;
-		gap: 15px;
-	}
+    .instructionsContainer {
+        width: 100%;
+        gap: var(--default-small-gap);
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-	.instructionsContainer {
-		width: 100%;
-		gap: 20px;
-	}
+    .instructionsContainer {
+        width: 100%;
+        gap: var(--default-small-gap);
+    }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.instructionsContainer {
-		width: 65%;
-		gap: 25px;
-	}
+    .instructionsContainer {
+        width: 65%;
+        gap: var(--default-small-gap);
+    }
 }
 
 @media only screen and (min-width: 1200px) {
-	.instructionsContainer {
-		width: 60%;
-		gap: 25px;
-	}
-	.instructionLine {
-		display: flex;
-		justify-content: flex-start;
-		gap: 20px;
-	}
+    .instructionsContainer {
+        width: 65%;
+        gap: var(--default-small-gap);
+    }
+    .instructionLine {
+        display: flex;
+        justify-content: flex-start;
+        gap: 20px;
+    }
 }
 
 @media print {
-	.instructionsContainer {
-		width: 100%;
-		gap: 15px;
-	}
+    .instructionsContainer {
+        width: 100%;
+        gap: 15px;
+    }
 }

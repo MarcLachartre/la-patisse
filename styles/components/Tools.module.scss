@@ -1,45 +1,31 @@
 .toolsContainer {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--default-small-gap);
 }
 
 @media only screen and (min-width: 0px) and (max-width: 479px) {
-	.toolsContainer {
-		width: 50%;
-		gap: 15px;
-	}
+    .toolsContainer {
+        width: 50%;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-	.toolsContainer {
-		width: 50%;
-		gap: 15px;
-	}
+    .toolsContainer {
+        width: 50%;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-	.toolsContainer {
-		width: 50%;
-		gap: 20px;
-	}
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.toolsContainer {
-		gap: 25px;
-	}
-}
-
-@media only screen and (min-width: 1200px) {
-	.toolsContainer {
-		gap: 25px;
-	}
+    .toolsContainer {
+        width: 50%;
+    }
 }
 
 @media print {
-	.toolsContainer {
-		width: 50%;
-		gap: 20px;
-	}
+    .toolsContainer {
+        width: 50%;
+        gap: 20px;
+    }
 }

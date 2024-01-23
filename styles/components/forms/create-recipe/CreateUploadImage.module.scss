@@ -1,0 +1,28 @@
+.addRecipePicContainer {
+    grid-area: pic;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    // align-items: stretch;
+}
+
+.addRecipePic {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-size: 100% 100%;
+    border-radius: 4px;
+    border: solid 1px var(--grey);
+    background-color: var(--very-light-grey);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--default-small-gap);
+    transition: var(--default-transition);
+}
+
+.addRecipePic:hover {
+    background-color: var(--light-grey);
+}

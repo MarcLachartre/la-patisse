@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import IL from '../styles/components/IngredientsList.module.scss';
+import style from '../styles/components/IngredientsList.module.scss';
 
 interface Data {
 	ingredients: {
@@ -15,17 +14,19 @@ interface Data {
 const IngredientsList = (props: Data) => {
 	const ingredientList = () => {
 		return (
-			<div className={IL.ILContainer}>
+			<div className={style.ILContainer}>
 				<h3>Ingrédients</h3>
-				{props.ingredients.map((i, index) => (
-					<li key={`ingredients${index}`}>
-						{String(Object.values(i)[0])}{' '}
-						{Object.values(i)[1] !== undefined
-							? Object.values(i)[1]
-							: ''}{' '}
-						{Object.values(i)[2]} {Object.values(i)[3]}
-					</li>
-				))}
+				<ul>
+					{props.ingredients.map((i, index) => (
+						<li key={`ingredients${index}`}>
+							{String(Object.values(i)[0])}{' '}
+							{Object.values(i)[1] !== undefined
+								? Object.values(i)[1]
+								: ''}{' '}
+							{Object.values(i)[2]} {Object.values(i)[3]}
+						</li>
+					))}
+				</ul>
 			</div>
 		);
 	};

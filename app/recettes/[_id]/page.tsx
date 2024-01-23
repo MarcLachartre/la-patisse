@@ -1,9 +1,7 @@
 import type { Recipe } from 'custom-types/recipe-types';
-import Recette from '../../../components/pages/recette';
+import Show from '../../../components/pages/recipes/show';
 
 import { RecipeController } from 'controllers/recipe-controller';
-
-import { NextRequest } from 'next/server';
 
 const getRecipe = async (id: string) => {
 	// Call recipe controller show method to retrieve a specific recipe with all its details
@@ -14,7 +12,7 @@ const getRecipe = async (id: string) => {
 };
 
 const Page = async ({ params }: { params: { _id: string } }) => {
-	return <Recette recipe={await getRecipe(params._id)} />;
+	return <Show recipe={await getRecipe(params._id)} />;
 };
 
 export default Page;
