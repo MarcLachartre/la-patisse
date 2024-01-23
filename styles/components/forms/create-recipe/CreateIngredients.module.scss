@@ -7,7 +7,7 @@
 
 .ingredientsInputsContainer {
     display: grid;
-    row-gap: 20px;
+    row-gap: var(--default-small-gap);
     column-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 2.5fr;
     grid-template-rows: auto auto;
@@ -24,4 +24,49 @@
     grid-column-end: 5;
     grid-row-start: 2;
     grid-row-end: 3;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+    .ingredientsInputsContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .ingredientInput {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+
+    .addIngredientBtn {
+        grid-row-start: 3;
+        grid-row-end: 4;
+        grid-column-end: 4;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .ingredientsInputsContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    .ingredientInput {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+
+    .addIngredientBtn {
+        grid-row-start: 3;
+        grid-row-end: 4;
+        grid-column-end: 4;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .createIngredientsContainer {
+        width: 100%;
+    }
 }

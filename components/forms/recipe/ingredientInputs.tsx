@@ -214,6 +214,13 @@ const IngredientInputs = ({
                 onBlur={() => {
                     setFocusedFieldIndex(9999);
                 }}
+                onKeyDown={(e) => {
+                    e.code === 'Enter'
+                        ? buttonTitle === 'Ajouter un ingrédient'
+                            ? addIngredient()
+                            : updateIngredient()
+                        : false;
+                }}
                 helperText={errorToDisplay[0]}
                 sx={{
                     '.MuiFilledInput-root': { maxHeight: '59px' },
@@ -235,6 +242,13 @@ const IngredientInputs = ({
                 }}
                 onBlur={() => {
                     setFocusedFieldIndex(9999);
+                }}
+                onKeyDown={(e) => {
+                    e.code === 'Enter'
+                        ? buttonTitle === 'Ajouter un ingrédient'
+                            ? addIngredient()
+                            : updateIngredient()
+                        : false;
                 }}
                 autoComplete="off"
                 inputProps={{
@@ -270,6 +284,13 @@ const IngredientInputs = ({
                 onBlur={() => {
                     setFocusedFieldIndex(9999);
                 }}
+                onKeyDown={(e) => {
+                    e.code === 'Enter'
+                        ? buttonTitle === 'Ajouter un ingrédient'
+                            ? addIngredient()
+                            : updateIngredient()
+                        : false;
+                }}
                 inputProps={{
                     maxLength: 15,
                 }}
@@ -284,6 +305,7 @@ const IngredientInputs = ({
                 }}
             />
             <TextField
+                className={style.ingredientInput}
                 id="filled-basic"
                 label="Ingrédient *"
                 variant="filled"
@@ -299,6 +321,13 @@ const IngredientInputs = ({
                 }}
                 onBlur={() => {
                     setFocusedFieldIndex(9999);
+                }}
+                onKeyDown={(e) => {
+                    e.code === 'Enter'
+                        ? buttonTitle === 'Ajouter un ingrédient'
+                            ? addIngredient()
+                            : updateIngredient()
+                        : false;
                 }}
                 inputProps={{
                     maxLength: 100,

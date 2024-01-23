@@ -53,7 +53,13 @@ const CreateIngredients = () => {
                 </FormHelperText>
             </h3>
 
-            <ul>
+            <ul
+                style={{
+                    display: `${
+                        ingredientsArray.length === 0 ? 'none' : 'flex'
+                    }`,
+                }}
+            >
                 {ingredientsArray.map((ingr, index) => (
                     <li
                         id={`ingredient${index + 1}`}

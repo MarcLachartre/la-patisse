@@ -87,6 +87,9 @@ const CreateTool = () => {
                 color="primary"
                 placeholder="Un four"
                 autoComplete="off"
+                onKeyDown={(e) => {
+                    e.code === 'Enter' ? addTool() : false;
+                }}
                 value={tool}
                 minRows={1}
                 onChange={(e) => {
@@ -124,7 +127,7 @@ const CreateTool = () => {
     };
 
     return (
-        <div className={toolsStyle.toolsContainer}>
+        <div className={createToolsStyle.toolsContainer}>
             <h3 className={errorsObj.tools.isValid === false ? 'error' : ''}>
                 Matériel
                 <FormHelperText error={!errorsObj.tools.isValid}>
@@ -133,7 +136,13 @@ const CreateTool = () => {
                         : ''}
                 </FormHelperText>
             </h3>
-            <ul>
+            <ul
+                style={{
+                    display: `${
+                        recipeObj.tools.length === 0 ? 'none' : 'flex'
+                    }`,
+                }}
+            >
                 {recipeObj.tools.map((tool, index) => (
                     <div key={`tool${index + 1}`}>
                         {index !== toolIndex ? (

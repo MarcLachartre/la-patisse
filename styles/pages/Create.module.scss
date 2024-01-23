@@ -8,19 +8,19 @@
 }
 
 .addRecipeForm {
-    :global {
-        .cross {
-            opacity: 0;
-            transition: var(--default-transition);
-        }
+    // :global {
+    //     .cross {
+    //         opacity: 0;
+    //         transition: var(--default-transition);
+    //     }
 
-        .cross[data-hide='true'] {
-            display: none;
-            opacity: 0;
-        }
-    }
+    //     .cross[data-hide='true'] {
+    //         display: none;
+    //         opacity: 0;
+    //     }
+    // }
 
-    .list:hover {
+    .list {
         :global {
             .cross {
                 opacity: 1;
@@ -69,4 +69,54 @@
 
 .list[data-hide='false'] {
     display: inline-flex;
+}
+
+.ingredientsToolsContainer {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--default-gap);
+}
+
+.instructionsIngredientsToolsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+    .ingredientsToolsContainer {
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .ingredientsToolsContainer {
+        width: 100%;
+        flex-direction: row;
+        gap: var(--default-small-gap);
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .ingredientsToolsContainer {
+        width: 100%;
+        flex-direction: row;
+        gap: var(--default-small-gap);
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .ingredientsToolsContainer {
+        width: 50%;
+        gap: var(--default-gap);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .ingredientsToolsContainer {
+        width: 35%;
+        gap: var(--default-gap);
+    }
 }

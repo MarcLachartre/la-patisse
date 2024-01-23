@@ -7,6 +7,36 @@
     grid-template-areas:
         'title pic'
         'description pic';
-    column-gap: 80px;
+    column-gap: var(--default-gap);
     row-gap: var(--default-small-gap);
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+    .introductionContainer {
+        height: 500px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 3fr;
+        grid-template-areas:
+            'title'
+            'description'
+            'pic';
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .introductionContainer {
+        height: 600px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 4fr;
+        grid-template-areas:
+            'title'
+            'description'
+            'pic';
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .introductionContainer {
+        column-gap: var(--default-small-gap);
+    }
 }

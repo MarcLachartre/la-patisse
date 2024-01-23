@@ -90,6 +90,9 @@ const CreateInstruction = () => {
                 multiline={true}
                 value={instruction}
                 minRows={1}
+                onKeyDown={(e) => {
+                    e.code === 'Enter' ? addInstruction() : false;
+                }}
                 onChange={(e) => {
                     setInstruction(e.target.value);
                 }}
@@ -140,7 +143,13 @@ const CreateInstruction = () => {
                         : ''}
                 </FormHelperText>
             </h3>
-            <ul>
+            <ul
+                style={{
+                    display: `${
+                        recipeObj.recipe.length === 0 ? 'none' : 'flex'
+                    }`,
+                }}
+            >
                 {recipeObj.recipe.map((i, index) => (
                     <div key={`instruction${index + 1}`}>
                         {index !== instructionIndex ? (

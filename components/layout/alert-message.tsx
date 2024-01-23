@@ -9,12 +9,6 @@ import { PropsWithoutRef, useContext, useState } from 'react';
 const AlertMessage = (props: PropsWithoutRef<AlertState>) => {
     const [open, setOpen] = useState(true);
     const { alertDispatch } = useContext(AlertDispatchContext);
-    const handleClick = () => {
-        alertDispatch({
-            type: 'close alert',
-            value: { display: false },
-        });
-    };
 
     const handleClose = (
         event?: React.SyntheticEvent | Event,

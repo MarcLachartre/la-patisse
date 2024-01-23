@@ -180,7 +180,7 @@ const Create = () => {
                                     >
                                         <div
                                             className={
-                                                style.ingredientsToolsContainer
+                                                createStyle.ingredientsToolsContainer
                                             }
                                         >
                                             <CreateIngredients />

@@ -1,194 +1,195 @@
 .recetteTitleDescriptionImgContainer {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .recetteTitleContainer {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	padding-bottom: 25px;
-	border-bottom: solid 1px var(--light-grey);
-	justify-content: space-between;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 25px;
+    border-bottom: solid 1px var(--light-grey);
+    justify-content: space-between;
 }
 
 .recetteImage {
-	width: 100%;
-	height: auto;
-	border-radius: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 .recetteShareIconsContainer {
-	display: flex;
-	align-items: center;
-	gap: 30px;
-	justify-content: center;
-	height: 100%;
-	width: auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+    height: 100%;
+    width: auto;
 }
 
 .shareIcon {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .ingredientsToolsContainer {
-	width: 30%;
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .instructionsIngredientsToolsContainer {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--default-gap);
 }
 
 @media only screen and (min-width: 0px) and (max-width: 479px) {
-	.recetteTitleDescriptionImgContainer {
-		gap: 15px;
-	}
+    .recetteTitleDescriptionImgContainer {
+        gap: var(--default-small-gap);
+    }
 
-	.recetteTitleContainer {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 10px;
-	}
+    .recetteTitleContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 
-	.recetteShareIconsContainer {
-		gap: 10px;
-	}
+    .recetteShareIconsContainer {
+        gap: 10px;
+    }
 
-	.instructionsIngredientsToolsContainer {
-		width: 100%;
-		gap: 30px;
-		flex-direction: column;
-	}
+    .instructionsIngredientsToolsContainer {
+        width: 100%;
+        gap: var(--default-gap);
+        flex-direction: column;
+    }
 
-	.ingredientsToolsContainer {
-		width: 100%;
-		flex-direction: row;
-		gap: 35px;
-	}
+    .ingredientsToolsContainer {
+        width: 100%;
+        flex-direction: row;
+        gap: var(--default-small-gap);
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-	.recetteTitleDescriptionImgContainer {
-		gap: 15px;
-	}
+    .recetteTitleDescriptionImgContainer {
+        gap: var(--default-small-gap);
+    }
 
-	.recetteTitleContainer {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 15px;
-	}
+    .recetteTitleContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 
-	.recetteShareIconsContainer {
-		gap: 15px;
-	}
+    .recetteShareIconsContainer {
+        gap: 15px;
+    }
 
-	.instructionsIngredientsToolsContainer {
-		width: 100%;
-		gap: 30px;
-		flex-direction: column;
-	}
+    .instructionsIngredientsToolsContainer {
+        width: 100%;
+        gap: var(--default-small-gap);
+        flex-direction: column;
+    }
 
-	.ingredientsToolsContainer {
-		width: 100%;
-		flex-direction: row;
-		gap: 35px;
-	}
+    .ingredientsToolsContainer {
+        width: 100%;
+        flex-direction: row;
+        gap: var(--default-small-gap);
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-	.recetteTitleDescriptionImgContainer {
-		gap: 15px;
-	}
+    .recetteTitleDescriptionImgContainer {
+        gap: 15px;
+    }
 
-	.recetteTitleContainer {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 15px;
-	}
+    .recetteTitleContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 
-	.recetteShareIconsContainer {
-		gap: 25px;
-	}
+    .recetteShareIconsContainer {
+        gap: var(--default-small-gap);
+    }
 
-	.instructionsIngredientsToolsContainer {
-		width: 100%;
-		gap: 40px;
-		flex-direction: column;
-	}
+    .instructionsIngredientsToolsContainer {
+        width: 100%;
+        gap: 40px;
+        flex-direction: column;
+    }
 
-	.ingredientsToolsContainer {
-		width: 100%;
-		flex-direction: row;
-		gap: 25px;
-	}
+    .ingredientsToolsContainer {
+        width: 100%;
+        flex-direction: row;
+        gap: var(--default-small-gap);
+    }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.recetteTitleDescriptionImgContainer {
-		gap: 25px;
-	}
+    .recetteTitleDescriptionImgContainer {
+        gap: var(--default-gap);
+    }
 
-	.recetteShareIconsContainer {
-		gap: 25px;
-	}
+    .recetteShareIconsContainer {
+        gap: 25px;
+    }
 
-	.instructionsIngredientsToolsContainer {
-		width: 100%;
-		gap: 50px;
-	}
+    .instructionsIngredientsToolsContainer {
+        width: 100%;
+        gap: var(--default-gap);
+    }
 
-	.ingredientsToolsContainer {
-		width: 35%;
-		gap: 25px;
-	}
+    .ingredientsToolsContainer {
+        width: 35%;
+        gap: var(--default-gap);
+    }
 }
 
 @media only screen and (min-width: 1200px) {
-	.recetteTitleDescriptionImgContainer {
-		gap: 25px;
-	}
+    .recetteTitleDescriptionImgContainer {
+        gap: var(--default-gap);
+    }
 
-	.instructionsIngredientsToolsContainer {
-		width: 100%;
-		gap: 50px;
-	}
+    .instructionsIngredientsToolsContainer {
+        width: 100%;
+        gap: var(--default-gap);
+    }
 
-	.ingredientsToolsContainer {
-		width: 35%;
-		gap: 25px;
-	}
+    .ingredientsToolsContainer {
+        width: 35%;
+        gap: var(--default-gap);
+    }
 }
 
 @media print {
-	.recetteTitleDescriptionImgContainer {
-		gap: 15px;
-	}
+    .recetteTitleDescriptionImgContainer {
+        gap: 15px;
+    }
 
-	.recetteTitleContainer {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 15px;
-	}
+    .recetteTitleContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 
-	.recetteShareIconsContainer {
-		display: none;
-	}
+    .recetteShareIconsContainer {
+        display: none;
+    }
 
-	.instructionsIngredientsToolsContainer {
-		width: 100%;
-		gap: 40px;
-		flex-direction: column;
-	}
+    .instructionsIngredientsToolsContainer {
+        width: 100%;
+        gap: 40px;
+        flex-direction: column;
+    }
 
-	.ingredientsToolsContainer {
-		width: 100%;
-		flex-direction: row;
-		gap: 25px;
-	}
+    .ingredientsToolsContainer {
+        width: 100%;
+        flex-direction: row;
+        gap: 25px;
+    }
 }
