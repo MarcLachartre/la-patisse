@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react';
 
-import recette from '../../styles/pages/Recette.module.scss';
-import Footer from '../../components/footer';
-import IngredientsList from '../../components/ingredients-list';
-import Tools from '../../components/tools';
-import Instructions from '../../components/instructions';
-import RecipeFeedback from '../../components/recipe-feedback';
+import show from '../../../styles/pages/Show.module.scss';
+
+import IngredientsList from '../../ingredients-list';
+import Tools from '../../tools';
+import Instructions from '../../instructions';
+import RecipeFeedback from '../../recipe-feedback';
 
 import type { Recipe } from 'custom-types/recipe-types';
 
-const Recette = ({ recipe }: { recipe: Recipe }) => {
+const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
 	const [imageURL, setImageURL] = useState<string>('/cake-au-citron.png');
 
 	useEffect(() => {
@@ -50,31 +50,31 @@ const Recette = ({ recipe }: { recipe: Recipe }) => {
 
 	return (
 		<div className="pageContainer print-hide">
-			<div className={recette.recetteTitleDescriptionImgContainer}>
-				<div className={recette.recetteTitleContainer + ' printable'}>
+			<div className={show.recetteTitleDescriptionImgContainer}>
+				<div className={show.recetteTitleContainer + ' printable'}>
 					<h2 className="printable">{recipe.name}</h2>
 					<div
 						className={
-							recette.recetteShareIconsContainer + ' print-hide'
+							show.recetteShareIconsContainer + ' print-hide'
 						}
 					>
 						{/* <img
 							src="/icons/share-icon.png"
 							alt="share"
-							className={`icons ${recette.shareIcon}`}
+							className={`icons ${show.shareIcon}`}
 							onClick={sharePage}
 						/> */}
 						<img
 							src="/icons/printer-icon.png"
 							alt="print"
-							className={`icons ${recette.shareIcon}`}
+							className={`icons ${show.shareIcon}`}
 							onClick={printRecipe}
 						/>
 					</div>
 				</div>
 				<h6 className="printable">{recipe.description}</h6>
 				<img
-					className={recette.recetteImage + ' printable'}
+					className={show.recetteImage + ' printable'}
 					src={imageURL}
 					alt={recipe.name}
 					onError={setDefaultImage}
@@ -83,19 +83,18 @@ const Recette = ({ recipe }: { recipe: Recipe }) => {
 
 			<div
 				className={
-					recette.instructionsIngredientsToolsContainer + ' printable'
+					show.instructionsIngredientsToolsContainer + ' printable'
 				}
 			>
-				<div className={recette.ingredientsToolsContainer}>
+				<div className={show.ingredientsToolsContainer}>
 					<IngredientsList ingredients={recipe.ingredients} />
 					<Tools tools={recipe.tools} />
 				</div>
 				<Instructions instructions={recipe.recipe} />
 			</div>
 			<RecipeFeedback />
-			<Footer />
 		</div>
 	);
 };
 
-export default Recette;
+export default ShowRecipe;

@@ -6,16 +6,12 @@
 	height: auto;
 }
 
-.recettesList {
-	margin-bottom: 240px;
-}
-
 .recettesGrid {
 	display: grid;
 	grid-template-rows: auto auto auto;
 	grid-template-columns: 1fr 1fr 1fr;
-	column-gap: 40px;
-	row-gap: 40px;
+	column-gap: var(--gap);
+	row-gap: var(--default-gap);
 	height: auto;
 	width: 100%;
 }
@@ -29,15 +25,11 @@
 		height: auto;
 	}
 
-	.recettesList {
-		margin-bottom: 240px;
-	}
-
 	.recettesGrid {
 		grid-template-rows: 1fr 1fr;
 		grid-template-columns: 1fr 1fr;
 		column-gap: 20px;
-		row-gap: 30px;
+		row-gap: var(--default-gap);
 	}
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -49,15 +41,11 @@
 		height: auto;
 	}
 
-	.recettesList {
-		margin-bottom: 240px;
-	}
-
 	.recettesGrid {
 		grid-template-rows: 1fr 1fr;
 		grid-template-columns: 1fr 1fr;
 		column-gap: 20px;
-		row-gap: 30px;
+		row-gap: var(--default-gap);
 	}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -69,13 +57,9 @@
 		height: auto;
 	}
 
-	.recettesList {
-		margin-bottom: 280px;
-	}
-
 	.recettesGrid {
 		column-gap: 20px;
-		row-gap: 30px;
+		row-gap: var(--default-gap);
 		height: auto;
 		width: 100%;
 	}
@@ -90,13 +74,9 @@
 		height: auto;
 	}
 
-	.recettesList {
-		margin-bottom: 280px;
-	}
-
 	.recettesGrid {
 		column-gap: 20px;
-		row-gap: 30px;
+		row-gap: var(--default-gap);
 		height: auto;
 		width: 100%;
 	}
@@ -111,13 +91,9 @@
 		height: auto;
 	}
 
-	.recettesList {
-		margin-bottom: 280px;
-	}
-
 	.recettesGrid {
 		column-gap: 20px;
-		row-gap: 30px;
+		row-gap: var(--default-gap);
 		height: auto;
 		width: 100%;
 	}
