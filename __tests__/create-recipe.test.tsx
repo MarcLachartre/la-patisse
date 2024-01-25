@@ -1,6 +1,5 @@
 const { MongoClient } = require('mongodb');
-import { createMocks } from 'node-mocks-http';
-import { POST } from '../app/api/recettes/create/route';
+
 import { RecipeController } from '../controllers/recipe-controller';
 import { Database } from '../database/database';
 import { RecipeModel } from '../models/recipe-model';

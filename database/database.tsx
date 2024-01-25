@@ -77,6 +77,8 @@ class Database {
             return { success: false };
         }
     }
+
+    static async updateData(id: string, data: any) {}
 }
 
 export { Database };
