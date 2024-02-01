@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-import { RecipeController } from '../controllers/recipe-controller';
+import { RecipesController } from '../controllers/recipes-controller';
 import { Database } from '../database/database';
 import { RecipeModel } from '../models/recipe-model';
 // what to test?
@@ -17,7 +17,7 @@ describe('insert cake in mongodb', () => {
         connection = await MongoClient.connect(
             `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
         );
-        db = await connection.db('myCakes');
+        db = await connection.db('myCakesTestDb');
     });
 
     afterAll(async () => {
@@ -50,7 +50,7 @@ describe('insertData function should save and return the inserted data', () => {
             `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
         );
 
-        db = await connection.db('myCakes');
+        db = await connection.db('myCakesTestDb');
         const cakes = db.collection('cakes');
 
         await cakes.deleteOne({
@@ -74,7 +74,7 @@ describe('saveRecipe method in the recipe model should save a recipe', () => {
             `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
         );
 
-        const db = await connection.db('myCakes');
+        const db = await connection.db('myCakesTestDb');
         const cakes = db.collection('cakes');
 
         await cakes.deleteOne({
@@ -119,7 +119,7 @@ describe('create method in the controller should save a recipe', () => {
             `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
         );
 
-        const db = await connection.db('myCakes');
+        const db = await connection.db('myCakesTestDb');
         const cakes = db.collection('cakes');
 
         await cakes.deleteOne({
@@ -150,7 +150,7 @@ describe('create method in the controller should save a recipe', () => {
             description: 'Aaaaah',
             picture: new File(['pic'], 'pic.jpg', {}),
         };
-        const insertedData = await new RecipeController().create(recipe);
+        const insertedData = await new RecipesController().create(recipe);
         expect(insertedData.success).toEqual(true);
     });
 });

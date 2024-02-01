@@ -1,8 +1,7 @@
 import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-validator';
 import { v2 } from 'cloudinary';
-import { RecipeController } from 'controllers/recipe-controller';
+import { RecipesController } from 'controllers/recipes-controller';
 import type { RecipeToInsert } from 'custom-types/recipe-types';
-import { redirect } from 'next/navigation';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
@@ -25,7 +24,7 @@ const submitData = async (recipe: RecipeToInsert, pic: FormDataEntryValue) => {
     recipe.pictureURL = uploadPicResponse.secure_url;
 
     console.log('recipe upload start');
-    const response = await new RecipeController().create(recipe);
+    const response = await new RecipesController().create(recipe);
     console.log('recipe upload start');
 
     return response;

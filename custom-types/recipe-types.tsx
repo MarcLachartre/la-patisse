@@ -28,6 +28,15 @@ interface RecipeToSave {
     pictureURL?: string;
 }
 
+interface UpdatedRecipe {
+    name?: string;
+    description?: string;
+    recipe?: string[];
+    ingredients?: Ingredient[];
+    tools?: string[];
+    pictureURL?: string;
+}
+
 interface Ingredient {
     quantity: number;
     unit?: string;
@@ -51,4 +60,5 @@ export type {
     Ingredient,
     RecipeToSave,
     RecipeToInsert,
+    UpdatedRecipe,
 };

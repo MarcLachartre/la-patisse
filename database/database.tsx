@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 declare global {
@@ -37,14 +39,11 @@ class Database {
         // clientPromise.close();
         clientPromise = global._mongoClientPromise;
 
-        // Retrieve cakes collection for test purposes:
+        // Retrieve cakes db for developpement and production purposes:
+        // const db = await clientPromise.db('myCakes');
 
-        // const recipes: any = await clientPromise
-        // 	.db('myCakesTestDb')
-        // 	.collection('cakes');
-
-        // Retrieve cakes collection for developpement and production purposes:
-        const db = await clientPromise.db('myCakes');
+        // Retrieve cakes db for test purposes:
+        const db = await clientPromise.db('myCakesTestDb');
         return db;
     }
 
@@ -74,11 +73,36 @@ class Database {
             return isInserted;
         } catch (error) {
             console.log(error);
-            return { success: false };
+            return { success: false, error: 'Database issue' };
         }
     }
 
-    static async updateData(id: string, data: any) {}
+    static async updateData(filter: any, data: any, collectionName: string) {
+        try {
+            const db = await this.connectToDB();
+            const collection = await db.collection(collectionName);
+
+            const response = await collection.updateOne(filter, {
+                $set: data,
+            });
+            const isModified =
+                response.matchedCount === 1
+                    ? {
+                          filter, // Necessary to get the recipe id and redirect to the recipe url containing this id
+                          success: true,
+                      }
+                    : {
+                          filter,
+                          success: false,
+                          error: 'Issue finding database document: filter didn`t find document in the provided collection ({matchedCount:0})',
+                      };
+
+            return isModified;
+        } catch (error) {
+            console.log(error);
+            return { filter, success: false, error: 'Database error' };
+        }
+    }
 }
 
 export { Database };
