@@ -1,8 +1,12 @@
 'use server';
-import type { Recipe, RecipeToSave } from 'custom-types/recipe-types';
+import type {
+    Recipe,
+    RecipeToSave,
+    UpdatedRecipe,
+} from 'custom-types/recipe-types';
 import { RecipeModel } from '../models/recipe-model';
 
-class RecipeController {
+class RecipesController {
     recipeModel?: any;
 
     constructor() {
@@ -22,11 +26,16 @@ class RecipeController {
     }
 
     async create(recipe: RecipeToSave) {
-        // Retrieve recipe to display on the show page
+        // Create a recipe and save it in the database
         const response = await this.recipeModel.saveRecipe(recipe);
+        return response;
+    }
 
+    async update(id: string, recipe: UpdatedRecipe) {
+        // Update a recipe and save changes in the database
+        const response = await this.recipeModel.updateRecipe(recipe, id);
         return response;
     }
 }
 
-export { RecipeController };
+export { RecipesController };

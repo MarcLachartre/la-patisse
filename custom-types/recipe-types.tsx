@@ -7,6 +7,7 @@ interface Recipe {
     ingredients: Ingredient[];
     tools: string[];
     pictureURL: string;
+    timestamp: string;
 }
 
 interface RecipeToInsert {
@@ -17,6 +18,8 @@ interface RecipeToInsert {
     tools: string[];
     picture?: Blob;
     pictureURL?: string;
+    pictureCloudinaryPublicId: string;
+    timestamp: string;
 }
 
 interface RecipeToSave {
@@ -26,6 +29,17 @@ interface RecipeToSave {
     ingredients: Ingredient[];
     tools: string[];
     pictureURL?: string;
+    timestamp: string;
+}
+
+interface UpdatedRecipe {
+    name?: string;
+    description?: string;
+    recipe?: string[];
+    ingredients?: Ingredient[];
+    tools?: string[];
+    pictureURL?: string;
+    timestamp: string;
 }
 
 interface Ingredient {
@@ -51,4 +65,5 @@ export type {
     Ingredient,
     RecipeToSave,
     RecipeToInsert,
+    UpdatedRecipe,
 };

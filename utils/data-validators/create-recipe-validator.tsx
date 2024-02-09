@@ -20,13 +20,17 @@ export class CreateRecipeValidator {
         return isValidDescription.validity;
     }
 
-    static checkPicture(file: any) {
-        const isValidImage = new ValidatorCheck(file, 'une image');
+    static checkPicture(data: string | Blob | undefined) {
+        const isValidImage = new ValidatorCheck(data, 'une image');
+        if (typeof data === 'string') {
+            isValidImage.isURL();
+        } else {
+            isValidImage.isEmpty();
+            isValidImage.isImage();
+            isValidImage.maxImageSize(10); //10Mb;
+            isValidImage.maxLength(1);
+        }
 
-        isValidImage.isEmpty();
-        isValidImage.isImage();
-        isValidImage.maxImageSize(10); //10Mb;
-        isValidImage.maxLength(1);
         return isValidImage.validity;
     }
 

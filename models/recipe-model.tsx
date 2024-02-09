@@ -5,6 +5,7 @@ import {
     Recipes,
     RecipeToSave,
     ShortRecipes,
+    UpdatedRecipe,
 } from '../custom-types/recipe-types';
 import { Database } from '../database/database';
 
@@ -28,9 +29,21 @@ class RecipeModel {
 
         // Iterate in the recipe array
         recipes.forEach((recipe) => {
-            const { _id, name, description, pictureURL, ...recipeRest } =
-                recipe; // Destructure the recipe objects
-            const shortRecipe = { _id, name, description, pictureURL }; // Keep the id, name and description properties in an object
+            const {
+                _id,
+                name,
+                description,
+                pictureURL,
+                timestamp,
+                ...recipeRest
+            } = recipe; // Destructure the recipe objects
+            const shortRecipe = {
+                _id,
+                name,
+                description,
+                pictureURL,
+                timestamp,
+            }; // Keep the id, name and description properties in an object
             shortRecipes.push(shortRecipe); // Push it in the shortRecipes array.
         });
 
@@ -40,10 +53,10 @@ class RecipeModel {
     static async findById(id: string) {
         // Connect to myCakes db and point to the cakes collection
         const data: any = await Database.getData();
-
+        const _id = new ObjectId(id);
         // Find the one requested recipe
         const recipe: Recipe = await data.recipes.findOne({
-            _id: new ObjectId(id),
+            _id: _id,
         });
 
         return recipe;
@@ -51,6 +64,13 @@ class RecipeModel {
 
     static async saveRecipe(recipe: RecipeToSave) {
         const response = await Database.insertData(recipe);
+        return response;
+    }
+
+    static async updateRecipe(recipe: UpdatedRecipe, id: string) {
+        const filter = { _id: new ObjectId(id) };
+
+        const response = await Database.updateData(filter, recipe, 'cakes');
         return response;
     }
 }

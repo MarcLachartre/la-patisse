@@ -20,7 +20,7 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
 import type { RecipeToInsert } from 'custom-types/recipe-types';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
     useContext,
     useEffect,
@@ -31,7 +31,13 @@ import {
 import { errorsObjReducer } from 'reducers/create/errors-obj-reducer';
 import { recipeObjReducer } from 'reducers/create/recipe-obj-reducer';
 
-const Create = () => {
+const Create = ({
+    initialData,
+    editState,
+}: {
+    initialData?: any;
+    editState: boolean;
+}) => {
     const router = useRouter();
 
     const { alertDispatch } = useContext(AlertDispatchContext);
@@ -50,14 +56,18 @@ const Create = () => {
         initialErrorsObj
     );
 
-    const initialRecipeObj: RecipeToInsert = {
-        name: '',
-        description: '',
-        recipe: [],
-        ingredients: [],
-        tools: [],
-        picture: {} as File,
-    };
+    const initialRecipeObj: RecipeToInsert = !editState
+        ? {
+              name: '',
+              description: '',
+              recipe: [],
+              ingredients: [],
+              tools: [],
+              picture: {} as File,
+              pictureURL: '',
+          }
+        : initialData;
+
     const [recipeObj, dispatchRecipeObj] = useReducer(
         recipeObjReducer,
         initialRecipeObj
@@ -71,54 +81,145 @@ const Create = () => {
         e.preventDefault();
         setSubmitTry(true);
         const validInputs = validateInputs();
-        validInputs ? await submitRecipe() : console.log(false);
+        validInputs ? submit() : console.log(false);
     };
 
-    const submitRecipe = async () => {
-        setLoadingState(true); // user clicked the submit button, while recipe is being saved, a loading screen should be displayed until sucess or error.
+    const submit = () => {
+        setLoadingState(true); // user clicked the submit button, while recipe is being saved or updating, a loading screen should be displayed until sucess or error.
+
         const data = new FormData();
 
         data.append('recipe', JSON.stringify(recipeObj));
         data.append('picture', recipeObj.picture as Blob);
 
-        await fetch('../../api/recettes/create', {
-            method: 'POST',
-            body: data,
-        }).then((x) => {
-            if (x.status !== 200) {
-                setLoadingState(false);
-                alertDispatch({
-                    type: 'set alert',
-                    value: {
-                        type: 'error',
-                        text: "Oups! Il semblerait qu'une erreur se soit produite. Veuillez réessayer plus tard",
-                        display: true,
-                    },
-                });
-            } else {
-                setLoadingState(false);
-                alertDispatch({
-                    type: 'set alert',
-                    value: {
-                        type: 'success',
-                        text: 'Recette sauvegardée avec succès!',
-                        display: true,
-                    },
-                });
-                router.push(window.location.origin + '/recettes');
-            }
-        });
+        const callback = editState
+            ? fetch(`../../api/recettes/${initialData._id}/edit`, {
+                  method: 'PATCH',
+                  body: data,
+              })
+            : fetch('../../api/recettes/create', {
+                  method: 'POST',
+                  body: data,
+              });
+
+        callback
+            .then((x) => {
+                return x.json();
+            })
+            .then((x) => {
+                if (x.success === false) {
+                    setLoadingState(false);
+                    alertDispatch({
+                        type: 'set alert',
+                        value: {
+                            type: 'error',
+                            text: "Oups! Il semblerait qu'une erreur se soit produite. Veuillez réessayer plus tard",
+                            display: true,
+                        },
+                    });
+                } else {
+                    setLoadingState(false);
+                    alertDispatch({
+                        type: 'set alert',
+                        value: {
+                            type: 'success',
+                            text: editState
+                                ? 'Modification sauvegardée avec succès'
+                                : 'Recette sauvegardée avec succès!',
+                            display: true,
+                        },
+                    });
+                    router.push(window.location.origin + '/recettes/' + x.id);
+                }
+            })
+            .then((x) => {
+                console.log(x);
+            });
     };
+
+    // const editRecipe = async () => {
+    //     console.log(initialData._id);
+    //     const callback = fetch(`../../api/recettes/${initialData._id}/edit`, {
+    //         method: 'PATCH',
+    //         // body: data,
+    //     });
+
+    //     callback.then((x) => {
+    //         if (x.status !== 200) {
+    //             setLoadingState(false);
+    //             alertDispatch({
+    //                 type: 'set alert',
+    //                 value: {
+    //                     type: 'error',
+    //                     text: "Oups! Il semblerait qu'une erreur se soit produite. Veuillez réessayer plus tard",
+    //                     display: true,
+    //                 },
+    //             });
+    //         } else {
+    //             console.log(x.json());
+    //             setLoadingState(false);
+    //             alertDispatch({
+    //                 type: 'set alert',
+    //                 value: {
+    //                     type: 'success',
+    //                     text: 'Recette sauvegardée avec succès!',
+    //                     display: true,
+    //                 },
+    //             });
+    //             // router.push(window.location.origin + '/recettes');
+    //         }
+    //     });
+    // };
+
+    // const saveRecipe = async () => {
+    //     setLoadingState(true); // user clicked the submit button, while recipe is being saved, a loading screen should be displayed until sucess or error.
+    //     const data = new FormData();
+
+    //     data.append('recipe', JSON.stringify(recipeObj));
+    //     data.append('picture', recipeObj.picture as Blob);
+
+    //     await fetch('../../api/recettes/create', {
+    //         method: 'POST',
+    //         body: data,
+    //     }).then((x) => {
+    //         if (x.status !== 200) {
+    //             setLoadingState(false);
+    //             alertDispatch({
+    //                 type: 'set alert',
+    //                 value: {
+    //                     type: 'error',
+    //                     text: "Oups! Il semblerait qu'une erreur se soit produite. Veuillez réessayer plus tard",
+    //                     display: true,
+    //                 },
+    //             });
+    //         } else {
+    //             setLoadingState(false);
+    //             alertDispatch({
+    //                 type: 'set alert',
+    //                 value: {
+    //                     type: 'success',
+    //                     text: 'Recette sauvegardée avec succès!',
+    //                     display: true,
+    //                 },
+    //             });
+    //             router.push(window.location.origin + '/recettes');
+    //         }
+    //     });
+    // };
 
     const validateInputs = () => {
         const validator = CreateRecipeValidator;
+        console.log(recipeObj.picture || recipeObj.pictureURL);
         const newErrors = {
             name: validator.checkName(recipeObj.name),
             description: validator.checkDescription(recipeObj.description),
             ingredients: validator.checkIngredients(recipeObj.ingredients),
             recipe: validator.checkInstructionList(recipeObj.recipe),
             tools: validator.checkToolList(recipeObj.tools),
-            picture: validator.checkPicture(recipeObj.picture),
+            picture: validator.checkPicture(
+                // Valide l'image dans le cas d'un fichier ou dans le cas d'une URL.
+                recipeObj.picture || recipeObj.pictureURL
+            ),
         };
 
         dispatchErrorsObj({
@@ -157,7 +258,11 @@ const Create = () => {
                             <CircularProgress color="secondary" />
                         </Backdrop>
                         <div className="pageContainer">
-                            <h2 className="page-title">Create recipe</h2>
+                            <h2 className="page-title">
+                                {editState
+                                    ? 'Editer la recette'
+                                    : 'Nouvelle recette'}
+                            </h2>
                             <form
                                 className={createStyle.addRecipeForm}
                                 onKeyDown={(e) => {
@@ -197,7 +302,9 @@ const Create = () => {
                                     size="large"
                                     color="secondary"
                                 >
-                                    {'Sauvegarder la recette'}
+                                    {editState
+                                        ? 'Enregistrer les modifications'
+                                        : 'Sauvegarder la recette'}
                                 </Button>
                             </form>
                         </div>
