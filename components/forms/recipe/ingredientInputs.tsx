@@ -29,7 +29,7 @@ const IngredientInputs = ({
     ) => void;
 }) => {
     const ingredientsList = useContext(RecipeObjContext).ingredients;
-    const ingredientsError = useContext(ErrorsObjContext).ingredients;
+    // const ingredientsError = useContext(ErrorsObjContext).ingredients;
 
     const [quantity, setQuantity] = useState<string>('');
     const [unit, setUnit] = useState<string>('');

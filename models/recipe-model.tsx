@@ -29,9 +29,21 @@ class RecipeModel {
 
         // Iterate in the recipe array
         recipes.forEach((recipe) => {
-            const { _id, name, description, pictureURL, ...recipeRest } =
-                recipe; // Destructure the recipe objects
-            const shortRecipe = { _id, name, description, pictureURL }; // Keep the id, name and description properties in an object
+            const {
+                _id,
+                name,
+                description,
+                pictureURL,
+                timestamp,
+                ...recipeRest
+            } = recipe; // Destructure the recipe objects
+            const shortRecipe = {
+                _id,
+                name,
+                description,
+                pictureURL,
+                timestamp,
+            }; // Keep the id, name and description properties in an object
             shortRecipes.push(shortRecipe); // Push it in the shortRecipes array.
         });
 

@@ -10,6 +10,7 @@ import { Box, Button, FormHelperText, Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import type { FormEvent } from 'react';
 import { useContext, useState } from 'react';
+
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -27,7 +28,12 @@ const CreateImageUpload = () => {
     const dispatchRecipeObj = useContext(RecipeObjDispatchContext);
     const errors = useContext(ErrorsObjContext);
 
-    const [imagePreview, setImagePreview] = useState<string>('');
+    const [imagePreview, setImagePreview] = useState<string>(
+        recipeObj.pictureURL !== undefined
+            ? recipeObj.pictureURL + '?' + recipeObj.timestamp
+            : ''
+    );
+
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [isValidImage, setIsValidImage] = useState<boolean>(true);
 
@@ -118,11 +124,6 @@ const CreateImageUpload = () => {
                 <FormHelperText
                     key="ajoute-unz-image-error-message"
                     style={{
-                        // display: `${
-                        //     errors.picture.errorMessage !== undefined
-                        //         ? errors.picture.errorMessage[0]
-                        //         : ''
-                        // }`,
                         marginTop: '3px',
                         marginRight: '14px',
                         marginBottom: '0',

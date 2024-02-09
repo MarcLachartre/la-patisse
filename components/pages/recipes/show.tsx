@@ -9,14 +9,14 @@ import RecipeFeedback from '../../recipe-feedback';
 import Tools from '../../tools';
 
 const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
-    const [imageURL, setImageURL] = useState<string>('/cake-au-citron.png');
+    const [imageURL, setImageURL] = useState<string>('');
 
     useEffect(() => {
         backgroundImage();
     }, []);
 
     const backgroundImage = () => {
-        setImageURL(`${recipe.pictureURL}`);
+        setImageURL(recipe.pictureURL + '?' + recipe.timestamp);
     };
 
     const printRecipe = () => {

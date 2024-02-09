@@ -1,11 +1,8 @@
-import { ObjectId } from 'mongodb';
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 declare global {
     var _mongoClientPromise: any;
 }
-// console.log(new MongoClient());
 
 class Database {
     constructor() {}
@@ -40,10 +37,10 @@ class Database {
         clientPromise = global._mongoClientPromise;
 
         // Retrieve cakes db for developpement and production purposes:
-        // const db = await clientPromise.db('myCakes');
+        const db = await clientPromise.db('myCakes');
 
         // Retrieve cakes db for test purposes:
-        const db = await clientPromise.db('myCakesTestDb');
+        // const db = await clientPromise.db('myCakesTestDb');
         return db;
     }
 
@@ -88,7 +85,8 @@ class Database {
             const isModified =
                 response.matchedCount === 1
                     ? {
-                          filter, // Necessary to get the recipe id and redirect to the recipe url containing this id
+                          id: filter._id.toString(), // Necessary to get the recipe id and redirect to the recipe url containing this id
+                          filter,
                           success: true,
                       }
                     : {

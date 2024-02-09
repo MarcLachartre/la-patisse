@@ -105,6 +105,8 @@ describe('saveRecipe method in the recipe model should save a recipe', () => {
             description: 'Aaaaah',
             pictureURL:
                 'https://res.cloudinary.com/cul/image/upload/v1697644668/La%20Patisse/cake-au-citron_pgwhlb.png',
+            pictureCloudinaryPublicId: '1707209728812',
+            timestamp: String(Date.now()),
         };
         const insertedData = await RecipeModel.saveRecipe(recipe);
         expect(insertedData.success).toEqual(true);
@@ -148,8 +150,11 @@ describe('create method in the controller should save a recipe', () => {
                 'Enjoy ya cake!',
             ],
             description: 'Aaaaah',
-            picture: new File(['pic'], 'pic.jpg', {}),
+            pictureURL: 'http_url_of_a_pic',
+            pictureCloudinaryPublicId: '1707209728812',
+            timestamp: String(Date.now()),
         };
+
         const insertedData = await new RecipesController().create(recipe);
         expect(insertedData.success).toEqual(true);
     });

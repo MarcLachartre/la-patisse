@@ -134,7 +134,19 @@ class ValidatorCheck {
             this.input.type !== 'image/jpeg'
         ) {
             this.validity.errorMessage.push(
-                `Veuillez ajouter une image au format .jpeg, .jpg, .png.`
+                'Veuillez ajouter une image au format .jpeg, .jpg, .png.'
+            );
+            this.validity.isValid = false;
+        }
+    }
+
+    isURL() {
+        const regex =
+            /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+
+        if (!regex.test(this.input)) {
+            this.validity.errorMessage.push(
+                "L'URL renseignée est incorrect. Veuillez de nouveau renseigner ce champ."
             );
             this.validity.isValid = false;
         }
