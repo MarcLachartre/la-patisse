@@ -40,7 +40,7 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-export const OPTIONS: NextAuthOptions = {
+const OPTIONS: NextAuthOptions = {
     providers: [
         GoogleProvider({
             profile(profile) {
@@ -116,5 +116,4 @@ export const OPTIONS: NextAuthOptions = {
 };
 
 const handler = NextAuth(OPTIONS);
-export { handler as GET };
-export { handler as POST };
+export { handler as GET, handler as POST, OPTIONS };
