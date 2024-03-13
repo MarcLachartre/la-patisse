@@ -55,7 +55,7 @@
     "__tests__/controllers.test.tsx",
     "__tests__/api.test.tsx",
     ".next/types/**/*.ts"
-, "app/theme-registry/theme.ts", "app/api/auth/[...nextauth]/route.ts"  ],
+, "app/theme-registry/theme.ts", "app/api/auth/[...nextauth]/route.js"  ],
   "exclude": [
     "node_modules"
   ]
