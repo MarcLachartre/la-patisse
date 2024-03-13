@@ -1,7 +1,6 @@
-'use server';
 import Create from '@/components/pages/recipes/create';
 
-const Page = () => {
+const Page = async () => {
     return <Create editState={false} />;
 };
 

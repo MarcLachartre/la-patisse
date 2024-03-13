@@ -1,9 +1,5 @@
 'use server';
-import type {
-    Recipe,
-    RecipeToSave,
-    UpdatedRecipe,
-} from 'custom-types/recipe-types';
+import type { RecipeToSave, UpdatedRecipe } from 'custom-types/recipe-types';
 import { RecipeModel } from '../models/recipe-model';
 
 class RecipesController {

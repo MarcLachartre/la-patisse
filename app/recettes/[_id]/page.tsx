@@ -1,3 +1,4 @@
+'use server';
 import { RecipesController } from 'controllers/recipes-controller';
 import type { Recipe } from 'custom-types/recipe-types';
 import Show from '../../../components/pages/recipes/show';

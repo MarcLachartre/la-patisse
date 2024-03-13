@@ -1,6 +1,9 @@
 'use client';
 
+import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import type { Recipe } from 'custom-types/recipe-types';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import show from '../../../styles/pages/Show.module.scss';
 import IngredientsList from '../../ingredients-list';
@@ -9,10 +12,15 @@ import RecipeFeedback from '../../recipe-feedback';
 import Tools from '../../tools';
 
 const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
+    const { data: session, status } = useSession();
+
     const [imageURL, setImageURL] = useState<string>('');
+    const [editLink, setEditLink] = useState<string>('');
 
     useEffect(() => {
         backgroundImage();
+        setEditLink(window.location.href + '/edit');
+        console.log(!!session);
     }, []);
 
     const backgroundImage = () => {
@@ -23,24 +31,6 @@ const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
         window.print();
     };
 
-    // const sharePage = () => {
-    // 	const title = recipe.name;
-    // 	const text = 'La meilleure recette de ' + recipe.name;
-    // 	const url = window.location.href;
-    // 	navigator
-    // 		.share({
-    // 			title: title,
-    // 			text: text,
-    // 			url: url,
-    // 		})
-    // 		.then(() => {
-    // 			console.log('Shared successfully.');
-    // 		})
-    // 		.catch((error) => {
-    // 			console.log('There was an error sharing:', error);
-    // 		});
-    // };
-
     const setDefaultImage = () => {
         setImageURL('/placeholderpic.png');
     };
@@ -49,18 +39,29 @@ const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
         <div className="pageContainer print-hide">
             <div className={show.recetteTitleDescriptionImgContainer}>
                 <div className={show.recetteTitleContainer + ' printable'}>
-                    <h2 className="printable">{recipe.name}</h2>
+                    <h2 className="printable">
+                        {recipe.name}
+                        {!!session ? (
+                            <Link href={editLink}>
+                                <CreateRoundedIcon
+                                    sx={{
+                                        marginLeft: 'var(--default-small-gap)',
+                                    }}
+                                    fontSize="large"
+                                    cursor="pointer"
+                                    color="secondary"
+                                />
+                            </Link>
+                        ) : (
+                            false
+                        )}
+                    </h2>
+
                     <div
                         className={
                             show.recetteShareIconsContainer + ' print-hide'
                         }
                     >
-                        {/* <img
-							src="/icons/share-icon.png"
-							alt="share"
-							className={`icons ${show.shareIcon}`}
-							onClick={sharePage}
-						/> */}
                         <img
                             src="/icons/printer-icon.png"
                             alt="print"

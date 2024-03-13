@@ -1,7 +1,10 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
+import type { MongoClient as MongoClientType } from 'mongodb';
 
 declare global {
-    var _mongoClientPromise: any;
+    var _mongoClient: MongoClientType;
+    var _connectionTimer: ReturnType<typeof setTimeout>;
+    var _connectionIsOpen: boolean;
 }
 
 class Database {
@@ -18,49 +21,71 @@ class Database {
 
         let clientPromise;
 
-        // console.log(global._mongoClientPromise);
-        if (!global._mongoClientPromise) {
-            console.log('open connection');
+        if (!global._mongoClient) {
+            try {
+                console.log('open connection');
 
-            const client = new MongoClient(
-                // Local mongo client
-                `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`,
+                const client = await new MongoClient(
+                    // Local mongo client
+                    // `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`,
 
-                // Atlas mongo client
-                // `mongodb+srv://${process.env.DB_ATLAS_USER}:${process.env.DB_ATLAS_PASS}@${process.env.DB_ATLAS_HOST}/myCakes?authSource=${process.env.DB_ATLAS_AUTH}`,
-                options
-            );
-            global._mongoClientPromise = await client.connect();
+                    // Atlas mongo client
+                    `mongodb+srv://${process.env.DB_ATLAS_USER}:${process.env.DB_ATLAS_PASS}@${process.env.DB_ATLAS_HOST}/myCakes?authSource=${process.env.DB_ATLAS_AUTH}`,
+                    options
+                );
+                global._mongoClient = await client.connect();
+                global._connectionIsOpen = true;
+            } catch (error) {
+                console.log('error connecting to db');
+                console.log(error);
+                global._connectionIsOpen = false;
+            }
+        } else {
         }
-        // delete global._mongoClientPromise;
-        // clientPromise.close();
-        clientPromise = global._mongoClientPromise;
+
+        const setConnectionTimeout = () => {
+            global._connectionTimer = setTimeout(async () => {
+                await global._mongoClient.close();
+                global._connectionIsOpen = false;
+                clearTimeout(global._connectionTimer);
+            }, 600000);
+        };
+
+        if (global._connectionIsOpen) {
+            clearTimeout(global._connectionTimer);
+        } else {
+            await global._mongoClient.connect();
+            global._connectionIsOpen = true;
+        }
+
+        setConnectionTimeout();
+        clientPromise = global._mongoClient;
 
         // Retrieve cakes db for developpement and production purposes:
-        const db = await clientPromise.db('myCakes');
+        const db = clientPromise.db('myCakes');
 
         // Retrieve cakes db for test purposes:
         // const db = await clientPromise.db('myCakesTestDb');
         return db;
     }
 
-    static async getData() {
+    static async getData(collection: string) {
         const data = {} as any;
 
         const db = await this.connectToDB();
-        const recipes: any = db.collection('cakes');
+        const allData: any = db.collection(collection);
 
         // Set mongodb data obj recipes to cakes retrieved from db
-        data.recipes = recipes;
+        data.recipes = await allData;
 
         return data;
     }
 
-    static async insertData(data: any) {
+    static async insertData(collection: string, dataToInsert: any) {
         try {
             const db = await this.connectToDB();
-            const recipes: any = db.collection('cakes');
-            const dataInserted = await recipes.insertOne(data);
+            const data: any = db.collection(collection);
+            const dataInserted = await data.insertOne(dataToInsert);
 
             const isInserted = {
                 id: await dataInserted.insertedId.toString(), // Necessary to get the recipe id and redirect to the recipe url containing this id
@@ -77,7 +102,7 @@ class Database {
     static async updateData(filter: any, data: any, collectionName: string) {
         try {
             const db = await this.connectToDB();
-            const collection = await db.collection(collectionName);
+            const collection = db.collection(collectionName);
 
             const response = await collection.updateOne(filter, {
                 $set: data,

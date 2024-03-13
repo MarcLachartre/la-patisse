@@ -12,10 +12,9 @@ import { Database } from '../database/database';
 class RecipeModel {
     static async all() {
         // Connect to myCakes db and point to the cakes collection
-        const data: any = await Database.getData();
+        const data: any = await Database.getData('cakes');
 
         const recipes: Recipes = await data.recipes.find().toArray();
-        // await data.client.close();
         return recipes;
     }
 
@@ -52,7 +51,7 @@ class RecipeModel {
 
     static async findById(id: string) {
         // Connect to myCakes db and point to the cakes collection
-        const data: any = await Database.getData();
+        const data: any = await Database.getData('cakes');
         const _id = new ObjectId(id);
         // Find the one requested recipe
         const recipe: Recipe = await data.recipes.findOne({
@@ -63,7 +62,7 @@ class RecipeModel {
     }
 
     static async saveRecipe(recipe: RecipeToSave) {
-        const response = await Database.insertData(recipe);
+        const response = await Database.insertData('cakes', recipe);
         return response;
     }
 
