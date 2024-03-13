@@ -53,8 +53,8 @@ export const OPTIONS = {
                     role: userRole,
                 };
             },
-            clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
         // CredentialsProvider({
         //     name: 'Credentials',
@@ -101,13 +101,13 @@ export const OPTIONS = {
         // }),
     ],
     callbacks: {
-        async signin() {},
-        async jwt({ token, user }: { token: any; user: any }) {
+        async signin() { },
+        async jwt({ token, user }) {
             // console.log(user);
             if (user) token.role = user.email;
             return token;
         },
-        async session({ session, token }: { session: any; token: any }) {
+        async session({ session, token }) {
             // console.log(session);
             if (session?.user) session.user.role = token.role;
             return session;
