@@ -6,7 +6,7 @@ import {
 import { RecipesController } from '../../../../controllers/recipes-controller';
 // api route: /api/recettes/[_id]
 
-const GET = async ({
+export const GET = async ({
     params,
 }: {
     NextRequest: NextRequestType;
@@ -17,5 +17,3 @@ const GET = async ({
 
     return NextResponse.json({ recipe });
 };
-
-export default GET;
