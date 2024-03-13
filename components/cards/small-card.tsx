@@ -13,7 +13,6 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
     }, []);
 
     const backgroundImage = () => {
-        console.log(recipe.pictureURL + '?' + recipe.timestamp);
         setImageURL(recipe.pictureURL + '?' + recipe.timestamp);
     };
 
@@ -31,7 +30,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
                 className={sc.smallCardImage}
                 src={imageURL}
                 onError={setDefaultImage}
-                // loading="lazy"
+                loading="lazy"
             ></img>
             <div className={sc.smallCardDescription}>
                 <h4>{recipe.name}</h4>

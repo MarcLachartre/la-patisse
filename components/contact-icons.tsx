@@ -1,34 +1,31 @@
 'use client';
 
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import Link from 'next/link';
 import React from 'react';
 
-interface Data {
-	color: string;
-}
-
-const ContactIcons = (props: Data) => {
-	return (
-		<div className="icons-container">
-			<a
-				href="http://m.me/momrac"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				<img
-					className="icons"
-					src={`/icons/facebook-${props.color}.png`}
-					alt="facebook"
-				/>
-			</a>
-			<a href="mailto:marc.lachartre@gmail.com">
-				<img
-					className="icons"
-					src={`/icons/mail-${props.color}.png`}
-					alt="facebook"
-				/>
-			</a>
-		</div>
-	);
+const ContactIcons = ({ color }: { color: string }) => {
+    return (
+        <div className="icons-container">
+            <Link
+                href="http://m.me/momrac"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <FacebookRoundedIcon
+                    fontSize="large"
+                    sx={{ color: `var(--${color})` }}
+                />
+            </Link>
+            <Link href="mailto:marc.lachartre@gmail.com">
+                <EmailRoundedIcon
+                    fontSize="large"
+                    sx={{ color: `var(--${color})` }}
+                />
+            </Link>
+        </div>
+    );
 };
 
 export default ContactIcons;

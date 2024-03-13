@@ -20,7 +20,8 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
 import type { RecipeToInsert } from 'custom-types/recipe-types';
-import { usePathname, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { redirect, useRouter } from 'next/navigation';
 import {
     useContext,
     useEffect,
@@ -248,15 +249,20 @@ const Create = ({
                     <ErrorsObjDispatchContext.Provider
                         value={dispatchErrorsObj}
                     >
-                        <Backdrop
-                            sx={{
-                                color: '#fff',
-                                zIndex: '99999',
-                            }}
-                            open={loadingState}
-                        >
-                            <CircularProgress color="secondary" />
-                        </Backdrop>
+                        {loadingState ? (
+                            <Backdrop
+                                sx={{
+                                    color: '#fff',
+                                    zIndex: '99999',
+                                }}
+                                open={loadingState}
+                            >
+                                <CircularProgress color="secondary" />
+                            </Backdrop>
+                        ) : (
+                            false
+                        )}
+
                         <div className="pageContainer">
                             <h2 className="page-title">
                                 {editState

@@ -30,10 +30,10 @@ const Page = () => {
             <div className={styles.homepageDescriptionContainer}>
                 <h1>La Pâtisse</h1>
                 <h5>
-                    Bienvenu! La Pâtisse est un simple recueil des recettes de
-                    gâteaux et autres delicatessens dont j'ai eu la chance de
+                    Bienvenue ! La Pâtisserie est un simple recueil des recettes
+                    de gâteaux et autres delicatessen dont j'ai eu la chance de
                     profiter toute mon enfance et que je compte enrichir de mes
-                    différentes découvertes pâtissières. 😊 🍰. Curieux?
+                    différentes découvertes pâtissières! 😊 🍰 Curieux ?
                 </h5>
                 <div className={styles.buttonContainer}>
                     <Link href="/recettes">
@@ -42,7 +42,6 @@ const Page = () => {
                             color="secondary"
                             fullWidth={true}
                             size="large"
-                            // href="/recettes"
                         >
                             Patisser
                         </Button>
