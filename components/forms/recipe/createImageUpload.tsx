@@ -1,4 +1,3 @@
-import style from '@/styles/components/forms/create-recipe/createUploadImage.module.scss';
 import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-validator';
 import { ErrorsObjContext } from '@context/create/errors-obj-context';
 import {
@@ -10,6 +9,7 @@ import { Box, Button, FormHelperText, Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import type { FormEvent } from 'react';
 import { useContext, useState } from 'react';
+import style from 'styles/components/forms/create-recipe/CreateUploadImage.module.scss';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
