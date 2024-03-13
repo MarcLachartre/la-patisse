@@ -37,10 +37,10 @@
 // });
 
 // export { GET, POST };
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-export const OPTIONS = {
+export const OPTIONS: NextAuthOptions = {
     providers: [
         GoogleProvider({
             profile(profile) {
@@ -53,8 +53,8 @@ export const OPTIONS = {
                     role: userRole,
                 };
             },
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
         // CredentialsProvider({
         //     name: 'Credentials',
@@ -101,13 +101,13 @@ export const OPTIONS = {
         // }),
     ],
     callbacks: {
-        async signin() { },
-        async jwt({ token, user }) {
+        // async signin() {},
+        async jwt({ token, user }: { token: any; user: any }) {
             // console.log(user);
             if (user) token.role = user.email;
             return token;
         },
-        async session({ session, token }) {
+        async session({ session, token }: { session: any; token: any }) {
             // console.log(session);
             if (session?.user) session.user.role = token.role;
             return session;
