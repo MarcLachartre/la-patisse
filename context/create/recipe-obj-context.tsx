@@ -8,6 +8,8 @@ export const RecipeObjContext = createContext<RecipeToInsert>({
     ingredients: [],
     tools: [],
     picture: {} as File,
+    pictureCloudinaryPublicId: '',
+    timestamp: '',
 });
 
 export const RecipeObjDispatchContext = createContext(
