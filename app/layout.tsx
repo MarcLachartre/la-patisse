@@ -8,13 +8,13 @@ import { useReducer } from 'react';
 import { alertReducer } from 'reducers/layout/alert-reducer';
 import Navbar from '../components/layout/navbar';
 import './global.scss';
-// import ThemeRegistry from './ThemeRegistry';
+import ThemeRegistry from './ThemeRegistry';
 
-export function RootLayout({
-    session,
+export default function RootLayout({
+    // session,
     children,
 }: {
-    session: any;
+    // session: any;
     children: React.ReactNode;
 }) {
     const initialAlert: AlertState = {
@@ -24,7 +24,7 @@ export function RootLayout({
     const [alert, alertDispatch] = useReducer(alertReducer, initialAlert);
 
     return (
-        <SessionProvider session={session}>
+        <SessionProvider>
             <html lang="en">
                 <body>
                     {/* <ThemeRegistry options={{ key: 'mui' }}> */}
