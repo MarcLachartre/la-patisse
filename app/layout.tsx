@@ -8,7 +8,7 @@ import { useReducer } from 'react';
 import { alertReducer } from 'reducers/layout/alert-reducer';
 import Navbar from '../components/layout/navbar';
 import './global.scss';
-import ThemeRegistry from './ThemeRegistry';
+// import ThemeRegistry from './ThemeRegistry';
 
 export default function RootLayout({
     session,
@@ -24,9 +24,9 @@ export default function RootLayout({
     const [alert, alertDispatch] = useReducer(alertReducer, initialAlert);
 
     return (
-        <html lang="en">
-            <body>
-                <SessionProvider session={session}>
+        <SessionProvider session={session}>
+            <html lang="en">
+                <body>
                     {/* <ThemeRegistry options={{ key: 'mui' }}> */}
                     <Navbar />
                     <AlertDispatchContext.Provider
@@ -41,8 +41,8 @@ export default function RootLayout({
                     </AlertDispatchContext.Provider>
                     <Footer />
                     {/* </ThemeRegistry> */}
-                </SessionProvider>
-            </body>
-        </html>
+                </body>
+            </html>
+        </SessionProvider>
     );
 }
