@@ -27,20 +27,20 @@ export default function RootLayout({
         <SessionProvider>
             <html lang="en">
                 <body>
-                    {/* <ThemeRegistry options={{ key: 'mui' }}> */}
-                    <Navbar />
-                    <AlertDispatchContext.Provider
-                        value={{ alert, alertDispatch }}
-                    >
-                        <AlertMessage
-                            display={alert.display}
-                            type={alert.type}
-                            text={alert.text}
-                        />
-                        {children}
-                    </AlertDispatchContext.Provider>
-                    <Footer />
-                    {/* </ThemeRegistry> */}
+                    <ThemeRegistry options={{ key: 'mui' }}>
+                        <Navbar />
+                        <AlertDispatchContext.Provider
+                            value={{ alert, alertDispatch }}
+                        >
+                            <AlertMessage
+                                display={alert.display}
+                                type={alert.type}
+                                text={alert.text}
+                            />
+                            {children}
+                        </AlertDispatchContext.Provider>
+                        <Footer />
+                    </ThemeRegistry>
                 </body>
             </html>
         </SessionProvider>
