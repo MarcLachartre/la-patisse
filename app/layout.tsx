@@ -24,8 +24,8 @@ export default function RootLayout({
     const [alert, alertDispatch] = useReducer(alertReducer, initialAlert);
 
     return (
-        <SessionProvider session={session}>
-            <html lang="en">
+        <html lang="en">
+            <SessionProvider session={session}>
                 <body>
                     {/* <ThemeRegistry options={{ key: 'mui' }}> */}
                     <Navbar />
@@ -42,7 +42,7 @@ export default function RootLayout({
                     <Footer />
                     {/* </ThemeRegistry> */}
                 </body>
-            </html>
-        </SessionProvider>
+            </SessionProvider>
+        </html>
     );
 }
