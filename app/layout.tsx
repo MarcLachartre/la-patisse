@@ -10,7 +10,7 @@ import Navbar from '../components/layout/navbar';
 import './global.scss';
 // import ThemeRegistry from './ThemeRegistry';
 
-export default function RootLayout({
+export function RootLayout({
     session,
     children,
 }: {
