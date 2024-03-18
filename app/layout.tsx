@@ -24,10 +24,10 @@ export default function RootLayout({
     const [alert, alertDispatch] = useReducer(alertReducer, initialAlert);
 
     return (
-        <html lang="en">
+        <ThemeRegistry options={{ key: 'mui' }}>
             <SessionProvider session={session}>
-                <body>
-                    <ThemeRegistry options={{ key: 'mui' }}>
+                <html lang="en">
+                    <body>
                         <Navbar />
                         <AlertDispatchContext.Provider
                             value={{ alert, alertDispatch }}
@@ -40,9 +40,9 @@ export default function RootLayout({
                             {children}
                         </AlertDispatchContext.Provider>
                         <Footer />
-                    </ThemeRegistry>
-                </body>
+                    </body>
+                </html>
             </SessionProvider>
-        </html>
+        </ThemeRegistry>
     );
 }
