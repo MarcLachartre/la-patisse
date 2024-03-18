@@ -17,7 +17,8 @@ export default withAuth(
                     req.nextUrl.pathname
                 )) &&
             req.nextauth.token?.role != 'marc.lachartre@gmail.com' &&
-            req.nextauth.token?.role != 'h.lachartre@gmail.com'
+            req.nextauth.token?.role != 'h.lachartre@gmail.com' &&
+            req.nextauth.token?.role != 'paulamdp17@gmail.com'
         ) {
             return NextResponse.rewrite(new URL('/auth/denied', req.url));
         }
