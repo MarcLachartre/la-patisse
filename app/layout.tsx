@@ -25,8 +25,8 @@ export default function RootLayout({
 
     return (
         <html lang="en">
-            <SessionProvider session={session}>
-                <body>
+            <body>
+                <SessionProvider session={session}>
                     {/* <ThemeRegistry options={{ key: 'mui' }}> */}
                     <Navbar />
                     <AlertDispatchContext.Provider
@@ -41,8 +41,8 @@ export default function RootLayout({
                     </AlertDispatchContext.Provider>
                     <Footer />
                     {/* </ThemeRegistry> */}
-                </body>
-            </SessionProvider>
+                </SessionProvider>
+            </body>
         </html>
     );
 }
