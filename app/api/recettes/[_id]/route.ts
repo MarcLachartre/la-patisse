@@ -1,21 +1,22 @@
-import {
-    NextRequest,
-    NextResponse,
-    type NextRequest as NextRequestType,
-} from 'next/server';
-import { RecipesController } from '../../../../controllers/recipes-controller';
-// api route: /api/recettes/[_id]
+// import {
+//     NextRequest,
+//     NextResponse,
+//     type NextRequest as NextRequestType,
+// } from 'next/server';
+// import { RecipesController } from '../../../../controllers/recipes-controller';
 
-export const GET = async ({
-    req: NextRequest,
-    params,
-}: {
-    req: NextRequestType;
-    // NextRequest: NextRequestType;
-    params: { _id: string };
-}) => {
-    // console.log(NextRequest.arguments);
-    const recipe = await new RecipesController().show(`${params._id}`);
+// // api route: /api/recettes/[_id]
 
-    return NextResponse.json({ recipe });
-};
+// export const GET = async ({
+//     req,
+//     params,
+// }: {
+//     req: NextRequestType;
+//     // NextRequest: NextRequestType;
+//     params: { _id: string };
+// }) => {
+//     const recipe = await new RecipesController().show(`${params._id}`);
+//     console.log(1);
+//     console.log(req);
+//     return NextResponse.json({ recipe });
+// };
