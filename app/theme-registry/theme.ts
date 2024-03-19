@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { Nunito } from 'next/font/google';
 
-const roboto = Nunito({
+const nunito = Nunito({
     weight: ['300', '400', '500', '700'],
     subsets: ['latin'],
     display: 'swap',
@@ -19,7 +19,7 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: roboto.style.fontFamily,
+        fontFamily: nunito.style.fontFamily,
         htmlFontSize: 10,
         fontSize: 16,
     },
