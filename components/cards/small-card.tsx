@@ -9,6 +9,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
     const [imageURL, setImageURL] = useState<string>('');
 
     useEffect(() => {
+        console.log(imageURL);
         backgroundImage();
     }, []);
 
