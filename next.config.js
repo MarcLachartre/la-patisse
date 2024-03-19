@@ -9,6 +9,6 @@ module.exports = {
         domains: ['res.cloudinary.com']
     },
     // experimental: {
-    //     urlImports: ['https://fonts.googleapis.com/'],
+    //     urlImports: ['https://fonts.googleapis.com'],
     // },
 }

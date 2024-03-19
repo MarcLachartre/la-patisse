@@ -1,4 +1,5 @@
 'use client';
+import './global.scss';
 import AlertMessage from '@/components/layout/alert-message';
 import Footer from '@/components/layout/footer';
 import { AlertDispatchContext } from '@context/layout/alert-context';
@@ -7,7 +8,6 @@ import { SessionProvider } from 'next-auth/react';
 import { useReducer } from 'react';
 import { alertReducer } from 'reducers/layout/alert-reducer';
 import Navbar from '../components/layout/navbar';
-import './global.scss';
 import ThemeRegistry from './ThemeRegistry';
 
 export default function RootLayout({
