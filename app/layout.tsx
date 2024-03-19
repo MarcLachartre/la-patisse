@@ -1,4 +1,6 @@
+// organize-imports-ignore
 'use client';
+
 import './global.scss';
 import AlertMessage from '@/components/layout/alert-message';
 import Footer from '@/components/layout/footer';

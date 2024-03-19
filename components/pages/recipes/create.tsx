@@ -82,7 +82,7 @@ const Create = ({
         e.preventDefault();
         setSubmitTry(true);
         const validInputs = validateInputs();
-        validInputs ? submit() : console.log(false);
+        validInputs ? submit() : false;
     };
 
     const submit = () => {
@@ -97,10 +97,12 @@ const Create = ({
             ? fetch(`../../api/recettes/${initialData._id}/edit`, {
                   method: 'PATCH',
                   body: data,
+                  cache: 'no-store',
               })
             : fetch('../../api/recettes/create', {
                   method: 'POST',
                   body: data,
+                  cache: 'no-store',
               });
 
         callback
@@ -137,76 +139,6 @@ const Create = ({
                 console.log(x);
             });
     };
-
-    // const editRecipe = async () => {
-    //     console.log(initialData._id);
-    //     const callback = fetch(`../../api/recettes/${initialData._id}/edit`, {
-    //         method: 'PATCH',
-    //         // body: data,
-    //     });
-
-    //     callback.then((x) => {
-    //         if (x.status !== 200) {
-    //             setLoadingState(false);
-    //             alertDispatch({
-    //                 type: 'set alert',
-    //                 value: {
-    //                     type: 'error',
-    //                     text: "Oups! Il semblerait qu'une erreur se soit produite. Veuillez réessayer plus tard",
-    //                     display: true,
-    //                 },
-    //             });
-    //         } else {
-    //             console.log(x.json());
-    //             setLoadingState(false);
-    //             alertDispatch({
-    //                 type: 'set alert',
-    //                 value: {
-    //                     type: 'success',
-    //                     text: 'Recette sauvegardée avec succès!',
-    //                     display: true,
-    //                 },
-    //             });
-    //             // router.push(window.location.origin + '/recettes');
-    //         }
-    //     });
-    // };
-
-    // const saveRecipe = async () => {
-    //     setLoadingState(true); // user clicked the submit button, while recipe is being saved, a loading screen should be displayed until sucess or error.
-    //     const data = new FormData();
-
-    //     data.append('recipe', JSON.stringify(recipeObj));
-    //     data.append('picture', recipeObj.picture as Blob);
-
-    //     await fetch('../../api/recettes/create', {
-    //         method: 'POST',
-    //         body: data,
-    //     }).then((x) => {
-    //         if (x.status !== 200) {
-    //             setLoadingState(false);
-    //             alertDispatch({
-    //                 type: 'set alert',
-    //                 value: {
-    //                     type: 'error',
-    //                     text: "Oups! Il semblerait qu'une erreur se soit produite. Veuillez réessayer plus tard",
-    //                     display: true,
-    //                 },
-    //             });
-    //         } else {
-    //             setLoadingState(false);
-    //             alertDispatch({
-    //                 type: 'set alert',
-    //                 value: {
-    //                     type: 'success',
-    //                     text: 'Recette sauvegardée avec succès!',
-    //                     display: true,
-    //                 },
-    //             });
-    //             router.push(window.location.origin + '/recettes');
-    //         }
-    //     });
-    // };
 
     const validateInputs = () => {
         const validator = CreateRecipeValidator;
