@@ -20,8 +20,7 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import type { CreateRecipeFormErrors } from 'custom-types/form-error-types';
 import type { RecipeToInsert } from 'custom-types/recipe-types';
-import { useSession } from 'next-auth/react';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import {
     useContext,
     useEffect,
