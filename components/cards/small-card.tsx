@@ -9,12 +9,12 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
     const [imageURL, setImageURL] = useState<string>('');
 
     useEffect(() => {
-        console.log(imageURL);
         backgroundImage();
+        console.log(imageURL);
     }, []);
 
     const backgroundImage = () => {
-        setImageURL(recipe.pictureURL + '?' + recipe.timestamp);
+        setImageURL(recipe.pictureURL + '?' + recipe.timestamp + Date.now());
     };
 
     const setDefaultImage = () => {
@@ -31,7 +31,6 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
                 className={sc.smallCardImage}
                 src={imageURL}
                 onError={setDefaultImage}
-                loading="lazy"
             ></img>
             <div className={sc.smallCardDescription}>
                 <h4>{recipe.name}</h4>
