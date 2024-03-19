@@ -7,5 +7,8 @@ module.exports = {
     reactStrictMode: false,
     images: {
         domains: ['res.cloudinary.com']
-    }
+    },
+    experimental: {
+        urlImports: ['https://fonts.googleapis.com/'],
+    },
 }
