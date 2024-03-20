@@ -17,12 +17,6 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
         setImageURL(recipe.pictureURL + '?' + recipe.timestamp);
     };
 
-    // const setDefaultImage = (e: any) => {
-    //     console.log('error image');
-    //     console.log(e);
-    //     setImageURL('/placeholderpic.png');
-    // };
-
     return (
         <div id={recipe._id} className={sc.smallCardContainer}>
             <Link
