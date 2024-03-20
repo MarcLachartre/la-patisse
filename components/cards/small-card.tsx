@@ -17,11 +17,11 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
         setImageURL(recipe.pictureURL + '?' + recipe.timestamp);
     };
 
-    const setDefaultImage = (e: any) => {
-        console.log('error image');
-        console.log(e);
-        setImageURL('/placeholderpic.png');
-    };
+    // const setDefaultImage = (e: any) => {
+    //     console.log('error image');
+    //     console.log(e);
+    //     setImageURL('/placeholderpic.png');
+    // };
 
     return (
         <div id={recipe._id} className={sc.smallCardContainer}>
@@ -32,7 +32,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
             <img
                 className={sc.smallCardImage}
                 src={imageURL}
-                onError={setDefaultImage}
+                onError={backgroundImage}
             ></img>
             <div className={sc.smallCardDescription}>
                 <h4>{recipe.name}</h4>
