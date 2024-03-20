@@ -4,10 +4,6 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import Show from '../../../components/pages/recipes/show';
 export const dynamic = 'force-dynamic';
 
-type Props = {
-    params: { id: string };
-};
-
 export async function generateMetadata(
     { params }: { params: { _id: string } },
     parent: ResolvingMetadata
@@ -21,8 +17,12 @@ export async function generateMetadata(
     return {
         title: 'La Pâtisse 🍰',
         description: recipe.name,
+        creator: 'Marc Lachartre',
+        keywords: 'La Pâtisse, pâtisserie, delicatessen',
         openGraph: {
+            title: 'La Pâtisse 🍰',
             images: recipe.pictureURL,
+            description: recipe.name,
         },
     };
 }
