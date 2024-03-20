@@ -19,7 +19,8 @@ export async function generateMetadata(
     // const previousImages = (await parent).openGraph?.images || [];
 
     return {
-        title: 'La Pâtisse - ' + recipe.name,
+        title: 'La Pâtisse 🍰',
+        description: recipe.name,
         openGraph: {
             images: recipe.pictureURL,
         },
