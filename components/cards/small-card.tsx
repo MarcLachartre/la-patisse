@@ -14,10 +14,12 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
     }, []);
 
     const backgroundImage = () => {
-        setImageURL(recipe.pictureURL + '?' + recipe.timestamp + Date.now());
+        setImageURL(recipe.pictureURL + '?' + recipe.timestamp);
     };
 
-    const setDefaultImage = () => {
+    const setDefaultImage = (e: any) => {
+        console.log('error image');
+        console.log(e);
         setImageURL('/placeholderpic.png');
     };
 
