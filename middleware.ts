@@ -3,23 +3,15 @@ import { NextResponse } from 'next/server';
 
 export default withAuth(
     function middleware(req) {
-        // console.log(req);
-        // console.log(req.nextUrl.pathname);
-        console.log(
-            req.nextauth.token?.role != 'marc.lachartre@gmail.com' ||
-                req.nextauth.token?.role != 'h.lachartre@gmail.com'
-        );
-
         if (
             (req.nextUrl.pathname.startsWith('/recettes/create') || // create page matcher
                 /^\/recettes\/([0-9]+([A-Za-z]+[0-9]+)+)\/edit$/i.test(
                     // edit recipe page matcher
                     req.nextUrl.pathname
                 )) &&
-            req.nextauth.token?.role != 'marc.lachartre@gmail.com' &&
-            req.nextauth.token?.role != 'h.lachartre@gmail.com' &&
-            req.nextauth.token?.role != 'lachartrehelena@gmail.com' &&
-            req.nextauth.token?.role != 'paulamdp17@gmail.com'
+            req.nextauth.token?.role != process.env.ADMIN1 &&
+            req.nextauth.token?.role != process.env.ADMIN2 &&
+            req.nextauth.token?.role != process.env.ADMIN3
         ) {
             return NextResponse.rewrite(new URL('/auth/denied', req.url));
         }
