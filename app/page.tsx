@@ -6,7 +6,7 @@ import MinimalFooter from '../components/minimal-footer';
 import styles from '../styles/pages/Home.module.scss';
 
 export const metadata: Metadata = {
-    title: 'La Pâtisse',
+    title: 'La Pâtisse 🍰',
     description:
         "La Pâtisse n'est rien d'autre qu'un simple recueil de mes recettes favorites. Elle est née de ma volonté d'en faire l'inventaire et de la partager avec mon entourage 😊🍰.",
     creator: 'Marc Lachartre',
