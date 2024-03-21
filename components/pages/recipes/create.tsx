@@ -141,7 +141,7 @@ const Create = ({
 
     const validateInputs = () => {
         const validator = CreateRecipeValidator;
-        console.log(recipeObj.picture || recipeObj.pictureURL);
+
         const newErrors = {
             name: validator.checkName(recipeObj.name),
             description: validator.checkDescription(recipeObj.description),

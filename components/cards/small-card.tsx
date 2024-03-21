@@ -10,7 +10,6 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
 
     useEffect(() => {
         backgroundImage();
-        console.log(imageURL);
     }, []);
 
     const backgroundImage = () => {

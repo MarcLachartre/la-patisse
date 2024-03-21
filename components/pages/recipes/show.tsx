@@ -20,7 +20,6 @@ const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
     useEffect(() => {
         backgroundImage();
         setEditLink(window.location.href + '/edit');
-        console.log(!!session);
     }, []);
 
     const backgroundImage = () => {
