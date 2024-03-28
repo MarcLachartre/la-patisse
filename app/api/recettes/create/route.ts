@@ -49,8 +49,7 @@ const uploadPictureToCloudinary = async (
         api_secret: process.env.CLOUDINARY_API_SECRET,
     });
 
-    formData.append('file', pic);
-    const file = formData.get('file') as File;
+    const file = pic as File;
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
     const response = (await new Promise((resolve, reject) => {
@@ -67,7 +66,7 @@ const uploadPictureToCloudinary = async (
 
     console.log('pic upload end');
 
-    return response;
+    return await response;
 };
 
 const isValidData = (recipe: RecipeToInsert, pic: FormDataEntryValue) => {
