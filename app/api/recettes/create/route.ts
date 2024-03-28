@@ -41,7 +41,7 @@ const uploadPictureToCloudinary = async (
 ) => {
     console.log('pic upload start');
 
-    const formData = new FormData();
+    // const formData = new FormData();
 
     v2.config({
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -62,11 +62,21 @@ const uploadPictureToCloudinary = async (
                 resolve(result);
             })
             .end(buffer);
-    })) as any;
+    }).then(
+        (value) => {
+            console.log(value); // Réussite !
+            return value;
+        },
+        (error) => {
+            console.error(error); // Erreur !
+            return error;
+        }
+    )) as any;
 
+    // console.log(await JSON.parse(response));
     console.log('pic upload end');
 
-    return await response;
+    return response;
 };
 
 const isValidData = (recipe: RecipeToInsert, pic: FormDataEntryValue) => {
