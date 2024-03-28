@@ -62,21 +62,25 @@ const uploadPictureToCloudinary = async (
                 resolve(result);
             })
             .end(buffer);
-    }).then(
-        (value) => {
-            console.log(value); // Réussite !
-            return value;
-        },
-        (error) => {
-            console.error(error); // Erreur !
+    })
+        .then(
+            (value) => {
+                console.log(value); // Réussite !
+                return value;
+            },
+            (error) => {
+                console.error(error); // Erreur !
+                return error;
+            }
+        )
+        .catch((error: any) => {
             return error;
-        }
-    )) as any;
+        })) as any;
 
-    // console.log(await JSON.parse(response));
+    console.log(await response);
     console.log('pic upload end');
 
-    return response;
+    return await response;
 };
 
 const isValidData = (recipe: RecipeToInsert, pic: FormDataEntryValue) => {

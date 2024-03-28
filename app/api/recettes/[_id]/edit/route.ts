@@ -72,9 +72,8 @@ const updatePic = async (pic: File, cloudinaryId: string, cakeName: string) => {
     const file = pic as File;
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
-    let response;
 
-    response = (await new Promise((resolve, reject) => {
+    const response = (await new Promise((resolve, reject) => {
         v2.uploader
             .upload_stream(
                 {
