@@ -49,9 +49,11 @@ const uploadPictureToCloudinary = async (
         api_secret: process.env.CLOUDINARY_API_SECRET,
     });
 
-    const file = pic as File;
+    const file = pic as any;
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
+    console.log(file);
+
     const response = (await new Promise((resolve, reject) => {
         v2.uploader
             .upload_stream({ public_id: timestamp }, function (error, result) {
@@ -64,23 +66,23 @@ const uploadPictureToCloudinary = async (
             .end(buffer);
     })
         .then(
-            (value) => {
+            async (value) => {
                 console.log(value); // Réussite !
-                return value;
+                return await value;
             },
-            (error) => {
+            async (error) => {
                 console.error(error); // Erreur !
-                return error;
+                return await error;
             }
         )
         .catch((error: any) => {
             return error;
         })) as any;
 
-    console.log(await response);
+    console.log(response);
     console.log('pic upload end');
 
-    return await response;
+    return response;
 };
 
 const isValidData = (recipe: RecipeToInsert, pic: FormDataEntryValue) => {
