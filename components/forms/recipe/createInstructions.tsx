@@ -80,12 +80,13 @@ const CreateInstruction = () => {
     const textfield = (key: string | undefined) => {
         return (
             <TextField
+                autoFocus
                 id="filled-basic"
                 key={key}
                 label="Instructions *"
                 variant="filled"
                 color="primary"
-                placeholder="Mélanger d'abord les oeufs et la farine..."
+                placeholder="Mélangez d'abord les oeufs et la farine..."
                 autoComplete="off"
                 multiline={true}
                 value={instruction}

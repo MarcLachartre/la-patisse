@@ -29,21 +29,29 @@ const isValidData = (recipe: RecipeToInsert, pic: FormDataEntryValue) => {
 
 const editData = async (recipe: any, pic: File | string) => {
     // To know if we need to update the pic in cloudinary, we check the type of the recipe.pic value.
-    typeof pic !== 'string'
-        ? // If it is not a string, it means that the user updated the pic and a file object is sent to the backhand. We will use that file to update the pic in cloudinary.
-          await updatePic(pic, recipe.pictureCloudinaryPublicId, recipe.name)
-        : // If it is a string then it corresponds to the url to the pic. It means that the user didn't uplaod any new file. No action required.
-          false;
+    const picResponse =
+        typeof pic !== 'string'
+            ? // If it is not a string, it means that the user updated the pic and a file object is sent to the backhand. We will use that file to update the pic in cloudinary.
+              await updatePic(
+                  pic,
+                  recipe.pictureCloudinaryPublicId,
+                  recipe.name
+              )
+            : // If it is a string then it corresponds to the url to the pic. It means that the user didn't uplaod any new file. No action required.
+              false;
 
     const id = recipe._id;
 
     delete recipe.picture;
     delete recipe._id;
-    console.log(recipe.timestamp);
+
     recipe.timestamp = String(Date.now());
 
     console.log('recipe upload start');
-    const response = await new RecipesController().update(id, recipe);
+    const response =
+        picResponse.success !== false
+            ? await new RecipesController().update(id, recipe)
+            : picResponse;
     console.log('recipe upload end');
 
     return response;
@@ -51,43 +59,49 @@ const editData = async (recipe: any, pic: File | string) => {
 
 const updatePic = async (pic: File, cloudinaryId: string, cakeName: string) => {
     console.log('pic upload start');
-    const timestamp = Date.now();
-
-    const signature = v2.utils.api_sign_request(
-        {
-            timestamp: timestamp,
-            use_filename: false,
-            public_id: cloudinaryId,
-            folder: 'La Patisse',
-            invalidate: true,
-            overwrite: true,
-        },
-        `${process.env.CLOUDINARY_API_SECRET}` as string
-    );
-
-    const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
 
     const formData = new FormData();
 
-    formData.append('file', pic as Blob);
+    v2.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
 
-    formData.append('public_id', cloudinaryId);
-    formData.append('use_filename', false as any);
-    formData.append('signature', signature);
-    formData.append('timestamp', timestamp as any);
-    formData.append('api_key', `${process.env.CLOUDINARY_API_KEY}`);
-    formData.append('folder', 'La Patisse');
-    formData.append('invalidate', true as any);
-    formData.append('overwrite', true as any);
+    // formData.append('file', pic);
+    const file = pic as File;
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = new Uint8Array(arrayBuffer);
+    let response;
 
-    const response = await fetch(url, {
-        method: 'POST',
-        body: formData,
-    })
-        .then((response) => response.json())
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    response = (await new Promise((resolve, reject) => {
+        v2.uploader
+            .upload_stream(
+                {
+                    public_id: cloudinaryId,
+                    folder: 'La Patisse',
+                    invalidate: true,
+                    overwrite: true,
+                    timeout: 120000,
+                    timestamp: Date.now(),
+                },
+                function (error, result) {
+                    if (error) {
+                        console.log(error);
+                        reject(error);
+                        return error;
+                    }
+                    resolve(result);
+                }
+            )
+            .end(buffer);
+    }).catch((error) => {
+        console.error(error);
+        return {
+            success: false,
+            message: `Picture upload error: ${error.name}`,
+        };
+    })) as any;
 
     console.log('pic upload end');
 
@@ -104,9 +118,12 @@ export async function PATCH(request: Request) {
             ? (data.get('picture') as FormDataEntryValue)
             : recipe.pictureURL;
 
+    if (pic) {
+    }
+
     const response = isValidData(recipe, pic)
         ? await editData(recipe, pic)
         : { sucess: false, error: 'Invalid data' };
-    console.log(response);
+
     return NextResponse.json(response);
 }

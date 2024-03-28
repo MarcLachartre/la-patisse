@@ -41,36 +41,29 @@ const uploadPictureToCloudinary = async (
 ) => {
     console.log('pic upload start');
 
-    const signature = v2.utils.api_sign_request(
-        {
-            timestamp: timestamp,
-            use_filename: false,
-            public_id: timestamp,
-            folder: 'La Patisse',
-        },
-        `${process.env.CLOUDINARY_API_SECRET}` as string
-    );
-
-    const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
-
     const formData = new FormData();
 
-    formData.append('file', pic as Blob);
-    formData.append('public_id', timestamp);
-    formData.append('use_filename', false as any);
-    formData.append('signature', signature);
-    formData.append('timestamp', timestamp);
-    formData.append('api_key', `${process.env.CLOUDINARY_API_KEY}`);
-    formData.append('folder', 'La Patisse');
+    v2.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
 
-    const response = await fetch(url, {
-        method: 'POST',
-        body: formData,
-    })
-        .then((response) => response.json())
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    formData.append('file', pic);
+    const file = formData.get('file') as File;
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = new Uint8Array(arrayBuffer);
+    const response = (await new Promise((resolve, reject) => {
+        v2.uploader
+            .upload_stream({ public_id: timestamp }, function (error, result) {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                resolve(result);
+            })
+            .end(buffer);
+    })) as any;
 
     console.log('pic upload end');
 

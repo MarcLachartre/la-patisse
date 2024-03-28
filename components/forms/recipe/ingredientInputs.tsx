@@ -51,6 +51,7 @@ const IngredientInputs = ({
     );
 
     const addIngredient = () => {
+        console.log(1);
         const ingredientObj = {
             quantity: Number(quantity),
             unit: unit,
@@ -180,16 +181,17 @@ const IngredientInputs = ({
     return (
         <div
             className={style.ingredientsInputsContainer}
-            onKeyUp={(e) => {
-                e.preventDefault();
-                e.code === 'Enter'
-                    ? buttonTitle === 'Ajouter un ingrédient'
-                        ? addIngredient()
-                        : updateIngredient()
-                    : false;
-            }}
+            // onKeyUp={(e) => {
+            //     e.preventDefault();
+            //     e.code === 'Enter'
+            //         ? buttonTitle === 'Ajouter un ingrédient'
+            //             ? addIngredient()
+            //             : updateIngredient()
+            //         : false;
+            // }}
         >
             <TextField
+                autoFocus
                 id="filled-basic"
                 label="Qté *"
                 variant="filled"

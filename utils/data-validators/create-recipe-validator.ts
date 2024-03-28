@@ -27,7 +27,7 @@ export class CreateRecipeValidator {
         } else {
             isValidImage.isEmpty();
             isValidImage.isImage();
-            isValidImage.maxImageSize(10); //10Mb;
+            isValidImage.maxImageSize(2); //2Mb;
             isValidImage.maxLength(1);
         }
 

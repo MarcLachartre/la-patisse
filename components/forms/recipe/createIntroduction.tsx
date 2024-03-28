@@ -30,6 +30,7 @@ const CreateIntroduction = () => {
     return (
         <div className={style.introductionContainer}>
             <TextField
+                autoFocus
                 id="filled-basic"
                 label="Titre *"
                 variant="filled"
@@ -75,6 +76,7 @@ const CreateIntroduction = () => {
             />
 
             <TextField
+                autoFocus
                 id="filled-basic"
                 label="Description *"
                 variant="filled"

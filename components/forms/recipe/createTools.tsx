@@ -80,6 +80,7 @@ const CreateTool = () => {
     const textfield = (key: string | undefined) => {
         return (
             <TextField
+                autoFocus
                 id="filled-basic"
                 key={key}
                 label="Matériel *"
