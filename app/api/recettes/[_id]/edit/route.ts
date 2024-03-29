@@ -1,4 +1,5 @@
 import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-validator';
+import { uploadPictureToCloudinary } from 'app/api/_lib/cloudinary/upload';
 import { v2 } from 'cloudinary';
 import { RecipesController } from 'controllers/recipes-controller';
 import { RecipeToInsert } from 'custom-types/recipe-types';
@@ -32,11 +33,18 @@ const editData = async (recipe: any, pic: File | string) => {
     const picResponse =
         typeof pic !== 'string'
             ? // If it is not a string, it means that the user updated the pic and a file object is sent to the backhand. We will use that file to update the pic in cloudinary.
-              await updatePic(
-                  pic,
-                  recipe.pictureCloudinaryPublicId,
-                  recipe.name
-              )
+              //   await updatePic(
+              //       pic,
+              //       recipe.pictureCloudinaryPublicId,
+              //       recipe.name
+              //   )
+              await uploadPictureToCloudinary(pic, {
+                  timeout: 120000,
+                  public_id: recipe.pictureCloudinaryPublicId,
+                  folder: 'La Patisse',
+                  invalidate: true,
+                  overwrite: true,
+              })
             : // If it is a string then it corresponds to the url to the pic. It means that the user didn't uplaod any new file. No action required.
               false;
 
@@ -57,55 +65,55 @@ const editData = async (recipe: any, pic: File | string) => {
     return response;
 };
 
-const updatePic = async (pic: File, cloudinaryId: string, cakeName: string) => {
-    console.log('pic upload start');
+// const updatePic = async (pic: File, cloudinaryId: string, cakeName: string) => {
+//     console.log('pic upload start');
 
-    const formData = new FormData();
+//     const formData = new FormData();
 
-    v2.config({
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY,
-        api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
+//     v2.config({
+//         cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//         api_key: process.env.CLOUDINARY_API_KEY,
+//         api_secret: process.env.CLOUDINARY_API_SECRET,
+//     });
 
-    // formData.append('file', pic);
-    const file = pic as File;
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = new Uint8Array(arrayBuffer);
+//     // formData.append('file', pic);
+//     const file = pic as File;
+//     const arrayBuffer = await file.arrayBuffer();
+//     const buffer = new Uint8Array(arrayBuffer);
 
-    const response = (await new Promise((resolve, reject) => {
-        v2.uploader
-            .upload_stream(
-                {
-                    public_id: cloudinaryId,
-                    folder: 'La Patisse',
-                    invalidate: true,
-                    overwrite: true,
-                    timeout: 120000,
-                    timestamp: Date.now(),
-                },
-                function (error, result) {
-                    if (error) {
-                        console.log(error);
-                        reject(error);
-                        return error;
-                    }
-                    resolve(result);
-                }
-            )
-            .end(buffer);
-    }).catch((error) => {
-        console.error(error);
-        return {
-            success: false,
-            message: `Picture upload error: ${error.name}`,
-        };
-    })) as any;
+//     const response = (await new Promise((resolve, reject) => {
+//         v2.uploader
+//             .upload_stream(
+//                 {
+//                     public_id: cloudinaryId,
+//                     folder: 'La Patisse',
+//                     invalidate: true,
+//                     overwrite: true,
+//                     timeout: 120000,
+//                     timestamp: Date.now(),
+//                 },
+//                 function (error, result) {
+//                     if (error) {
+//                         console.log(error);
+//                         reject(error);
+//                         return error;
+//                     }
+//                     resolve(result);
+//                 }
+//             )
+//             .end(buffer);
+//     }).catch((error) => {
+//         console.error(error);
+//         return {
+//             success: false,
+//             message: `Picture upload error: ${error.name}`,
+//         };
+//     })) as any;
 
-    console.log('pic upload end');
+//     console.log('pic upload end');
 
-    return response;
-};
+//     return response;
+// };
 
 export async function PATCH(request: Request) {
     const data = await request.formData();
