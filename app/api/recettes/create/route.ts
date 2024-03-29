@@ -2,6 +2,7 @@ import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-val
 import { v2 } from 'cloudinary';
 import { RecipesController } from 'controllers/recipes-controller';
 import type { RecipeToInsert } from 'custom-types/recipe-types';
+import mime from 'mime';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
@@ -52,32 +53,45 @@ const uploadPictureToCloudinary = async (
     const file = pic as any;
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
-    console.log(file);
+    const base64File = Buffer.from(buffer).toString('base64');
+    const fileMimeType = file.type;
 
-    const response = (await new Promise((resolve, reject) => {
-        v2.uploader
-            .upload_stream({ public_id: timestamp }, function (error, result) {
-                if (error) {
-                    reject(error);
-                    return;
-                }
-                resolve(result);
-            })
-            .end(buffer);
-    })
-        .then(
-            async (value) => {
-                console.log(value); // Réussite !
-                return await value;
-            },
-            async (error) => {
-                console.error(error); // Erreur !
-                return await error;
-            }
-        )
-        .catch((error: any) => {
-            return error;
-        })) as any;
+    const response = await v2.uploader.upload(
+        `data:${fileMimeType};base64,${base64File}`,
+        {
+            folder: 'images',
+        }
+    );
+
+    // const file = pic as any;
+    // const arrayBuffer = await file.arrayBuffer();
+    // const buffer = new Uint8Array(arrayBuffer);
+    // console.log(file);
+
+    // const response = (await new Promise((resolve, reject) => {
+    //     v2.uploader
+    //         .upload_stream({ public_id: timestamp }, function (error, result) {
+    //             if (error) {
+    //                 reject(error);
+    //                 return;
+    //             }
+    //             resolve(result);
+    //         })
+    //         .end(buffer);
+    // })
+    //     .then(
+    //         async (value) => {
+    //             console.log(value); // Réussite !
+    //             return await value;
+    //         },
+    //         async (error) => {
+    //             console.error(error); // Erreur !
+    //             return await error;
+    //         }
+    //     )
+    //     .catch((error: any) => {
+    //         return error;
+    //     })) as any;
 
     console.log(response);
     console.log('pic upload end');
