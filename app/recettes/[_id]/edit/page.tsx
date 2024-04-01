@@ -3,7 +3,6 @@ import { RecipesController } from 'controllers/recipes-controller';
 
 // Get the recipe to edit from db to populate the default value of the form
 const getRecipe = async (id: string) => {
-    'use server';
     const response = await new RecipesController().show(id);
     return response;
 };

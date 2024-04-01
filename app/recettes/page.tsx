@@ -3,7 +3,6 @@ import { Recipe } from 'custom-types/recipe-types';
 import Index from '../../components/pages/recipes/index';
 
 const getRecipes = async () => {
-    'use server';
     // Call recipe controller index method to retrieve all recipes with a short descrition to populate the recettes page
     const recipes = await new RecipesController().index();
 
