@@ -1,6 +1,7 @@
 import { RecipesController } from 'controllers/recipes-controller';
 import { Recipe } from 'custom-types/recipe-types';
 import Index from '../../components/pages/recipes/index';
+export const dynamic = 'force-dynamic';
 
 const getRecipes = async () => {
     // Call recipe controller index method to retrieve all recipes with a short descrition to populate the recettes page
