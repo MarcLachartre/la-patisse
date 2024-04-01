@@ -1,22 +1,28 @@
 'use client';
 
 import { Recipe } from 'custom-types/recipe-types';
+import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import index from '../../../styles/pages/Index.module.scss';
 import LargeCard from '../../cards/large-card';
 import SmallCard from '../../cards/small-card';
 
 const Index = ({ recipes }: { recipes: Recipe[] }) => {
+    const router = useRouter();
     useEffect(() => {
-        async function animate() {
-            const scrollreveal = (await require('scrollreveal')).default;
-            scrollreveal({ distance: '60px' }).reveal('.recipe-card', {
-                origin: 'bottom',
-                duration: 1000,
-            });
-        }
-        animate();
-    });
+        router.refresh();
+    }, []);
+
+    // useEffect(() => {
+    //     async function animate() {
+    //         const scrollreveal = (await require('scrollreveal')).default;
+    //         scrollreveal({ distance: '60px' }).reveal('.recipe-card', {
+    //             origin: 'bottom',
+    //             duration: 1000,
+    //         });
+    //     }
+    //     animate();
+    // });
 
     const displayRecipes = () => {
         return (
