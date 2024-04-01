@@ -13,16 +13,16 @@ const Index = ({ recipes }: { recipes: Recipe[] }) => {
         router.refresh();
     }, []);
 
-    // useEffect(() => {
-    //     async function animate() {
-    //         const scrollreveal = (await require('scrollreveal')).default;
-    //         scrollreveal({ distance: '60px' }).reveal('.recipe-card', {
-    //             origin: 'bottom',
-    //             duration: 1000,
-    //         });
-    //     }
-    //     animate();
-    // });
+    useEffect(() => {
+        async function animate() {
+            const scrollreveal = (await require('scrollreveal')).default;
+            scrollreveal({ distance: '60px' }).reveal('.recipe-card', {
+                origin: 'bottom',
+                duration: 1000,
+            });
+        }
+        animate();
+    });
 
     const displayRecipes = () => {
         return (
