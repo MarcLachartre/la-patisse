@@ -4,7 +4,7 @@ module.exports = {
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
     },
-    reactStrictMode: false,
+    reactStrictMode: true,
     images: {
         domains: ['res.cloudinary.com']
     },

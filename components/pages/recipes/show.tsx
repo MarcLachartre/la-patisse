@@ -14,7 +14,7 @@ import Tools from '../../tools';
 const ShowRecipe = ({ recipe }: { recipe: Recipe }) => {
     const { data: session, status } = useSession();
 
-    const [imageURL, setImageURL] = useState<string>('');
+    const [imageURL, setImageURL] = useState<string>(recipe.pictureURL);
     const [editLink, setEditLink] = useState<string>('');
 
     useEffect(() => {

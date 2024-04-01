@@ -1,16 +1,10 @@
 'use server';
 
-import { v2 } from 'cloudinary';
+import { UploadApiOptions, v2 } from 'cloudinary';
 
 export const uploadPictureToCloudinary = async (
     pic: FormDataEntryValue,
-    options: {
-        timeout: number; // timeout: duration allowed for uploading a pic,
-        public_id: string; // public_id: has to be a timestamp,
-        folder: string; // folder: folder in which the image will be stored,
-        invalidate?: boolean; // invalidate and overwrite, when present and set to true, will replace the pic saved in the db by the new one to be uploaded if the public_id is the same.
-        overwrite?: boolean;
-    }
+    options: UploadApiOptions
 ) => {
     console.log('pic upload start');
 
@@ -28,6 +22,10 @@ export const uploadPictureToCloudinary = async (
 
     const response = await v2.uploader
         .upload(`data:${fileMimeType};base64,${base64File}`, options)
+        .then((r) => {
+            r.success = true;
+            return r;
+        })
         .catch((e) => {
             console.log('image upload failed');
             console.log(e);

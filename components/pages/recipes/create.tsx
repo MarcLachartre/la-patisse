@@ -96,12 +96,10 @@ const Create = ({
             ? fetch(`../../api/recettes/${initialData._id}/edit`, {
                   method: 'PATCH',
                   body: data,
-                  cache: 'no-store',
               })
             : fetch('../../api/recettes/create', {
                   method: 'POST',
                   body: data,
-                  cache: 'no-store',
               });
 
         callback
@@ -131,11 +129,13 @@ const Create = ({
                             display: true,
                         },
                     });
+
                     router.push(window.location.origin + '/recettes/' + x.id);
+                    router.refresh();
                 }
             })
             .then((x) => {
-                console.log(x);
+                return x;
             });
     };
 

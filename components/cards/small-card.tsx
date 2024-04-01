@@ -13,7 +13,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
     }, []);
 
     const backgroundImage = () => {
-        setImageURL(recipe.pictureURL + '?' + recipe.timestamp);
+        setImageURL(recipe.pictureURL + '?' + Date.now());
     };
 
     return (
@@ -24,7 +24,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
             ></Link>
             <img
                 className={sc.smallCardImage}
-                src={imageURL}
+                src={recipe.pictureURL}
                 onError={backgroundImage}
             ></img>
             <div className={sc.smallCardDescription}>
