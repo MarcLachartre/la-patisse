@@ -8,11 +8,6 @@ import LargeCard from '../../cards/large-card';
 import SmallCard from '../../cards/small-card';
 
 const Index = ({ recipes }: { recipes: Recipe[] }) => {
-    const router = useRouter();
-    useEffect(() => {
-        router.refresh();
-    }, []);
-
     useEffect(() => {
         async function animate() {
             const scrollreveal = (await require('scrollreveal')).default;
