@@ -2,6 +2,7 @@ import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-val
 import { uploadPictureToCloudinary } from 'app/api/_lib/cloudinary/upload';
 import { RecipesController } from 'controllers/recipes-controller';
 import { RecipeToInsert } from 'custom-types/recipe-types';
+import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 const isValidData = (recipe: RecipeToInsert, pic: FormDataEntryValue) => {
@@ -61,18 +62,27 @@ const editData = async (recipe: any, pic: File | string) => {
     return response;
 };
 
-export async function PATCH(request: NextRequest) {
-    const data = await request.formData();
-    const recipe = JSON.parse(`${data.get('recipe')}`);
+export async function PATCH(req: NextRequest) {
+    const token = await getToken({ req }); // get token from user to protect route
+    if (token) {
+        const data = await req.formData();
+        const recipe = JSON.parse(`${data.get('recipe')}`);
 
-    const pic =
-        recipe.picture !== undefined
-            ? (data.get('picture') as FormDataEntryValue)
-            : recipe.pictureURL;
+        const pic =
+            recipe.picture !== undefined
+                ? (data.get('picture') as FormDataEntryValue)
+                : recipe.pictureURL;
 
-    const response = isValidData(recipe, pic)
-        ? await editData(recipe, pic)
-        : { sucess: false, error: 'Invalid data' };
+        const response = isValidData(recipe, pic)
+            ? await editData(recipe, pic)
+            : { sucess: false, error: 'Invalid data' };
 
-    return NextResponse.json(response);
+        return NextResponse.json(response);
+    } else {
+        return NextResponse.json({
+            success: false,
+            error: 'Unauthorized',
+            status: 401,
+        });
+    }
 }

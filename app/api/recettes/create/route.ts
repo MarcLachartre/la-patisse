@@ -2,20 +2,30 @@ import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-val
 import { uploadPictureToCloudinary } from 'app/api/_lib/cloudinary/upload';
 import { RecipesController } from 'controllers/recipes-controller';
 import type { RecipeToInsert } from 'custom-types/recipe-types';
+import { getToken } from 'next-auth/jwt';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 export const POST = async (req: NextRequest) => {
-    const data = await req.formData();
-    const recipe = JSON.parse(`${data.get('recipe')}`);
+    const token = await getToken({ req }); // get token from user to protect route
+    if (token) {
+        const data = await req.formData();
+        const recipe = JSON.parse(`${data.get('recipe')}`);
 
-    const pic = data.get('picture') as FormDataEntryValue;
+        const pic = data.get('picture') as FormDataEntryValue;
 
-    const response = isValidData(recipe, pic)
-        ? await submitData(recipe, pic)
-        : { sucess: false, error: 'Invalid data' };
+        const response = isValidData(recipe, pic)
+            ? await submitData(recipe, pic)
+            : { success: false, error: 'Invalid data' };
 
-    return NextResponse.json(response);
+        return NextResponse.json(response);
+    } else {
+        return NextResponse.json({
+            success: false,
+            error: 'Unauthorized',
+            status: 401,
+        });
+    }
 };
 
 const submitData = async (recipe: RecipeToInsert, pic: FormDataEntryValue) => {
