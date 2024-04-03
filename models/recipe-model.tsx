@@ -14,7 +14,11 @@ class RecipeModel {
         // Connect to myCakes db and point to the cakes collection
         const data: any = await Database.getData('cakes');
 
-        const recipes: Recipes = await data.recipes.find().toArray();
+        const recipes: Recipes = await data.recipes
+            .find()
+            .sort({ name: 1 })
+            .collation({ locale: 'fr', caseLevel: true })
+            .toArray();
         return recipes;
     }
 
@@ -36,6 +40,7 @@ class RecipeModel {
                 timestamp,
                 ...recipeRest
             } = recipe; // Destructure the recipe objects
+
             const shortRecipe = {
                 _id,
                 name,
@@ -43,6 +48,7 @@ class RecipeModel {
                 pictureURL,
                 timestamp,
             }; // Keep the id, name and description properties in an object
+
             shortRecipes.push(shortRecipe); // Push it in the shortRecipes array.
         });
 
