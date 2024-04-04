@@ -51,16 +51,20 @@ interface Ingredient {
 
 type Recipes = Recipe[];
 
-type ShortRecipes = {
+type ShortRecipes = ShortRecipe[];
+
+type ShortRecipe = {
     _id: string;
     name: string;
     description: string;
     pictureURL: string;
-}[];
+    timestamp: string;
+};
 
 export type {
     Recipes,
     Recipe,
+    ShortRecipe,
     ShortRecipes,
     Ingredient,
     RecipeToSave,
