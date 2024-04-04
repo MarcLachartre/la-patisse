@@ -1,5 +1,6 @@
 'use server';
 import { ObjectId } from 'mongodb';
+import { notFound } from 'next/navigation';
 import {
     Recipe,
     Recipes,
@@ -59,13 +60,17 @@ class RecipeModel {
     static async findById(id: string) {
         // Connect to myCakes db and point to the cakes collection
         const data: any = await Database.getData('cakes');
-        const _id = new ObjectId(id);
-        // Find the one requested recipe
-        const recipe: Recipe = await data.recipes.findOne({
-            _id: _id,
-        });
+        try {
+            const _id = new ObjectId(id);
+            // Find the one requested recipe
+            const recipe: Recipe = await data.recipes.findOne({
+                _id: _id,
+            });
 
-        return recipe;
+            return recipe;
+        } catch {
+            notFound();
+        }
     }
 
     static async saveRecipe(recipe: RecipeToSave) {
