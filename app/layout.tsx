@@ -13,10 +13,8 @@ import Navbar from '../components/layout/navbar';
 import ThemeRegistry from './ThemeRegistry';
 
 export default function RootLayout({
-    // session,
     children,
 }: {
-    // session: any;
     children: React.ReactNode;
 }) {
     const initialAlert: AlertState = {
