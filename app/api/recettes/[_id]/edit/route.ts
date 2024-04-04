@@ -3,6 +3,7 @@ import { uploadPictureToCloudinary } from 'app/api/_lib/cloudinary/upload';
 import { RecipesController } from 'controllers/recipes-controller';
 import { RecipeToInsert } from 'custom-types/recipe-types';
 import { getToken } from 'next-auth/jwt';
+import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 
 const isValidData = (recipe: RecipeToInsert, pic: FormDataEntryValue) => {

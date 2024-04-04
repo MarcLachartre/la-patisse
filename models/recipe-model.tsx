@@ -68,8 +68,9 @@ class RecipeModel {
             });
 
             return recipe;
-        } catch {
-            notFound();
+        } catch (e) {
+            console.log(e);
+            return { error: e, success: false };
         }
     }
 
