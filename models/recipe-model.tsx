@@ -4,6 +4,7 @@ import {
     Recipe,
     Recipes,
     RecipeToSave,
+    ShortRecipe,
     ShortRecipes,
     UpdatedRecipe,
 } from '../custom-types/recipe-types';
@@ -31,7 +32,7 @@ class RecipeModel {
         const shortRecipes: ShortRecipes = [];
 
         // Iterate in the recipe array
-        recipes.forEach((recipe) => {
+        recipes.forEach((recipe: ShortRecipe) => {
             const {
                 _id,
                 name,

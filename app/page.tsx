@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     description:
         "La Pâtisse n'est rien d'autre qu'un simple recueil de mes recettes favorites. Elle est née de ma volonté d'en faire l'inventaire et de la partager avec mon entourage 😊🍰.",
     creator: 'Marc Lachartre',
-    keywords: 'La Pâtisse, pâtisserie, delicatessen',
+    keywords:
+        'La Pâtisse, pâtisserie, delicatessen, recette, recettes, gateaux, entremets, ',
 
     openGraph: {
         title: 'La Pâtisse 🍰',
