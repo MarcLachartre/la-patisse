@@ -37,8 +37,7 @@ class RecipesController {
     async update(id: string, recipe: UpdatedRecipe) {
         // Update a recipe and save changes in the database
         const response = await this.recipeModel.updateRecipe(recipe, id);
-        redirect('recettes/' + id);
-        // return response;
+        return response;
     }
 }
 
