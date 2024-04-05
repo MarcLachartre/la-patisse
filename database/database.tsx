@@ -24,13 +24,18 @@ class Database {
         if (!global._mongoClient) {
             try {
                 console.log('open connection');
-
+                process.env.ENVIRONMENT === 'development'
+                    ? console.log(true)
+                    : console.log(false);
                 const client = await new MongoClient(
+                    process.env.ENVIRONMENT === 'development'
+                        ? `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`
+                        : `mongodb+srv://${process.env.DB_ATLAS_USER}:${process.env.DB_ATLAS_PASS}@${process.env.DB_ATLAS_HOST}/myCakes?authSource=${process.env.DB_ATLAS_AUTH}`,
+
                     // Local mongo client
                     // `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/myCakes?authSource=${process.env.DB_AUTH}`,
 
                     // Atlas mongo client
-                    `mongodb+srv://${process.env.DB_ATLAS_USER}:${process.env.DB_ATLAS_PASS}@${process.env.DB_ATLAS_HOST}/myCakes?authSource=${process.env.DB_ATLAS_AUTH}`,
                     options
                 );
                 global._mongoClient = await client.connect();
