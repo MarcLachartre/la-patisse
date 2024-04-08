@@ -27,7 +27,7 @@ const Menu = () => {
         ['Recettes', '/recettes', <CakeRoundedIcon color="secondary" />],
         [
             'Contact me',
-            'mailto:marc.lachartre@gmail.com',
+            'mailto:lapatisse.pro@gmail.com',
             <EmailRoundedIcon color="secondary" />,
         ],
         [

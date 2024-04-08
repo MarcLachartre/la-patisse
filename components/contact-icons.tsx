@@ -18,7 +18,7 @@ const ContactIcons = ({ color }: { color: string }) => {
                     sx={{ color: `var(--${color})` }}
                 />
             </Link>
-            <Link href="mailto:marc.lachartre@gmail.com">
+            <Link href="mailto:lapatisse.pro@gmail.com">
                 <EmailRoundedIcon
                     fontSize="large"
                     sx={{ color: `var(--${color})` }}
