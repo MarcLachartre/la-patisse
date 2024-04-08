@@ -33,7 +33,7 @@ export default async function sitemap({
     const recipes = await new RecipesController().index();
 
     return recipes.map((r: any) => ({
-        url: `https://la-patisse.herokuapp.com/recettes/${id}`,
+        url: `https://www.la-patisse.com/recettes/${id}`,
         lastModified: formatDate(r.timestamp),
     }));
 }
