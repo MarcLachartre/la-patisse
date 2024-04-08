@@ -265,31 +265,28 @@ const IngredientInputs = ({
 
     return (
         <div className={style.ingredientsInputsContainer}>
-            {textField(
-                'recipe-ingredient-qty',
-                'Qté *',
-                quantity,
-                '100',
-                10,
-                0
-            )}
-            {textField('recipe-ingredient-unit', 'Unité', unit, 'g', 15, 1)}
-            {textField(
-                'recipe-ingredient-prep',
-                'Prep',
-                preposition,
-                'de',
-                15,
-                2
-            )}
-            {textField(
-                'recipe-ingredient-name',
-                'Ingrédient *',
-                type,
-                'sucre',
-                100,
-                3
-            )}
+            {[
+                ['recipe-ingredient-qty', 'Qté *', quantity, '100', 10, 0],
+                ['recipe-ingredient-unit', 'Unité', unit, 'g', 15, 1],
+                ['recipe-ingredient-prep', 'Prep', preposition, 'de', 15, 2],
+                [
+                    'recipe-ingredient-name',
+                    'Ingrédient *',
+                    type,
+                    'sucre',
+                    100,
+                    3,
+                ],
+            ].map((args) => {
+                return textField(
+                    typeof args[0] === 'string' ? args[0] : '',
+                    typeof args[1] === 'string' ? args[1] : '',
+                    typeof args[2] === 'string' ? args[2] : '',
+                    typeof args[3] === 'string' ? args[3] : '',
+                    typeof args[4] === 'number' ? args[4] : 0,
+                    typeof args[5] === 'number' ? args[5] : 0
+                );
+            })}
 
             <div className={style.addIngredientBtn}>
                 <Button
