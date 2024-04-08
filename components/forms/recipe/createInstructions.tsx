@@ -81,7 +81,7 @@ const CreateInstruction = () => {
         return (
             <TextField
                 autoFocus
-                id="filled-basic"
+                id={key}
                 key={key}
                 label="Instructions *"
                 variant="filled"

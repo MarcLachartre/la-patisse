@@ -81,7 +81,7 @@ const CreateTool = () => {
         return (
             <TextField
                 autoFocus
-                id="filled-basic"
+                id="recipe-tools"
                 key={key}
                 label="Matériel *"
                 variant="filled"

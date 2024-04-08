@@ -77,7 +77,7 @@ const CreateIntroduction = () => {
 
             <TextField
                 autoFocus
-                id="filled-basic"
+                id="recipe-introduction"
                 label="Description *"
                 variant="filled"
                 value={recipeObj.description}

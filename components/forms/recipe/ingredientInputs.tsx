@@ -2,7 +2,6 @@
 
 import style from '@/styles/components/forms/create-recipe/CreateIngredients.module.scss';
 import { CreateRecipeValidator } from '@/utils/data-validators/create-recipe-validator';
-import { ErrorsObjContext } from '@context/create/errors-obj-context';
 import { RecipeObjContext } from '@context/create/recipe-obj-context';
 import { Button, FormHelperText, TextField } from '@mui/material';
 import { type CreateIngredientErrors } from 'custom-types/form-error-types';
@@ -29,7 +28,6 @@ const IngredientInputs = ({
     ) => void;
 }) => {
     const ingredientsList = useContext(RecipeObjContext).ingredients;
-    // const ingredientsError = useContext(ErrorsObjContext).ingredients;
 
     const [quantity, setQuantity] = useState<string>('');
     const [unit, setUnit] = useState<string>('');
@@ -169,7 +167,7 @@ const IngredientInputs = ({
     }, [quantity, unit, preposition, type]); // if user submit failed, each time he types in the text field, it will validate the imput and redispalay errors
 
     useEffect(() => {
-        // When use want to edit an ingredient, it sets the text fields inputs to the default values to modify
+        // When user wants to edit an ingredient, it sets the text fields inputs to the default values to modify
         if (buttonTitle === 'Valider' && defaultValues !== undefined) {
             setQuantity(String(defaultValues.quantity));
             setPrep(String(defaultValues.preposition));
@@ -178,40 +176,70 @@ const IngredientInputs = ({
         }
     }, []);
 
-    return (
-        <div
-            className={style.ingredientsInputsContainer}
-            // onKeyUp={(e) => {
-            //     e.preventDefault();
-            //     e.code === 'Enter'
-            //         ? buttonTitle === 'Ajouter un ingrédient'
-            //             ? addIngredient()
-            //             : updateIngredient()
-            //         : false;
-            // }}
-        >
+    const textField = (
+        id: string,
+        label: string,
+        value: string,
+        placeholder: string,
+        maxLength: number,
+        fieldIndex: number
+    ) => {
+        const error = () => {
+            switch (id) {
+                case 'recipe-ingredient-qty':
+                    return errors.quantity !== undefined
+                        ? !errors.quantity.isValid
+                        : false;
+                case 'recipe-ingredient-unit':
+                    return errors.unit !== undefined
+                        ? !errors.unit.isValid
+                        : false;
+                case 'recipe-ingredient-prep':
+                    return errors.prep !== undefined
+                        ? !errors.prep.isValid
+                        : false;
+                case 'recipe-ingredient-name':
+                    return errors.type !== undefined
+                        ? !errors.type.isValid
+                        : false;
+                default:
+                    break;
+            }
+        };
+        return (
             <TextField
                 autoFocus
-                id="filled-basic"
-                label="Qté *"
+                id={id}
+                label={label}
                 variant="filled"
                 color="primary"
-                value={quantity}
+                value={value}
                 onChange={(e) => {
-                    setQuantity(e.target.value);
+                    switch (id) {
+                        case 'recipe-ingredient-qty':
+                            setQuantity(e.target.value);
+                            break;
+                        case 'recipe-ingredient-unit':
+                            setUnit(e.target.value);
+                            break;
+                        case 'recipe-ingredient-prep':
+                            setPrep(e.target.value);
+                            break;
+                        case 'recipe-ingredient-name':
+                            setType(e.target.value);
+                            break;
+                        default:
+                            break;
+                    }
                 }}
-                placeholder="100"
+                placeholder={placeholder}
                 autoComplete="off"
                 inputProps={{
-                    maxLength: 10,
+                    maxLength: { maxLength },
                 }}
-                error={
-                    errors.quantity !== undefined
-                        ? !errors.quantity.isValid
-                        : false
-                }
+                error={error()}
                 onFocus={(e) => {
-                    setFocusedFieldIndex(0);
+                    setFocusedFieldIndex(fieldIndex);
                 }}
                 onBlur={() => {
                     setFocusedFieldIndex(9999);
@@ -223,7 +251,7 @@ const IngredientInputs = ({
                             : updateIngredient()
                         : false;
                 }}
-                helperText={errorToDisplay[0]}
+                helperText={errorToDisplay[fieldIndex]}
                 sx={{
                     '.MuiFilledInput-root': { maxHeight: '59px' },
                     '.MuiFormHelperText-root ': {
@@ -232,119 +260,36 @@ const IngredientInputs = ({
                     },
                 }}
             />
-            <TextField
-                id="filled-basic"
-                label="Unité"
-                variant="filled"
-                color="primary"
-                value={unit}
-                placeholder="g"
-                onChange={(e) => {
-                    setUnit(e.target.value);
-                }}
-                onBlur={() => {
-                    setFocusedFieldIndex(9999);
-                }}
-                onKeyDown={(e) => {
-                    e.code === 'Enter'
-                        ? buttonTitle === 'Ajouter un ingrédient'
-                            ? addIngredient()
-                            : updateIngredient()
-                        : false;
-                }}
-                autoComplete="off"
-                inputProps={{
-                    maxLength: 15,
-                }}
-                error={errors.unit !== undefined ? !errors.unit.isValid : false}
-                onFocus={() => {
-                    setFocusedFieldIndex(1);
-                }}
-                helperText={errorToDisplay[1]}
-                sx={{
-                    '.MuiFilledInput-root': { maxHeight: '59px' },
-                    '.MuiFormHelperText-root ': {
-                        width: '230px',
-                        textWrap: 'wrap',
-                    },
-                }}
-            />
-            <TextField
-                id="filled-basic"
-                label="Prep"
-                variant="filled"
-                color="primary"
-                value={preposition}
-                placeholder="de"
-                onChange={(e) => {
-                    setPrep(e.target.value);
-                }}
-                error={errors.prep !== undefined ? !errors.prep.isValid : false}
-                onFocus={() => {
-                    setFocusedFieldIndex(2);
-                }}
-                onBlur={() => {
-                    setFocusedFieldIndex(9999);
-                }}
-                onKeyDown={(e) => {
-                    e.code === 'Enter'
-                        ? buttonTitle === 'Ajouter un ingrédient'
-                            ? addIngredient()
-                            : updateIngredient()
-                        : false;
-                }}
-                inputProps={{
-                    maxLength: 15,
-                }}
-                autoComplete="off"
-                helperText={errorToDisplay[2]}
-                sx={{
-                    '.MuiFilledInput-root': { maxHeight: '59px' },
-                    '.MuiFormHelperText-root ': {
-                        width: '230px',
-                        textWrap: 'wrap',
-                    },
-                }}
-            />
-            <TextField
-                className={style.ingredientInput}
-                id="filled-basic"
-                label="Ingrédient *"
-                variant="filled"
-                color="primary"
-                value={type}
-                onChange={(e) => {
-                    setType(e.target.value);
-                }}
-                placeholder="sucre"
-                error={errors.type !== undefined ? !errors.type.isValid : false}
-                onFocus={() => {
-                    setFocusedFieldIndex(3);
-                }}
-                onBlur={() => {
-                    setFocusedFieldIndex(9999);
-                }}
-                onKeyDown={(e) => {
-                    e.code === 'Enter'
-                        ? buttonTitle === 'Ajouter un ingrédient'
-                            ? addIngredient()
-                            : updateIngredient()
-                        : false;
-                }}
-                inputProps={{
-                    maxLength: 100,
-                }}
-                autoComplete="off"
-                helperText={errorToDisplay[3]}
-                sx={{
-                    '.MuiFilledInput-root': { maxHeight: '59px' },
+        );
+    };
 
-                    '.MuiFormHelperText-root ': {
-                        width: '200px',
-                        textWrap: 'wrap',
-                    },
-                }}
-            />
+    return (
+        <div className={style.ingredientsInputsContainer}>
+            {textField(
+                'recipe-ingredient-qty',
+                'Qté *',
+                quantity,
+                '100',
+                10,
+                0
+            )}
+            {textField('recipe-ingredient-unit', 'Unité', unit, 'g', 15, 1)}
+            {textField(
+                'recipe-ingredient-prep',
+                'Prep',
+                preposition,
+                'de',
+                15,
+                2
+            )}
+            {textField(
+                'recipe-ingredient-name',
+                'Ingrédient *',
+                type,
+                'sucre',
+                100,
+                3
+            )}
 
             <div className={style.addIngredientBtn}>
                 <Button
