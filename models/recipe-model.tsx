@@ -1,6 +1,4 @@
-'use server';
 import { ObjectId } from 'mongodb';
-import { notFound } from 'next/navigation';
 import {
     Recipe,
     Recipes,
