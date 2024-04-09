@@ -5,6 +5,7 @@ import Index from '../../components/pages/recipes/index';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
+    applicationName: 'La Pâtisse - Toutes les recettes',
     title: 'La Pâtisse 🍰',
     description:
         "La Pâtisse n'est rien d'autre qu'un simple recueil de mes recettes favorites. Elle est née de ma volonté d'en faire l'inventaire et de la partager avec mon entourage 😊🍰.",

@@ -14,9 +14,9 @@ export async function generateMetadata(
     // const previousImages = (await parent).openGraph?.images || [];
 
     return {
+        applicationName: 'La Pâtisse 🍰 - ' + recipe.name,
         title: 'La Pâtisse 🍰 - ' + recipe.name,
-        description:
-            "La Pâtisse n'est rien d'autre qu'un simple recueil de mes recettes favorites. Elle est née de ma volonté d'en faire l'inventaire et de la partager avec mon entourage 😊🍰.",
+        description: recipe.description,
         creator: 'Marc Lachartre',
         keywords: 'La Pâtisse, pâtisserie, delicatessen',
         openGraph: {
