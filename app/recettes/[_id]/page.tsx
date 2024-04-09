@@ -3,10 +3,11 @@ import type { Recipe } from 'custom-types/recipe-types';
 import type { Metadata, ResolvingMetadata } from 'next';
 import Show from '../../../components/pages/recipes/show';
 
-export async function generateMetadata(
-    { params }: { params: { _id: string } },
-    parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+    params,
+}: {
+    params: { _id: string };
+}): Promise<Metadata> {
     // fetch data
     const recipe = await getRecipe(params._id);
 
@@ -36,11 +37,23 @@ const getRecipe = async (id: string) => {
 };
 
 const Page = async ({ params }: { params: { _id: string } }) => {
-    return params._id !== 'undefined' ? (
-        <Show recipe={await getRecipe(params._id)} />
-    ) : (
-        <div></div>
-    );
+    const recipe = await getRecipe(params._id);
+
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: recipe.name,
+        image: recipe.pictureURL,
+        description: recipe.description,
+    };
+
+    return [
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />,
+        <Show recipe={recipe} />,
+    ];
 };
 
 export default Page;
