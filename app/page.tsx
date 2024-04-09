@@ -23,8 +23,8 @@ export const metadata: Metadata = {
 };
 
 const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@context': 'https://www.la-patisse.com',
+    '@type': 'Recettes',
     name: 'La Pâtisse 🍰',
     image: 'https://res.cloudinary.com/dgi1q0deg/image/upload/v1697644670/La%20Patisse/1710874863717.png',
     description:
