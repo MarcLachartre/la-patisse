@@ -21,6 +21,15 @@ class Database {
 
         let clientPromise;
 
+        const setConnectionTimeout = () => {
+            global._connectionTimer = setTimeout(async () => {
+                await global._mongoClient.close();
+                global._connectionIsOpen = false;
+                console.log('connection closed');
+                clearTimeout(global._connectionTimer);
+            }, 600000);
+        };
+
         if (!global._mongoClient) {
             try {
                 console.log('open connection');
@@ -35,27 +44,20 @@ class Database {
             } catch (error) {
                 console.log('error connecting to db');
                 console.log(error);
-                global._connectionIsOpen = false;
             }
-        } else {
         }
 
-        const setConnectionTimeout = () => {
-            global._connectionTimer = setTimeout(async () => {
-                await global._mongoClient.close();
-                global._connectionIsOpen = false;
-                clearTimeout(global._connectionTimer);
-            }, 600000);
-        };
-
-        if (global._connectionIsOpen) {
-            clearTimeout(global._connectionTimer);
-        } else {
+        if (global._connectionIsOpen === false) {
             await global._mongoClient.connect();
             global._connectionIsOpen = true;
+            console.log('open connection');
+        } else if (global._connectionIsOpen) {
+            clearTimeout(global._connectionTimer);
+            console.log(global._connectionTimer);
         }
-
         setConnectionTimeout();
+
+        // setConnectionTimeout();
         clientPromise = global._mongoClient;
 
         // Retrieve cakes db for developpement and production purposes:
