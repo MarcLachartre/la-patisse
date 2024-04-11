@@ -26,9 +26,12 @@ const Footer = () => {
                     alt="logo la patisse"
                 />
                 <p>
-                    La Pâtisse n'est rien d'autre qu'un simple recueil de mes
-                    recettes favorites. Elle est née de ma volonté d'en faire
-                    l'inventaire et de la partager avec mon entourage 😊🍰.
+                    Bienvenue! Entre recettes professionelles et personnelles,
+                    La Pâtisse n'est pas qu'un simple recueil de recettes, c'est
+                    la volonté de partager les souvenirs d'une enfance
+                    gourmande, des découvertes culinaires mais aussi des
+                    classiques de la pâtisserie francaise avec des recettes de
+                    chefs 🍰🧑‍🍳!
                 </p>
             </div>
             <div className={footer.sitemapContainer}>

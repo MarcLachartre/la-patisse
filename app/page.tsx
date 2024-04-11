@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'La Pâtisse 🍰',
     applicationName: 'La Pâtisse 🍰',
     description:
-        "Bienvenue! Entre recettes professionelles et personnelles, La Pâtisse n'est pas qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
+        "Bienvenue! Du Carrot Cake à la tarte aux fraises, La Pâtisse est bien plus qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
     creator: 'Marc Lachartre',
     keywords:
         'La Pâtisse, pâtisserie, delicatessen, recette, recettes, gateaux, entremets, cake, tarte, CAP, chef',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         title: 'La Pâtisse 🍰',
         images: 'https://res.cloudinary.com/dgi1q0deg/image/upload/v1697644670/La%20Patisse/1710874863717.png',
         description:
-            "Bienvenue! Entre recettes professionelles et personnelles, La Pâtisse n'est pas qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
+            "Bienvenue! Du Carrot Cake à la tarte aux fraises, La Pâtisse est bien plus qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
     },
 };
 
@@ -28,7 +28,7 @@ const jsonLd = {
     name: 'La Pâtisse 🍰',
     image: 'https://res.cloudinary.com/dgi1q0deg/image/upload/v1697644670/La%20Patisse/1710874863717.png',
     description:
-        "Bienvenue! Entre recettes professionelles et personnelles, La Pâtisse n'est pas qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
+        "Bienvenue! Du Carrot Cake à la tarte aux fraises, La Pâtisse est bien plus qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
 };
 
 export const viewport: Viewport = {
@@ -53,11 +53,11 @@ const Page = () => {
                 <h1>La Pâtisse</h1>
                 <h2>
                     Bienvenue! Du Carrot Cake à la tarte aux fraises, La Pâtisse
-                    n'est pas qu'un simple recueil de recettes, c'est la volonté
-                    de partager les souvenirs d'une enfance gourmande, des
-                    découvertes culinaires mais aussi des classiques de la
+                    est bien plus qu'un simple recueil de recettes, c'est la
+                    volonté de partager les souvenirs d'une enfance gourmande,
+                    des découvertes culinaires mais aussi des classiques de la
                     pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!
-                    <br /> Venez donc partager ma passion et mon univers sucré!
+                    <br /> Venez donc partager ma passion et pâtissez avec moi!
                 </h2>
 
                 <div className={styles.buttonContainer}>
