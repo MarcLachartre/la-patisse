@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'La Pâtisse 🍰',
     applicationName: 'La Pâtisse 🍰',
     description:
-        "La Pâtisse n'est rien d'autre qu'un simple recueil de recettes pros et persos. Elle est née de ma volonté d'en faire l'inventaire et de la partager😊🍰.",
+        "Bienvenue! Entre recettes professionelles et personnelles, La Pâtisse n'est pas qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
     creator: 'Marc Lachartre',
     keywords:
         'La Pâtisse, pâtisserie, delicatessen, recette, recettes, gateaux, entremets, cake, tarte, CAP, chef',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         title: 'La Pâtisse 🍰',
         images: 'https://res.cloudinary.com/dgi1q0deg/image/upload/v1697644670/La%20Patisse/1710874863717.png',
         description:
-            "La Pâtisse n'est rien d'autre qu'un simple recueil de recettes pros et persos. Elle est née de ma volonté d'en faire l'inventaire et de la partager😊🍰.",
+            "Bienvenue! Entre recettes professionelles et personnelles, La Pâtisse n'est pas qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
     },
 };
 
@@ -28,7 +28,7 @@ const jsonLd = {
     name: 'La Pâtisse 🍰',
     image: 'https://res.cloudinary.com/dgi1q0deg/image/upload/v1697644670/La%20Patisse/1710874863717.png',
     description:
-        "La Pâtisse n'est rien d'autre qu'un simple recueil de recettes pros et persos. Elle est née de ma volonté d'en faire l'inventaire et de la partager😊🍰.",
+        "Bienvenue! Entre recettes professionelles et personnelles, La Pâtisse n'est pas qu'un simple recueil de recettes, c'est la volonté de partager les souvenirs d'une enfance gourmande, des découvertes culinaires mais aussi des classiques de la pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!",
 };
 
 export const viewport: Viewport = {
@@ -51,14 +51,15 @@ const Page = () => {
             />
             <div className={styles.homepageDescriptionContainer}>
                 <h1>La Pâtisse</h1>
-                <h5>
-                    Bienvenue! Entre recettes professionelles et personnelles,
-                    La Pâtisse n'est pas qu'un simple recueil de recettes, c'est
-                    la volonté de partager les souvenirs d'une enfance
-                    gourmande, des découvertes pâtissières mais aussi des
-                    classiques de la pâtisserie francaise avec des recettes de
-                    chefs 🍰🧑‍🍳!
-                </h5>
+                <h2>
+                    Bienvenue! Du Carrot Cake à la tarte aux fraises, La Pâtisse
+                    n'est pas qu'un simple recueil de recettes, c'est la volonté
+                    de partager les souvenirs d'une enfance gourmande, des
+                    découvertes culinaires mais aussi des classiques de la
+                    pâtisserie francaise avec des recettes de chefs 🍰🧑‍🍳!
+                    <br /> Venez donc partager ma passion et mon univers sucré!
+                </h2>
+
                 <div className={styles.buttonContainer}>
                     <Link href="/recettes">
                         <Button
