@@ -38,6 +38,7 @@ class RecipeModel {
                 description,
                 pictureURL,
                 timestamp,
+                searchName,
                 ...recipeRest
             } = recipe; // Destructure the recipe objects
 
@@ -47,6 +48,7 @@ class RecipeModel {
                 description,
                 pictureURL,
                 timestamp,
+                searchName,
             }; // Keep the id, name and description properties in an object
 
             shortRecipes.push(shortRecipe); // Push it in the shortRecipes array.
