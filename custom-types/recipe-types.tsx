@@ -31,7 +31,7 @@ interface RecipeToSave {
     tools: string[];
     pictureURL?: string;
     timestamp: string;
-    searchName: string;
+    searchName?: string;
 }
 
 interface UpdatedRecipe {
