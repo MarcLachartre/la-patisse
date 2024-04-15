@@ -6,10 +6,10 @@ import Show from '../../../components/pages/recipes/show';
 export async function generateMetadata({
     params,
 }: {
-    params: { _id: string };
+    params: { name: string };
 }): Promise<Metadata> {
     // fetch data
-    const recipe = await getRecipe(params._id);
+    const recipe = await getRecipe(params.name);
 
     // optionally access and extend (rather than replace) parent metadata
     // const previousImages = (await parent).openGraph?.images || [];
@@ -28,16 +28,16 @@ export async function generateMetadata({
     };
 }
 
-const getRecipe = async (id: string) => {
+const getRecipe = async (name: string) => {
     'use server';
     // Call recipe controller show method to retrieve a specific recipe with all its details
-    const recipe: Recipe = await new RecipesController().show(id);
+    const recipe: Recipe = await new RecipesController().show(name);
     recipe._id = JSON.stringify(recipe._id);
     return recipe;
 };
 
-const Page = async ({ params }: { params: { _id: string } }) => {
-    const recipe = await getRecipe(params._id);
+const Page = async ({ params }: { params: { name: string } }) => {
+    const recipe = await getRecipe(params.name);
 
     const jsonLd = {
         '@context': 'https://schema.org',

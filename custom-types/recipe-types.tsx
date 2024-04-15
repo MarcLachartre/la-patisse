@@ -30,16 +30,18 @@ interface RecipeToSave {
     tools: string[];
     pictureURL?: string;
     timestamp: string;
+    searchName: string;
 }
 
 interface UpdatedRecipe {
-    name?: string;
-    description?: string;
-    recipe?: string[];
-    ingredients?: Ingredient[];
-    tools?: string[];
-    pictureURL?: string;
+    name: string;
+    description: string;
+    recipe: string[];
+    ingredients: Ingredient[];
+    tools: string[];
+    pictureURL: string;
     timestamp: string;
+    searchName: string;
 }
 
 interface Ingredient {

@@ -129,8 +129,20 @@ const Create = ({
                             display: true,
                         },
                     });
+                    const formattedName = recipeObj.name // needed to redirect to the right url
+                        .split(' ')
+                        .map((word) => {
+                            return word.toLowerCase();
+                        })
+                        .join('_')
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .replace(/[^a-zA-Z0-9_]/g, '')
+                        .trim();
 
-                    router.push(window.location.origin + '/recettes/' + x.id);
+                    router.push(
+                        window.location.origin + '/recettes/' + formattedName
+                    );
                     router.refresh();
                 }
             })

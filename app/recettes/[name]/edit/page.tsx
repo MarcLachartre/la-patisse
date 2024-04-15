@@ -3,13 +3,13 @@ import { RecipesController } from 'controllers/recipes-controller';
 export const dynamic = 'force-dynamic';
 
 // Get the recipe to edit from db to populate the default value of the form
-const getRecipe = async (id: string) => {
-    const response = await new RecipesController().show(id);
+const getRecipe = async (name: string) => {
+    const response = await new RecipesController().show(name);
     return response;
 };
 
-const Page = async ({ params: { _id } }: { params: { _id: string } }) => {
-    const recipeToEdit = await getRecipe(_id);
+const Page = async ({ params: { name } }: { params: { name: string } }) => {
+    const recipeToEdit = await getRecipe(name);
     recipeToEdit._id = String(recipeToEdit._id);
     return <Create initialData={recipeToEdit} editState={true} />;
 };

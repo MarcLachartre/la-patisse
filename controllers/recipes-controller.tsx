@@ -19,10 +19,10 @@ class RecipesController {
         return shortRecipes;
     }
 
-    async show(id: string) {
+    async show(name: string) {
         // Retrieve recipe to display on the show page
         const recipe: { success: boolean; error: string } & Recipe =
-            await this.recipeModel.findById(id);
+            await this.recipeModel.findBySearchName(name);
 
         return recipe.success === false ? notFound() : recipe;
     }

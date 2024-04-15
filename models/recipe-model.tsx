@@ -65,7 +65,28 @@ class RecipeModel {
                 _id: _id,
             });
 
-            return recipe;
+            recipe !== null
+                ? recipe
+                : { error: 'No record found in db', success: false };
+        } catch (e) {
+            console.log(e);
+            return { error: e, success: false };
+        }
+    }
+
+    static async findBySearchName(name: string) {
+        // Connect to myCakes db and point to the cakes collection
+        const data: any = await Database.getData('cakes');
+
+        try {
+            // Find the one requested recipe
+            const recipe = await data.recipes.findOne({
+                searchName: name,
+            });
+
+            return recipe !== null
+                ? recipe
+                : { error: 'No record found in db', success: false };
         } catch (e) {
             console.log(e);
             return { error: e, success: false };
@@ -73,12 +94,33 @@ class RecipeModel {
     }
 
     static async saveRecipe(recipe: RecipeToSave) {
+        recipe.searchName = recipe.name
+            .split(' ')
+            .map((word) => {
+                return word.toLowerCase();
+            })
+            .join('_')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/\//g, '')
+            .trim();
         const response = await Database.insertData('cakes', recipe);
         return response;
     }
 
     static async updateRecipe(recipe: UpdatedRecipe, id: string) {
         const filter = { _id: new ObjectId(id) };
+
+        recipe.searchName = recipe.name
+            .split(' ')
+            .map((word) => {
+                return word.toLowerCase();
+            })
+            .join('_')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-zA-Z0-9_]/g, '')
+            .trim();
 
         const response = await Database.updateData(filter, recipe, 'cakes');
         return response;
