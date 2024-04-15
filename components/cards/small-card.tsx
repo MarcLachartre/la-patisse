@@ -32,7 +32,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
     return (
         <div id={recipe._id} className={sc.smallCardContainer}>
             <Link
-                href={`recettes/${formattedName(recipe.name)}`}
+                href={`recettes/${formattedName(recipe.searchName)}`}
                 className={sc.smallCardLink}
             ></Link>
             <img

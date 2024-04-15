@@ -8,6 +8,7 @@ interface Recipe {
     tools: string[];
     pictureURL: string;
     timestamp: string;
+    searchName: string;
 }
 
 interface RecipeToInsert {
