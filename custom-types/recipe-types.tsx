@@ -62,6 +62,7 @@ type ShortRecipe = {
     description: string;
     pictureURL: string;
     timestamp: string;
+    searchName: string;
 };
 
 export type {
