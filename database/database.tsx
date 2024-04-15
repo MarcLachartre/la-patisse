@@ -14,7 +14,7 @@ class Database {
         const options = {
             serverApi: {
                 version: ServerApiVersion.v1,
-                strict: true,
+                strict: false,
                 deprecationErrors: true,
             },
         };
@@ -53,7 +53,6 @@ class Database {
             console.log('open connection');
         } else if (global._connectionIsOpen) {
             clearTimeout(global._connectionTimer);
-            console.log(global._connectionTimer);
         }
         setConnectionTimeout();
 
@@ -62,7 +61,7 @@ class Database {
 
         // Retrieve cakes db for developpement and production purposes:
         const db = clientPromise.db('myCakes');
-
+        db.createIndex('myCakes', { name: 'text' });
         // Retrieve cakes db for test purposes:
         // const db = await clientPromise.db('myCakesTestDb');
         return db;

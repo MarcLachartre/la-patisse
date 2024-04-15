@@ -19,7 +19,7 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
     return (
         <div id={recipe._id} className={sc.smallCardContainer}>
             <Link
-                href={`recettes/${recipe._id.slice(1, -1)}`}
+                href={`recettes/${recipe.searchName}`}
                 className={sc.smallCardLink}
             ></Link>
             <img

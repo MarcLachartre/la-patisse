@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next';
 export async function generateSitemaps() {
     const recipes = await new RecipesController().index();
     const ids = recipes.map((r: ShortRecipe) => {
-        return { id: r._id.toString() };
+        return { id: r._id };
     });
 
     // Fetch the total number of products and calculate the number of sitemaps needed
@@ -30,8 +30,17 @@ export default async function sitemap({
 
         return [year, month, day].join('-');
     };
+
     return recipes.map((r: any) => ({
-        url: `https://www.la-patisse.com/recettes/${id}`,
+        url: `https://www.la-patisse.com/recettes/${r.name
+            .split(' ')
+            .map((word: string) => {
+                return word[0].toLowerCase() + word.substring(1);
+            })
+            .join('_')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .trim()}`,
         lastModified: formatDate(r.timestamp),
     }));
 }
