@@ -16,23 +16,10 @@ const SmallCard = ({ recipe }: { recipe: Recipe }) => {
         setImageURL(recipe.pictureURL + '?' + Date.now());
     };
 
-    const formattedName = (name: string) => {
-        return name
-            .split(' ')
-            .map((word) => {
-                return word.toLowerCase();
-            })
-            .join('_')
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/[^a-zA-Z0-9_]/g, '')
-            .trim();
-    };
-
     return (
         <div id={recipe._id} className={sc.smallCardContainer}>
             <Link
-                href={`recettes/${formattedName(recipe.searchName)}`}
+                href={`recettes/${recipe.searchName}`}
                 className={sc.smallCardLink}
             ></Link>
             <img
